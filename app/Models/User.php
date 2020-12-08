@@ -52,14 +52,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
     public function roles()
     {
       return $this->belongsToMany('App\Models\Role', 'user_role');
+
     }
 
     public function authorizeRoles($roles)
     {
       if (is_array($roles)){
+
         return $this->hasAnyRole($roles);
       }
       return $this->hasRole($roles);
@@ -76,5 +79,6 @@ class User extends Authenticatable
     {
       return null !== $this->roles()->where('name', $role)->first();
     }
+
 
 }

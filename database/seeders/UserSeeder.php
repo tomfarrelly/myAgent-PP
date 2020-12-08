@@ -1,8 +1,10 @@
 <?php
+
 # @Author: tomfarrelly
 # @Date:   2020-12-08T19:04:12+00:00
 # @Last modified by:   tomfarrelly
 # @Last modified time: 2020-12-08T20:01:42+00:00
+
 
 
 
@@ -23,6 +25,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+
       $role_admin = Role::where('name','admin')->first();
       $role_eventManager = Role::where('name','eventManager')->first();
       $role_dj = Role::where('name','dj')->first();
@@ -59,6 +62,7 @@ class UserSeeder extends Seeder
       $dj->location = 'Dublin, Ireland';
       $dj->save();
       $dj->roles()->attach($role_dj);
+
 
 
     }
