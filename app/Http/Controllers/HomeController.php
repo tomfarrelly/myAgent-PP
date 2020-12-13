@@ -1,19 +1,16 @@
-# @Author: tomfarrelly
-# @Date:   2020-12-13T15:40:53+00:00
-# @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-13T15:42:48+00:00
 <?php
+# @Author: tomfarrelly
+# @Date:   2020-12-13T15:51:21+00:00
+# @Last modified by:   tomfarrelly
+# @Last modified time: 2020-12-13T15:54:52+00:00
+
 
 
 
 namespace App\Http\Controllers;
 
-
-
 use Illuminate\Http\Request;
 use Auth;
-
-
 
 class HomeController extends Controller
 {
@@ -27,8 +24,6 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-
-
     /**
      * Show the application dashboard.
      *
@@ -39,8 +34,6 @@ class HomeController extends Controller
         $user = Auth::user();
         $home = 'home';
 
-
-
         if($user->hasRole('admin')){
               $home = 'admin.home';
             }
@@ -48,13 +41,9 @@ class HomeController extends Controller
                 $home = 'dj.home';
               }
 
-
-
               else if ($user->hasRole('eventmanager')){
                 $home = 'eventmanager.home';
               }
-
-
 
         return redirect()->route($home);
     }

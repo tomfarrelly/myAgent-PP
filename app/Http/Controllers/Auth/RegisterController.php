@@ -1,17 +1,13 @@
 <?php
 # @Author: tomfarrelly
-# @Date:   2020-12-13T15:44:00+00:00
+# @Date:   2020-12-13T15:51:21+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-13T15:45:38+00:00
-
-
+# @Last modified time: 2020-12-13T15:54:55+00:00
 
 
 
 
 namespace App\Http\Controllers\Auth;
-
-
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -19,8 +15,6 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
-
 
 class RegisterController extends Controller
 {
@@ -35,11 +29,7 @@ class RegisterController extends Controller
     |
     */
 
-
-
     use RegistersUsers;
-
-
 
     /**
      * Where to redirect users after registration.
@@ -47,8 +37,6 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-
-
 
     /**
      * Create a new controller instance.
@@ -59,8 +47,6 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
-
 
     /**
      * Get a validator for an incoming registration request.
@@ -76,8 +62,6 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-
-
 
     /**
      * Create a new user instance after a valid registration.

@@ -1,8 +1,10 @@
 <?php
+
 # @Author: tomfarrelly
 # @Date:   2020-12-08T19:04:27+00:00
 # @Last modified by:   tomfarrelly
 # @Last modified time: 2020-12-08T23:39:21+00:00
+
 
 
 
@@ -21,6 +23,7 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
+
       $role_admin = new Role();
       $role_admin->name = 'admin';
       $role_admin->description = 'An administrator user';
@@ -35,5 +38,6 @@ class RoleSeeder extends Seeder
       $role_dj->name = 'dj';
       $role_dj->description = 'An dj user';
       $role_dj->save();
+
     }
 }
