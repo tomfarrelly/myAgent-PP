@@ -53,6 +53,12 @@ class User extends Authenticatable
     ];
 
 
+    public function dj()
+    {
+      return $this->hasOne('App\Models\Dj');
+
+    }
+
     public function roles()
     {
       return $this->belongsToMany('App\Models\Role', 'user_role');

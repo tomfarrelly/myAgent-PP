@@ -8,7 +8,7 @@
 
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Dj\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,3 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/admin/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
 Route::get('/dj/home', [App\Http\Controllers\Dj\HomeController::class, 'index'])->name('dj.home');
 Route::get('/eventmanager/home', [App\Http\Controllers\EventManager\HomeController::class, 'index'])->name('eventmanager.home');
+
+Route::get('/dj/profile', [App\Http\Controllers\Dj\ProfileController::class, 'index'])->name('dj.profile.index');
+// Route::get('/dj/profile', [DjProfileController::class, 'index'])->name('dj.profile.index');
+// Route::get('/dj/profile/{id}', [DjProfileController::class, 'show'])->name('dj.profile.show');

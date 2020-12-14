@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Dj;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -64,10 +66,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        // return User::create([
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'password' => Hash::make($data['password']),
+        // ]);
+
+        $dj = new User();
+        $dj->name = $data['name'];
+        $dj->email = $data['email'];
+        $dj->username = '';
+        $dj->bio = '';
+        $dj->genre = '';
+        $dj->location = '';
+        $dj->password = Hash::make($data['password']);
+        $dj->save();
+
+        $dj->roles()->attach(Role::where('name', 'user')->first());
+
+        $dj = new Dj();
+        $dj->price = '22.11';
+        $dj->user_id = $dj->id;
+        $dj->save();
     }
 }

@@ -14,7 +14,13 @@
                         </div>
                     @endif
 
-                    You are logged in as DJ!
+                     You are logged in as a DJ.
+                     <br>
+                     <a href="{{ route('dj.profile.index') }}"> View Profile </a>
+   
+
+
+
                 </div>
             </div>
         </div>
