@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:48+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-13T23:43:11+00:00
+# @Last modified time: 2020-12-16T21:16:27+00:00
 
 
 
@@ -12,6 +12,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use Illuminate\Support\Facades\File;
+
 
 class EventController extends Controller
 {
@@ -66,10 +68,27 @@ class EventController extends Controller
           'date' => 'required|date',
           'time' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
           'type' => 'required',
+          'cover' => 'file|image',
+          //'cover'=> 'file|image',
           'user_id' => 'required|integer',
         ]);
 
         $event = new  Event();
+
+        if($request->hasfile('cover'))
+      {
+        $destination = 'uploads/event/' .$event->cover;
+        if(File::exists($destination)){
+           File::delete($destination);
+        }
+        $file = $request->file('cover');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $file->move('uploads/event/',$filename);
+        $event->cover = $filename;
+      }
+
+
         $event->name=$request->input('name');
         $event->description=$request->input('description');
         $event->venue=$request->input('venue');
@@ -77,6 +96,7 @@ class EventController extends Controller
         $event->time=$request->input('time');
         $event->type=$request->input('type');
         $event->user_id=$request->input('user_id');
+        $event->cover=$filename;
         $event->save();
 
         return redirect()->route('admin.events.index');
@@ -130,8 +150,23 @@ class EventController extends Controller
           'date' => 'required|date',
           'time' => 'required|date_format:H:i',//makes sure that the one you are adding to the DB is unique
           'type' => 'required',
+          'cover' => 'file|image',
           'user_id' => 'required|integer',
+
         ]);
+
+        if($request->hasfile('cover'))
+      {
+        $destination = 'uploads/event/' .$event->cover;
+        if(File::exists($destination)){
+           File::delete($destination);
+        }
+        $file = $request->file('cover');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $file->move('uploads/event/',$filename);
+        $event->cover = $filename;
+      }
 
 
         $event->name=$request->input('name');
@@ -140,6 +175,7 @@ class EventController extends Controller
         $event->date=$request->input('date');
         $event->time=$request->input('time');
         $event->user_id=$request->input('user_id');
+        $event->cover=$filename;
         $event->save();
 
         return redirect()->route('admin.events.index');

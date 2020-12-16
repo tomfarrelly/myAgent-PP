@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-14T00:11:53+00:00
+# @Last modified time: 2020-12-16T19:05:07+00:00
 
 
 
@@ -53,7 +53,7 @@ Route::put('/eventmanager/events/{id}', [EventManagerEventController::class, 'up
 Route::delete('/eventmanager/events/{id}', [EventManagerEventController::class, 'destroy'])->name('eventmanager.events.destroy');
 
 
-// ADMIN EVENT CRUD
+// ADMIN EVENT CRUD 1
 Route::get('/admin/events', [AdminEventController::class, 'index'])->name('admin.events.index');
 Route::get('/admin/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
 Route::get('/admin/events/{id}', [AdminEventController::class, 'show'])->name('admin.events.show');

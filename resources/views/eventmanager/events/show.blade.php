@@ -12,6 +12,11 @@
                 <div class="card-body">
                     <table class="table table-hover">
                         <tbody>
+                          <tr>
+                            <td rowspan="6">
+                              <img src="{{ asset('uploads/event/'.$event->cover) }}" class="w-100">
+                            </td>
+                          </tr>
                             <tr>
                                 <td>Name</td>
                                 <td>{{ $event->name }}</td>

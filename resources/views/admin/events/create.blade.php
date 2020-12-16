@@ -18,8 +18,12 @@
                     </ul>
                 </div>
                 @endif
-                <form method="POST" action="{{ route('admin.events.store') }}">
+                <form method="POST" action="{{ route('admin.events.store') }}" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+                        <label for="cover">Cover</label>
+                        <input type="file" class="form-control" id="cover" name="cover" />
+                    </div>
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" />

@@ -29,6 +29,7 @@ class CreateEventsTable extends Migration
           $table->time('time');
           $table->bigInteger('user_id')->unsigned();
           $table->string('type');
+        //  $table->string('image')->nullable();
           $table->rememberToken();
           $table->timestamps();
 
