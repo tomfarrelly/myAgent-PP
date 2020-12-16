@@ -14,7 +14,12 @@
                         </div>
                     @endif
 
-                    You are logged in as DJ!
+                     You are logged in as a DJ.
+                     <br>
+                     
+
+
+
                 </div>
             </div>
         </div>
