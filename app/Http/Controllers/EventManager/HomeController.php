@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:eventmanager');
+        $this->middleware('role:eventManager');
     }
 
     /**
@@ -30,6 +30,6 @@ class HomeController extends Controller
        // $user->authorizeRoles(['admin']);
 
 
-        return view('eventmanager.home');
+        return view('eventManager.home');
     }
 }
