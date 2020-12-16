@@ -16,8 +16,7 @@
 
                      You are logged in as a DJ.
                      <br>
-                     <a href="{{ route('dj.profile.index') }}"> View Profile </a>
-   
+                     
 
 
 

@@ -31,6 +31,7 @@ class User extends Authenticatable
         'bio',
         'genre',
         'location',
+        'image',
     ];
 
     /**
@@ -53,10 +54,9 @@ class User extends Authenticatable
     ];
 
 
-    public function dj()
+    public function profile()
     {
-      return $this->hasOne('App\Models\Dj');
-
+    return $this->hasOne('Profile');
     }
 
     public function roles()

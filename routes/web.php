@@ -31,6 +31,9 @@ Route::get('/admin/home', [App\Http\Controllers\Admin\HomeController::class, 'in
 Route::get('/dj/home', [App\Http\Controllers\Dj\HomeController::class, 'index'])->name('dj.home');
 Route::get('/eventmanager/home', [App\Http\Controllers\EventManager\HomeController::class, 'index'])->name('eventmanager.home');
 
-Route::get('/dj/profile', [App\Http\Controllers\Dj\ProfileController::class, 'index'])->name('dj.profile.index');
-// Route::get('/dj/profile', [DjProfileController::class, 'index'])->name('dj.profile.index');
-// Route::get('/dj/profile/{id}', [DjProfileController::class, 'show'])->name('dj.profile.show');
+Route::get('/my-profile', [App\Http\Controllers\Dj\ProfileController::class, 'myprofile'])->name('dj.page.profile');
+Route::post('/my-profile-update', [App\Http\Controllers\Dj\ProfileController::class, 'myprofileupdate'])->name('dj.page.profile'); 
+//Route::get('dj/profile/{id}',  [App\Http\Controllers\Dj\ProfileController::class, 'show'])->name('dj.profile.show');
+// Route::get('/dj/profile', [App\Http\Controllers\Dj\ProfilesController::class, 'show'])->name('dj.profile.show');
+// Route::get('/dj/profile/{$dj->id}', [App\Http\Controllers\Dj\ProfileController::class, 'show'])->name('dj.profile.show');
+// // Route::get('/dj/profile/{id}', [DjProfileController::class, 'show'])->name('dj.profile.show');
