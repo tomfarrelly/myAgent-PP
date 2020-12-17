@@ -46,6 +46,7 @@
 
                     <a href="{{ route('eventmanager.events.index') }}" class="btn btn-default">Back</a>
                     <a href="{{ route('eventmanager.events.edit', $event->id) }}" class="btn btn-warning">Edit</a>
+                    <a href="{{ route('eventmanager.page.profile.index') }}" class="btn btn-warning">Add DJ</a>
                     <form style="display:inline-block" method="POST" action="{{ route('eventmanager.events.destroy', $event->id) }}">
                       <input type="hidden" name="_method" value="DELETE">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
