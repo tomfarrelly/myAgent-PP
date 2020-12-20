@@ -1,8 +1,8 @@
 <?php
 # @Author: tomfarrelly
-# @Date:   2020-12-17T01:13:10+00:00
+# @Date:   2020-12-20T18:41:17+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-17T01:17:08+00:00
+# @Last modified time: 2020-12-20T19:56:21+00:00
 
 
 
@@ -21,38 +21,20 @@ class Booking extends Model
      *
      * @var array
      */
-    // protected $fillable = [
-    //     'name',
-    //     'description',
-    //     'venue',
-    //     'date',
-    //     'time',
-    //     'type',
-    // ];
+     protected $primaryKey = 'id';
+     protected $fillable = [
+         'user_id',
+         'event_id',
+         'status',
+     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-
-    protected $primaryKey = 'id';
-    protected $hidden = [
-        'user_id',
-        'event_id',
-        'completed',
-        'cancelled',
-    ];
-
-    public function users()
+    public function event()
     {
-      return $this->belongsToOne('App\Models\User', 'user_id');
-
+      return $this->belongsTo('App\Models\Event');
     }
 
-    public function events()
+    public function dj()
     {
-      return $this->belongsToOne('App\Models\Event', 'event_id');
-
+      return $this->belongsTo('App\Models\Dj');
     }
 }

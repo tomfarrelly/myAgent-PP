@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                 <div class="card-header">
-                    Event: {{ $dj->user->name }}
+                    DJ: {{ $dj->user->name }}
                 </div>
 
                 <div class="card-body">
@@ -46,7 +46,9 @@
 
                     <a href="{{ route('eventmanager.page.profile.index') }}" class="btn btn-default">Back</a>
 
-                    <a href="{{ route('eventmanager.page.profile.index') }}" class="btn btn-warning">Add DJ to Event</a>
+                    <a href="{{ route('eventmanager.page.profile.index') }}" class="btn btn-warning">View DJs for Event</a>
+
+                    <a href="{{ route('eventmanager.events.bookings.create', $dj) }}" class="btn btn-primary float-right">Make Booking</a>
 
                 </div>
             </div>

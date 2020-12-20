@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-17T01:27:08+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-17T01:28:03+00:00
+# @Last modified time: 2020-12-20T20:31:44+00:00
 
 
 
@@ -11,9 +11,22 @@ namespace App\Http\Controllers\EventManager;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Dj;
+use App\Models\Event;
+use App\Models\Booking;
+
+use App\Models\User;
+use Auth;
 
 class BookingController extends Controller
 {
+
+
+  public function __construct()
+  {
+      $this->middleware('auth');
+      $this->middleware('role:eventManager,admin');
+  }
     /**
      * Display a listing of the resource.
      *
@@ -22,6 +35,12 @@ class BookingController extends Controller
     public function index()
     {
          $bookings = Booking::all();
+
+         return view('eventmanager.events.bookings.index',[
+           'bookings' => $bookings
+         ]);
+
+         //->withBookings($bookings);
     }
 
     /**
@@ -29,9 +48,13 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+      $event = Event::findOrFail($id);
+
+      return view('eventmanager.events.bookings.create', [
+        'event' => $event
+      ]); //compact('djs')
     }
 
     /**
@@ -40,9 +63,22 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+      $booking = new Booking();
+
+      $booking->event_id = $event->id;
+      $booking->dj_id = $dj->id;
+      $booking->status= $request->input('status');
+      $booking->save();
+
+      // $request->validate([
+      //   'user_id' => 'required|integer',
+      //   'event_id' => 'required|integer',
+      //   'date' => 'required|date',
+      //   'time' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
+      //   'description' => 'required|max:191',
+      // ]);
     }
 
     /**
