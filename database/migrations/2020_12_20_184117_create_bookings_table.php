@@ -1,8 +1,8 @@
 <?php
 # @Author: tomfarrelly
-# @Date:   2020-12-17T01:07:35+00:00
+# @Date:   2020-12-20T18:41:17+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-17T01:24:18+00:00
+# @Last modified time: 2020-12-20T19:04:15+00:00
 
 
 
@@ -22,14 +22,13 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('dj_id')->unsigned();
             $table->bigInteger('event_id')->unsigned();
-            $table->boolean('completed')->default(false);
-            $table->boolean('canceled')->default(false);
+            $table->boolean('status');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('dj_id')->references('id')->on('djs')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('event_id')->references('id')->on('events')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 

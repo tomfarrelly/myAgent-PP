@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:15:23+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-13T19:51:23+00:00
+# @Last modified time: 2020-12-20T18:57:09+00:00
 
 
 
@@ -38,12 +38,32 @@ class Event extends Model
 
     protected $primaryKey = 'id';
     protected $hidden = [
-        'user_id'
+        'user_id',
+        // 'dj_id',
     ];
 
-    public function users()
+    public function user()
     {
-      return $this->belongsToOne('App\Models\User', 'user_id');
+      return $this->belongsToOne(User::class, 'user_id');
 
     }
+
+    public function dj()
+    {
+      return $this->belongsToMany(Dj::class);//'dj_event', 'dj_id'
+
+
+    }
+
+    public function bookings()
+    {
+      return $this->hasMany('App\Models\Booking');
+    }
+    // public function djEvent()
+    // {
+    //   $events = Event::with('dj');
+    //   return Datatables::of($events)->make(true);
+    // }
+
+
 }

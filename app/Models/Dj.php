@@ -1,4 +1,11 @@
 <?php
+# @Author: tomfarrelly
+# @Date:   2020-12-16T22:47:21+00:00
+# @Last modified by:   tomfarrelly
+# @Last modified time: 2020-12-20T18:56:28+00:00
+
+
+
 
 namespace App\Models;
 
@@ -11,6 +18,16 @@ class Dj extends Model
 
     public function user()
     {
-      return $this->belongsTo('App\Models\User');
+      return $this->belongsTo(User::class);
+    }
+
+    public function event()
+    {
+      return $this->belongsToMany(Event::class); //'dj_event', 'event_id'
+    }
+
+    public function bookings()
+    {
+      return $this->hasMany('App\Models\Booking');
     }
 }

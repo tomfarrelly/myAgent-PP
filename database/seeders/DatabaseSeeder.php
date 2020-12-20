@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-13T19:35:02+00:00
+# @Last modified time: 2020-12-20T19:00:12+00:00
 
 
 
@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
       $this->call(UserSeeder::class);
       $this->call(EventSeeder::class);
       $this->call(DjSeeder::class);
+      $this->call(BookingSeeder::class);
 
 
     }

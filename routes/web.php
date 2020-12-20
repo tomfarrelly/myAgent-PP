@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-17T00:25:05+00:00
+# @Last modified time: 2020-12-20T20:30:35+00:00
 
 
 
@@ -15,6 +15,7 @@ use App\Http\Controllers\Dj\ProfileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\EventManager\EventController as EventManagerEventController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\EventManager\BookingController as EventManagerBookingController;
 
 
 
@@ -54,6 +55,12 @@ Route::post('/my-profile-update', [App\Http\Controllers\Dj\ProfileController::cl
 //Route::post('/my-profile-update', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofileupdate'])->name('eventmanager.page.profile');
 Route::get('/eventmanager/page/index', [App\Http\Controllers\EventManager\ProfileController::class, 'index'])->name('eventmanager.page.profile.index');
 Route::get('/eventmanager/djs/{id}', [App\Http\Controllers\EventManager\ProfileController::class, 'show'])->name('eventmanager.page.profile.show');
+
+
+//EM bookings
+Route::get('/eventmanager/bookings', [EventManagerBookingController::class, 'index'])->name('eventmanager.bookings.index');
+Route::get('/eventmanager/events/{id}/bookings/create', [EventManagerBookingController::class, 'create'])->name('eventmanager.events.bookings.create');
+Route::post('/eventmanager/events/{id}/bookings/store', [EventManagerBookingController::class, 'store'])->name('eventmanager.events.bookings.store');
 
 
 // EM EVENT CRUD
