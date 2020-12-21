@@ -36,12 +36,7 @@ class Event extends Model
      * @var array
      */
 
-    protected $primaryKey = 'id';
-    protected $hidden = [
-        'user_id',
-        // 'dj_id',
-    ];
-
+    
     public function user()
     {
       return $this->belongsToOne(User::class, 'user_id');
@@ -50,7 +45,7 @@ class Event extends Model
 
     public function dj()
     {
-      return $this->belongsToMany(Dj::class);//'dj_event', 'dj_id'
+      return $this->belongsToOne(Dj::class, );//'dj_event', 'dj_id'
 
 
     }

@@ -9,8 +9,8 @@
 
             <div class="card">
                 <div class="card-header">
-                    Events
-                    <a href="{{ route('eventmanager.events.create') }}" class="btn btn-primary float-right">Add Event</a>
+                    DJ Roster
+
                 </div>
 
                 <div class="card-body">
@@ -38,12 +38,7 @@
                                 <td>{{ $dj->user_id }}</td>
                                 <td>
                                     <a href="{{ route('eventmanager.page.profile.show', $dj->id) }}" class="btn btn-primary">View</a>
-                                    <a href="{{ route('eventmanager.events.edit', $dj->id) }}" class="btn btn-warning">Edit</a>
-                                    <form style="display:inline-block" method="POST" action="{{ route('eventmanager.events.destroy', $dj->id) }}">
-                                      <input type="hidden" name="_method" value="DELETE">
-                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                      <button type="submit" class="form-control btn btn-danger">Delete</button>
-                                    </form>
+                                    
                                 </td>
                             </tr>
                             @endforeach

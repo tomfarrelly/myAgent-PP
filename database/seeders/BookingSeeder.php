@@ -21,16 +21,6 @@ class BookingSeeder extends Seeder
      */
     public function run()
     {
-      $booking = new Booking();
-      $booking->event_id = 1;
-      $booking->dj_id = 1;
-      $booking->status= 1;
-      $booking->save();
-
-      $booking = new Booking();
-      $booking->event_id = 2;
-      $booking->dj_id = 3;
-      $booking->status= 1;
-      $booking->save();
+      
     }
 }
