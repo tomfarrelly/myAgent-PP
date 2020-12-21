@@ -51,9 +51,11 @@ class BookingController extends Controller
     public function create($id)
     {
       $event = Event::findOrFail($id);
+      $dj = Dj::findOrFail($id);
 
       return view('eventmanager.events.bookings.create', [
         'event' => $event
+    
       ]); //compact('djs')
     }
 
@@ -65,12 +67,19 @@ class BookingController extends Controller
      */
     public function store(Request $request, $id)
     {
+
+
       $booking = new Booking();
 
-      $booking->event_id = $event->id;
-      $booking->dj_id = $dj->id;
-      $booking->status= $request->input('status');
+      $booking->event_id = $id;
+      $booking->dj_id = $id;
+      $booking->status= $request->has('status');
       $booking->save();
+
+
+       return redirect()->route('eventmanager.events.index', $id);
+
+
 
       // $request->validate([
       //   'user_id' => 'required|integer',
