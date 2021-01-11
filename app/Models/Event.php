@@ -9,12 +9,12 @@
 
 namespace App\Models;
 
-//use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    //use HasFactory;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -36,16 +36,16 @@ class Event extends Model
      * @var array
      */
 
-    
+
     public function user()
     {
-      return $this->belongsToOne(User::class, 'user_id');
+      return $this->belongsTo('App\Models\User', 'user_id');
 
     }
 
     public function dj()
     {
-      return $this->belongsToOne(Dj::class, );//'dj_event', 'dj_id'
+      return $this->belongsTo('App\Models\Dj' );//'dj_event', 'dj_id'
 
 
     }

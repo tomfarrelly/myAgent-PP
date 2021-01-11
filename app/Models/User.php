@@ -86,5 +86,18 @@ class User extends Authenticatable
       return null !== $this->roles()->where('name', $role)->first();
     }
 
+    /**
+     * The dj that belong to the user.
+     */
+    public function dj() {
+        return $this->hasOne('App\Models\Dj');
+    }
+
+    /**
+     * The event manager that belongs to the user.
+     */
+    public function eventmanager() {
+        return $this->hasOne('App\Models\Eventmanager');
+    }
 
 }

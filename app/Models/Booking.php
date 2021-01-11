@@ -37,4 +37,9 @@ class Booking extends Model
     {
       return $this->belongsTo('App\Models\Dj');
     }
+
+    public function eventmanager()
+    {
+      return $this->belongsTo('App\Models\Eventmanager');
+    }
 }
