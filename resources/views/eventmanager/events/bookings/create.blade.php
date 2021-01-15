@@ -23,8 +23,8 @@
                   </ul>
                 </div>
               @endif
-                  
-                  <form action="{{ route('eventmanager.events.bookings.store', $event->id) }}" method="post">
+
+                  <form action="{{ route('eventmanager.events.bookings.store', $event->id) }}" method="POST">
     	             @csrf
                     <div class="form-group">
                       <label class="form-check-label" for="status">status</label>

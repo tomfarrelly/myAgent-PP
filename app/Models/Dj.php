@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-16T22:47:21+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-20T18:56:28+00:00
+# @Last modified time: 2020-12-21T14:22:59+00:00
 
 
 
@@ -16,6 +16,15 @@ class Dj extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'price',
+    ];
+
+    protected $primaryKey = 'id';
+    protected $hidden = [
+        'user_id',
+        // 'dj_id',
+    ];
 
 
     public function user()
