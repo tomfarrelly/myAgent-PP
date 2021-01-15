@@ -15,6 +15,7 @@
                     @endif
 
                     You are logged in as Event Manager!
+                    <a href="{{ route('eventmanager.events.index') }}" class="btn btn-primary float-right">View My Events</a>
                 </div>
             </div>
         </div>

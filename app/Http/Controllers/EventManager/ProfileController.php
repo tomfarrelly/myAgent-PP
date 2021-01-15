@@ -1,4 +1,11 @@
 <?php
+# @Author: tomfarrelly
+# @Date:   2020-12-16T22:47:21+00:00
+# @Last modified by:   tomfarrelly
+# @Last modified time: 2020-12-17T00:06:24+00:00
+
+
+
 
 namespace App\Http\Controllers\EventManager;
 
@@ -6,11 +13,32 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use App\Models\User;
+use App\Models\Dj;
 
 
 class ProfileController extends Controller
 {
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+      $this->middleware('auth');
+      $this->middleware('role:eventManager,admin');
+  }
+
+  public function index()
+  {
+      $djs = Dj::all();
+
+      return view('eventmanager.page.index', [
+        'djs' => $djs
+      ]);
+  }
+
+
    public function myprofile()
    {
       return view('eventmanager.page.profile');
@@ -42,5 +70,14 @@ class ProfileController extends Controller
 
       $user->update();
       return redirect()->back()->with('status','Profile Updated');
+   }
+
+   public function show($id)
+   {
+       $dj = Dj::findOrFail($id);
+
+       return view('eventmanager.page.show',[
+         'dj' => $dj
+       ]);
    }
 }

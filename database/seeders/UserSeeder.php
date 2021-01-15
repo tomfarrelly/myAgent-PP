@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-08T19:04:12+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-16T22:41:38+00:00
+# @Last modified time: 2020-12-16T22:47:30+00:00
 
 
 
@@ -60,10 +60,27 @@ class UserSeeder extends Seeder
       $dj->save();
       $dj->roles()->attach($role_dj);
 
-      // $deejay = new Deejay();
-      // $deejay->price = '22.11';
-      // $deejay->user_id = $dj->id;
-      // $deejay->save();
+      $dj = new User();
+      $dj->name = 'John Mont';
+      $dj->email = 'john@dj.com';
+      $dj->username = 'outl1er';
+      $dj->password = Hash::make('secret');
+      $dj->bio = 'ing Break beat, ELectro and Deconstructed Club Music out to the Dublin Massive for 2 years.';
+      $dj->genre = 'construced Club ';
+      $dj->location = 'reland';
+      $dj->save();
+      $dj->roles()->attach($role_dj);
+
+      $dj = new User();
+      $dj->name = 'Dawid K';
+      $dj->email = 'dawid@dj.com';
+      $dj->username = 'dawid1';
+      $dj->password = Hash::make('secret');
+      $dj->bio = 'Based DJ playing Break beat, ELectro and Deconstructed Club Music out to the Dublin Massive for 2 years.';
+      $dj->genre = 'Electro, Deconstruced Club ';
+      $dj->location = 'Ireland';
+      $dj->save();
+      $dj->roles()->attach($role_dj);
 
 
       $dj = new User();
@@ -74,17 +91,6 @@ class UserSeeder extends Seeder
       $dj->bio = 'Based DJ playing Break beat, ELectro and Deconstructed Club Music out to the Dublin Massive for 2 years.';
       $dj->genre = 'Electro, Deconstruced Club ';
       $dj->location = 'Ireland';
-      $dj->save();
-      $dj->roles()->attach($role_dj);
-
-      $dj = new User();
-      $dj->name = 'Dawid Karczewski';
-      $dj->email = 'dawid@dj.com';
-      $dj->username = 'dawid1';
-      $dj->password = Hash::make('secret');
-      $dj->bio = 'Break beat, ELectro and Deconstructed Club Music out to the Dublin Massive for 2 years.';
-      $dj->genre = 'Deconstruced Club ';
-      $dj->location = 'Galway , Ireland';
       $dj->save();
       $dj->roles()->attach($role_dj);
 
