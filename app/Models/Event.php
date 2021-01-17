@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:15:23+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-20T18:57:09+00:00
+# @Last modified time: 2021-01-16T14:44:05+00:00
 
 
 
@@ -50,7 +50,14 @@ class Event extends Model
 
     }
 
-    public function bookings()
+    public function eventmanager()
+    {
+      return $this->belongsToMany('App\Models\Eventmanager' );//'dj_event', 'dj_id'
+
+
+    }
+
+    public function booking()
     {
       return $this->hasMany('App\Models\Booking');
     }

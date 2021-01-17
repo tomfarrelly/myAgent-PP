@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-20T20:30:35+00:00
+# @Last modified time: 2021-01-17T16:10:54+00:00
 
 
 
@@ -55,6 +55,7 @@ Route::post('/my-profile-update', [App\Http\Controllers\Dj\ProfileController::cl
 //Route::post('/my-profile-update', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofileupdate'])->name('eventmanager.page.profile');
 Route::get('/eventmanager/page/index', [App\Http\Controllers\EventManager\ProfileController::class, 'index'])->name('eventmanager.page.profile.index');
 Route::get('/eventmanager/djs/{id}', [App\Http\Controllers\EventManager\ProfileController::class, 'show'])->name('eventmanager.page.profile.show');
+Route::get('/eventmanager/page/availableDj', [App\Http\Controllers\EventManager\ProfileController::class, 'availableDj'])->name('eventmanager.page.availableDj');
 
 
 //EM bookings
