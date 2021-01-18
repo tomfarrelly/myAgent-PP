@@ -9,16 +9,16 @@
 
             <div class="card">
                 <div class="card-header">
-                    DJ Roster
+                    Available DJ Roster
 
                 </div>
 
                 <div class="card-body">
 
-                    @if (count($bookings) === 0)
+                    @if (count($djs) === 0)
                     <p>There are no DJs!</p>
                     @else
-                    <table id="table-bookings" class="table table-hover">
+                    <table id="table-djs" class="table table-hover">
                         <thead>
                             <th>Name</th>
                             <th>bio</th>
@@ -29,18 +29,20 @@
                             <th>Actions</th>
                         </thead>
                         <tbody>
-                          @foreach ($bookings as $booking)
 
 
-                            <tr data-id="{{ $booking->dj->id }}">
-                                <td>{{ $booking->dj->user->name }}</td>
-                                <td>{{ $booking->dj->user->bio }}</td>
-                                <td>{{ $booking->dj->user->genre }}</td>
-                                <td>{{ $booking->dj->user->location }}</td>
-                                <td>{{ $booking->dj->price }}</td>
-                                <td>{{ $booking->dj->user_id }}</td>
+                          @foreach ($djs as $dj)
+
+
+                            <tr data-id="{{ $dj->id }}">
+                                <td>{{ $dj->user->name }}</td>
+                                <td>{{ $dj->user->bio }}</td>
+                                <td>{{ $dj->user->genre }}</td>
+                                <td>{{ $dj->user->location }}</td>
+                                <td>{{ $dj->price }}</td>
+                                <td>{{ $dj->user_id }}</td>
                                 <td>
-                                    <a href="{{ route('eventmanager.page.profile.show', $booking->dj->id) }}" class="btn btn-primary">View</a>
+                                    <a href="{{ route('eventmanager.page.profile.show', $dj->id) }}" class="btn btn-primary">View</a>
 
                                 </td>
                             </tr>
