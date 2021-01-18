@@ -80,7 +80,10 @@
             </div>
         </nav>
 
-      
+
     </div>
+  
+                @yield('content')
+
 </body>
 </html>
