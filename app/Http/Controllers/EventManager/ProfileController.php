@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-16T22:47:21+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-01-18T20:28:54+00:00
+# @Last modified time: 2021-01-18T21:52:05+00:00
 
 
 
@@ -83,17 +83,18 @@ class ProfileController extends Controller
        ]);
    }
 
-/**  Displaying available DJs with status = 0 in bookings  **/
+/**  Displaying available DJs **/
    public function availableDj(){
 
      //$booking = Booking::all();
     //  DB::table('customer')->pluck('cust')
-     $djs = Dj::whereNotIn('bookings', [])->get();
+     //$djs = Dj::whereNotIn('bookings', [])->get();
     // $djs = Dj::findOrFail($id)->booking()->where('dj_id', '!=', $id)->get();
      //User::find($id)->games()->where('user_id', '!=', $id)->get();
-     //$djs = Booking::with('dj')->get();
+     $djs = Dj::doesntHave('booking')->get();
      //$djs = Booking::where('dj_id', '!=', '')->get();
-  //   $djs = Booking::select('dj_id')->whereNotIn('dj_id', []);
+     //$djs = Booking::select('dj_id')->whereNotNull('dj_id');
+    // $djs = Dj::all();
      //$bookings = Booking::find()->dj()->where('dj_id', '!=', '0')->get();
      //$djs = Booking::find()->dj()->whereNotIn('bookings', ['*'])->get();
      //$bookings = Booking::where('status', 0)->get();
