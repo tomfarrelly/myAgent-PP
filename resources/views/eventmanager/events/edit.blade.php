@@ -54,7 +54,7 @@
                         <input type="text" class="form-control" id="user_id" name="user_id" value="{{ old('user_id', $event->user_id) }}" />
                     </div>
                     <div class="float-right">
-                        <a href="{{ route('eventmanager.events.index') }}" class="btn btn-default">Cancel</a>
+                        <a href="{{ route('eventmanager.home') }}" class="btn btn-default">Cancel</a>
                         <button type="submit" class="btn btn-primary pull-right">Submit</button>
                     </div>
                 </form>

@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+img.normal {
+  width: auto;
+}
+
+img.big {
+  width: 50%;
+}
+
+img.small {
+  width: 10%;
+}
+
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -29,6 +43,57 @@
                             <th>Actions</th>
                         </thead>
                         <tbody>
+                          <div class="album py-5 bg-light">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-4">
+                             <h3 class="">Events Taking Place</h3>
+                           </div>
+                           </div>
+                           <hr>
+                           <br>
+                           @foreach ($events as $event)
+                           <div class="card-group">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="card mb-4 box-shadow">
+
+                                    <img src="{{ asset('uploads/event/'.$event->cover) }}" class="normal" width="250" height="250">
+                                    <div class="card-body">
+                                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                          <a href="{{ route('eventmanager.events.show', $event->id) }}" class="btn btn-primary">View</a>
+                                          <a href="{{ route('eventmanager.events.edit', $event->id) }}" class="btn btn-warning">Edit</a>
+                                        </div>
+                                        <small class="text-muted">9 mins</small>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                              @endforeach
+                            </div>
+                            </div>
+
+                            <div class="card-deck">
+                                @foreach ($events as $event)
+                              <div class="card ">
+
+                                <img class="card-img-top" src="..." alt="Card image cap">
+                                <div class="card-body">
+                                  <h5 class="card-title">Card title</h5>
+                                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                </div>
+
+                              </div>
+                              @endforeach
+                              </div>
+
+                          </div>
+
                             @foreach ($events as $event)
                             <tr data-id="{{ $event->id }}">
                                 <td>{{ $event->name }}</td>
@@ -57,3 +122,5 @@
         </div>
     </div>
 </div>
+
+@endsection

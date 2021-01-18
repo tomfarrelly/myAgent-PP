@@ -65,6 +65,7 @@ Route::post('/eventmanager/events/{id}/bookings/store', [EventManagerBookingCont
 
 // EM EVENT CRUD
 Route::get('/eventmanager/events', [EventManagerEventController::class, 'index'])->name('eventmanager.events.index');
+Route::get('/eventmanager/home', [EventManagerEventController::class, 'index'])->name('eventmanager.home');
 Route::get('/eventmanager/events/create', [EventManagerEventController::class, 'create'])->name('eventmanager.events.create');
 Route::get('/eventmanager/events/{id}', [EventManagerEventController::class, 'show'])->name('eventmanager.events.show');
 Route::post('/eventmanager/events/store', [EventManagerEventController::class, 'store'])->name('eventmanager.events.store');

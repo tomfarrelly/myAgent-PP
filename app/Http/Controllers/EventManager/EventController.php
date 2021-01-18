@@ -36,6 +36,10 @@ class EventController extends Controller
     {
         $events = Event::all();
 
+        return view('eventmanager.home', [
+          'events' => $events
+        ]);
+
         return view('eventmanager.events.index', [
           'events' => $events
         ]);
@@ -175,7 +179,7 @@ class EventController extends Controller
 
       $event->save();
 
-      return redirect()->route('eventmanager.events.index');
+      return redirect()->route('eventmanager.home');
     }
 
     /**
