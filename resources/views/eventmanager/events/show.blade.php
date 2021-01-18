@@ -5,7 +5,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                 <div class="card-header">
-                    Event: {{ $event->name }}
+                    Event: {{ $events->name }}
                 </div>
 
                 <div class="card-body">
@@ -13,40 +13,51 @@
                         <tbody>
                           <tr>
                             <td rowspan="6">
-                              <img src="{{ asset('uploads/event/'.$event->cover) }}" class="w-100">
+                              <img src="{{ asset('uploads/event/'.$events->cover) }}" class="w-100">
                             </td>
                           </tr>
                             <tr>
                                 <td>Name</td>
-                                <td>{{ $event->name }}</td>
+                                <td>{{ $events->name }}</td>
                             </tr>
                             <tr>
                                 <td>Description</td>
-                                <td>{{ $event->description }}</td>
+                                <td>{{ $events->description }}</td>
                             </tr>
                             <tr>
                                 <td>Venue</td>
-                                <td>{{ $event->venue }}</td>
+                                <td>{{ $events->venue }}</td>
                             </tr>
                             <tr>
                                 <td>Date</td>
-                                <td>{{ $event->date }}</td>
+                                <td>{{ $events->date }}</td>
                             </tr>
                             <tr>
                                 <td>Time</td>
-                                <td>{{ $event->time }}</td>
+                                <td>{{ $events->time }}</td>
                             </tr>
                             <tr>
                                 <td>Type</td>
-                                <td>{{ $event->type }}</td>
+                                <td>{{ $events->type }}</td>
                             </tr>
+
+
+
+
+                            @foreach ($bookings as $booking)
+                            <tr>
+                                <td>DJ</td>
+                                <td>{{ $booking->dj->user->name }}</td>
+                            </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
 
                     <a href="{{ route('eventmanager.home') }}" class="btn btn-default">Back</a>
                     <a href="{{ route('eventmanager.events.edit', $event->id) }}" class="btn btn-warning">Edit</a>
                     <a href="{{ route('eventmanager.page.profile.index') }}" class="btn btn-warning">Add DJ</a>
-                    <form style="display:inline-block" method="POST" action="{{ route('eventmanager.events.destroy', $event->id) }}">
+                    <form style="display:inline-block" method="POST" action="{{ route('eventmanager.events.destroy', $events->id) }}">
                       <input type="hidden" name="_method" value="DELETE">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       <button type="submit" class="form-control btn btn-danger">Delete</button>
