@@ -11,7 +11,9 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="card">
             <div class= "card-header">
+              @foreach($events as $event)
               {{ $event->name }}: Make a Booking
+              @endforeach
             </div>
             <div class="panel-body">
               @if ($errors->any())
@@ -24,8 +26,10 @@
                 </div>
               @endif
 
-                  <form action="{{ route('eventmanager.events.bookings.store', $event->id) }}" method="POST">
-    	             @csrf
+                    <form method="POST" action="{{ route('eventmanager.events.bookings.store', $event->id)}}">
+                    @csrf
+                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                     <div class="form-group">
                       <label class="form-check-label" for="status">status</label>
 
@@ -62,6 +66,27 @@
                                 <tr>
                                     <td>Type</td>
                                     <td>{{ $event->type }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Event</td>
+                                    <td>
+                                      <select name="event_id">
+                                        @foreach ($events as $event)
+                                         <option value="{{ $event->id }}" {{ (old('event_id') == $event->id) ? "selected" : "" }} >{{ $event->name }}</option>
+                                        @endforeach
+                                      </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Djs</td>
+                                    <td>
+                                          <select name="dj_id">
+                                            @foreach ($djs as $dj)
+                                             <option value="{{ $dj->id }}" {{ (old('dj_id') == $dj->id) ? "selected" : "" }} >{{ $dj->user->name }}</option>
+                                            @endforeach
+                                          </select>
+                                    </td>
+
                                 </tr>
                             </tbody>
                         </table>

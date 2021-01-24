@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use App\Models\Dj;
 use App\Models\Event;
 use App\Models\Booking;
-
 use App\Models\User;
 use Auth;
 
@@ -48,14 +47,16 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-      $event = Event::findOrFail($id);
-      $dj = Dj::findOrFail($id);
+      $events = Event::all();
+      $djs = Dj::all();
 
       return view('eventmanager.events.bookings.create', [
-        'event' => $event,
-        'dj' => $dj
+
+        'events' => $events,
+        'djs' => $djs
+
 
       ]); //compact('djs')
     }
@@ -72,13 +73,17 @@ class BookingController extends Controller
 
       $booking = new Booking();
 
-      $booking->event_id = $id;
-      $booking->dj_id = $dj->id;
+
+      $booking->event_id=$request->input('event_id');
+      $booking->dj_id=$request->input('dj_id');
+
       $booking->status= $request->has('status');
       $booking->save();
 
 
        return redirect()->route('eventmanager.events.index', $id);
+
+
 
 
 

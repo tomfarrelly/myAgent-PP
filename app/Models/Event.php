@@ -2,19 +2,19 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:15:23+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-20T18:57:09+00:00
+# @Last modified time: 2021-01-16T14:44:05+00:00
 
 
 
 
 namespace App\Models;
 
-//use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    //use HasFactory;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -36,21 +36,28 @@ class Event extends Model
      * @var array
      */
 
-    
+
     public function user()
     {
-      return $this->belongsToOne(User::class, 'user_id');
+      return $this->belongsTo('App\Models\User', 'user_id');
 
     }
 
     public function dj()
     {
-      return $this->belongsToOne(Dj::class, );//'dj_event', 'dj_id'
+      return $this->belongsTo('App\Models\Dj' );//'dj_event', 'dj_id'
 
 
     }
 
-    public function bookings()
+    public function eventmanager()
+    {
+      return $this->belongsToMany('App\Models\Eventmanager' );//'dj_event', 'dj_id'
+
+
+    }
+
+    public function booking()
     {
       return $this->hasMany('App\Models\Booking');
     }

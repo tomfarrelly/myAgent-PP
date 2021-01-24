@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:18+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-16T21:35:34+00:00
+# @Last modified time: 2021-01-18T17:50:30+00:00
 
 
 
@@ -11,7 +11,12 @@ namespace App\Http\Controllers\EventManager;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Event;
+use App\Models\Dj;
+use App\Models\Booking;
+use Auth;
+
 use Illuminate\Support\Facades\File;
 
 class EventController extends Controller
@@ -35,9 +40,13 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
+      //  $user = Auth::user();
+      //  $events = $user->events()->orderBy('date','asc')->paginate(8);
+        //$djs = Dj::findOrFail($id);
 
         return view('eventmanager.events.index', [
-          'events' => $events
+          'events' => $events,
+        //  'djs' => $djs
         ]);
     }
 
@@ -108,10 +117,19 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $event = Event::findOrFail($id);
+      // $event_id = $id;
+        $events = Event::findOrFail($id);
+        //$djs = Dj::All();
+      //  $bookings = Booking::all()->where('event_id', '=', '2');
+        $bookings = Booking::where('event_id', $id)->get();
+      //  $bookings = DB::table("bookings")
+      //          ->select("Orders.event_id")
+      //  $bookings = Booking::with('event')->get();
 
         return view('eventmanager.events.show',[
-          'event' => $event
+          'events' => $events,
+        //  'djs' => $djs,
+          'bookings' => $bookings
         ]);
     }
 
@@ -123,6 +141,7 @@ class EventController extends Controller
      */
     public function edit($id)
     {
+
       $event = Event::findOrFail($id);
 
       return view('eventmanager.events.edit',[
