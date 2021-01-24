@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-17T01:27:08+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-20T20:31:44+00:00
+# @Last modified time: 2020-12-21T14:45:31+00:00
 
 
 
@@ -53,8 +53,10 @@ class BookingController extends Controller
       $djs = Dj::all();
 
       return view('eventmanager.events.bookings.create', [
+
         'events' => $events,
         'djs' => $djs
+
 
       ]); //compact('djs')
     }
@@ -65,14 +67,16 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, $id, $dj)
     {
 
 
       $booking = new Booking();
 
+
       $booking->event_id=$request->input('event_id');
       $booking->dj_id=$request->input('dj_id');
+
       $booking->status= $request->has('status');
       $booking->save();
 

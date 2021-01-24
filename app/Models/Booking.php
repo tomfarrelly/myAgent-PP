@@ -2,7 +2,9 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-20T18:41:17+00:00
 # @Last modified by:   tomfarrelly
+
 # @Last modified time: 2021-01-17T14:41:02+00:00
+
 
 
 
@@ -30,12 +32,12 @@ class Booking extends Model
 
     public function event()
     {
-      return $this->belongsTo('App\Models\Event');
+      return $this->belongsToMany('App\Models\Event');
     }
 
     public function dj()
     {
-      return $this->belongsTo('App\Models\Dj');
+      return $this->belongsToMany('App\Models\Dj');
     }
 
     public function eventmanager()

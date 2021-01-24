@@ -25,9 +25,11 @@
                   </ul>
                 </div>
               @endif
+
                     <form method="POST" action="{{ route('eventmanager.events.bookings.store', $event->id)}}">
                     @csrf
                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                     <div class="form-group">
                       <label class="form-check-label" for="status">status</label>
 

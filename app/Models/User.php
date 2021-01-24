@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-08T19:21:40+00:00
+# @Last modified time: 2021-01-13T17:35:23+00:00
 
 
 
@@ -86,6 +86,7 @@ class User extends Authenticatable
       return null !== $this->roles()->where('name', $role)->first();
     }
 
+
     /**
      * The dj that belong to the user.
      */
@@ -99,5 +100,6 @@ class User extends Authenticatable
     public function eventmanager() {
         return $this->hasOne('App\Models\Eventmanager');
     }
+
 
 }
