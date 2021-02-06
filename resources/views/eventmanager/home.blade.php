@@ -1,7 +1,7 @@
-@extends('layouts.ehome')
+
 @extends('layouts.app')
 
+
 @section('content')
- @foreach ($events as $event)
- @endforeach
+@include('layouts.ehome1')
 @endsection

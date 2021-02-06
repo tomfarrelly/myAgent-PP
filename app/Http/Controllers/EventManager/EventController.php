@@ -74,7 +74,7 @@ class EventController extends Controller
     {
       $request->validate([
         'name' => 'required|max:191',
-        'description' => 'required|max:191',
+        'description' => 'required',
         'venue' => 'required|max:191',
         'date' => 'required|date',
         'time' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
@@ -166,7 +166,7 @@ class EventController extends Controller
 
       $request->validate([
         'name' => 'required|max:191',
-        'description' => 'required|max:191',
+        'description' => 'required',
         'venue' => 'required|max:191',
         'date' => 'required|date',
         'time' => 'required|date_format:H:i',//makes sure that the one you are adding to the DB is unique

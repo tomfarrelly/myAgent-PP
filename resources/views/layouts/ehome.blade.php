@@ -1,164 +1,23 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-  <style>
-  img.normal {
-    width: auto;
-  }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  img.big {
-    width: 50%;
-  }
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  img.small {
-    width: 10%;
-  }
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
-  * {
-  box-sizing: border-box;
-  line-height: 1.5;
-  font-family: 'Open Sans', sans-serif;
-}
 
-img {
-  max-width: 100%;
-}
-
-.container1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: #444;
-}
-
-.card1 {
-  position: relative;
-  background: #333;
-  width: 400px;
-  height: 85vh;
-  border-radius: 6px;
-  padding: 2rem;
-  color: #aaa;
-  box-shadow: 0 .75rem .75rem rgba(0,0,0,0.2),
-    0 0 5rem rgba(0,0,0,0.2);
-  overflow: hidden;
-  margin-bottom: 2rem;
-  transition: 0.4s ease-out;
-  &:hover
-		transform: translateY(20px)
-		&:before
-			opacity: 1
-}
-
-.image-container {
-  margin: -2rem -2rem 1rem -2rem;
-}
-
-.line {
-opacity: 0;
-animation: LineFadeIn .8s .8s forwards ease-in;
-}
-
-.image {
-  opacity: 0;
-  animation: ImageFadeIn .8s 1.4s forwards;
-}
-
-.title {
-  color: white;
-  margin-top: 0;
-  font-weight: 800;
-  letter-spacing: 0.01em;
-}
-
-.content {
-  margin-top: 3rem;
-  opacity: 0;
-  animation: ContentFadeIn .8s 1.6s forwards;
-}
-
-.svg {
-  position: absolute;
-  left: 0;
-  top: 115px;
-}
-
-@keyframes LineFadeIn {
-  0% { opacity: 0; d: path("M 0 300 Q 0 300 0 300 Q 0 300 0 300 C 0 300 0 300 0 300 Q 0 300 0 300 "); stroke: #fff; }
-  50% { opacity: 1; d: path("M 0 300 Q 50 300 100 300 Q 250 300 350 300 C 350 300 500 300 650 300 Q 750 300 800 300"); stroke: #888BFF; }
-  100% { opacity: 1; d: path("M -2 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 802 400"); stroke: #545581; }
-}
-
-@keyframes ContentFadeIn {
-  0% { transform: translateY(-1rem); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes ImageFadeIn {
-  0% { transform: translate(-.5rem, -.5rem) scale(1.05); opacity: 0; filter: blur(2px); }
-  50% { opacity: 1; filter: blur(2px); }
-  100% { transform: translateY(0) scale(1.0); opacity: 1; filter: blur(0); }
-}
-
-#neon-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 100vh;
-  background: #031628;
-}
-
-.btn {
-  border: 1px solid;
-  background-color: transparent;
-  text-transform: uppercase;
-  font-size: 14px;
-  padding: 10px 20px;
-  font-weight: 300;
-}
-
-.one {
-  color: #4cc9f0;
-}
-
-.two {
-  color: #f038ff;
-}
-
-.three {
-  color: #b9e769;
-}
-
-.btn:hover {
-  color: white;
-  border: 0;
-}
-
-.one:hover {
-  background-color: #4cc9f0;
-  -webkit-box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
-  -moz-box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
-  box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
-}
-
-.two:hover {
-  background-color: #f038ff;
-  -webkit-box-shadow: 10px 10px 99px 6px rgba(240, 56, 255, 1);
-  -moz-box-shadow: 10px 10px 99px 6px rgba(240, 56, 255, 1);
-  box-shadow: 10px 10px 99px 6px rgba(240, 56, 255, 1);
-}
-
-.three:hover {
-  background-color: #b9e769;
-  -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
-  -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
-  box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
-}
-  </style>
 </head>
+<style>
 
+
+
+</style>
 <body style="background-color:#f9f5f5;">
+
     <div id="ehome">
 
 
@@ -202,10 +61,22 @@ animation: LineFadeIn .8s .8s forwards ease-in;
 
      <div class="content">
        <h1 class="title">{{ $event->name }}</h1>
-     <p>{{ $event->description}}</p>
-     <h3>{{ $event->venue}}</h3>
-      <h5>{{ $event->date}}</h5>
-      <h6>{{ $event->time}}</h6>
+       <div class="row">
+         <div class="col-md-2">
+       <h3>{{ $event->venue}}</h3>
+     </div>
+     <div class="col-md-9">
+        <h3 class="ct">{{ $event->type}}</h3>
+        </div>
+         </div>
+         <div class="row">
+           <div class="col-md-5">
+         <h5>{{ $event->date}}</h5>
+       </div>
+       <div class="col-md-6 ct">
+          <h6>{{ $event->time}}</h6>
+          </div>
+           </div>
        <a href="{{ route('eventmanager.events.show', $event->id) }}" class="btn one one-hover">View</a>
        <a href="{{ route('eventmanager.events.edit', $event->id) }}" class="btn two btn:hover two:hover">Edit</a>
     </div>
@@ -214,16 +85,19 @@ animation: LineFadeIn .8s .8s forwards ease-in;
 
 @endforeach
 </div>
-
+<div class="row">
+  <div class="col-4">
+<h3>Past Events</h3>
+</div>
+</div>
             <div class="row">
               @foreach ($events as $event)
               <div class="col-md-4">
                 <div class="card mb-4 box-shadow">
 
-                  <img src="{{ asset('uploads/event/'.$event->cover) }}" class="normal" width="400" height="250">
+                  <img src="{{ asset('uploads/event/'.$event->cover) }}" >
                   <div class="card-body">
                     <h5>{{ $event->name }}</h5>
-                    <p class="card-text">{{ $event->description }}</p>
                     <p class="card-text">{{ $event->venue }}</p>
                     <p class="card-text">{{ $event->date }}</p>
                     <p class="card-text">{{ $event->time }}</p>
@@ -243,20 +117,56 @@ animation: LineFadeIn .8s .8s forwards ease-in;
 
           </div>
         </div>
+        <a class="top-link hide" href="" id="js-top">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-symmetry-vertical" viewBox="0 0 16 16">
+  <path d="M7 2.5a.5.5 0 0 0-.939-.24l-6 11A.5.5 0 0 0 .5 14h6a.5.5 0 0 0 .5-.5v-11zm2.376-.485a.5.5 0 0 1 .563.246l6 11A.5.5 0 0 1 15.5 14h-6a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .376-.485zM10 4.461V13h4.658L10 4.46z"/>
+</svg>
+    <i class="bi bi-symmetry-vertical"></i>
+  </a>
 
 
 
       </main>
-      <footer class="bg-light text-center text-lg-start">
-      <!-- Copyright -->
-      <div class="text-center p-3 text-white" style="background-color:#323232;">
-      © 2020 Copyrights Dawid & Tom:
-      <a class="text-white" href="{{ route('eventmanager.home') }}">www.MyAgent.com</a>
-      </div>
-      <!-- Copyright -->
-      </footer>
-
-
     </div>
 </body>
+<script>
+// Set a variable for our button element.
+const scrollToTopButton = document.getElementById('js-top');
+
+// Let's set up a function that shows our scroll-to-top button if we scroll beyond the height of the initial window.
+const scrollFunc = () => {
+  // Get the current scroll value
+  let y = window.scrollY;
+
+  // If the scroll value is greater than the window height, let's add a class to the scroll-to-top button to show it!
+  if (y > 0) {
+    scrollToTopButton.className = "top-link show";
+  } else {
+    scrollToTopButton.className = "top-link hide";
+  }
+};
+
+window.addEventListener("scroll", scrollFunc);
+
+const scrollToTop = () => {
+  // Let's set a variable for the number of pixels we are from the top of the document.
+  const c = document.documentElement.scrollTop || document.body.scrollTop;
+
+  // If that number is greater than 0, we'll scroll back to 0, or the top of the document.
+  // We'll also animate that scroll with requestAnimationFrame:
+  // https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
+  if (c > 0) {
+    window.requestAnimationFrame(scrollToTop);
+    // ScrollTo takes an x and a y coordinate.
+    // Increase the '10' value to get a smoother/slower scroll!
+    window.scrollTo(0, c - c / 10);
+  }
+};
+
+// When the button is clicked, run our ScrolltoTop function above!
+scrollToTopButton.onclick = function(e) {
+  e.preventDefault();
+  scrollToTop();
+}
+</script>
 </html>

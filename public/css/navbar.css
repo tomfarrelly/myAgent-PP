@@ -1,0 +1,66 @@
+.navbar {
+  background-color: #272725 !important;
+  border-bottom: #fb004b 5px solid;
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+.navcolor {
+  color: #e6e6e5;
+}
+
+.navcolor:hover {
+  color: #fb004b;
+  background: white;
+}
+
+.navcolor1 {
+  color: #e6e6e5;
+}
+
+.navcolor1:hover {
+  color: #fb004b;
+}
+
+.dropdown-menu {
+  background-color: #272725;
+}
+
+.dropdown-item {
+  color: #e6e6e5;
+}
+
+.dropdown1 {
+  background-color: white;
+}
+
+.dropdown1-menu {
+  background-color: white;
+}
+
+.link2 {
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.link1 {
+  color: #333;
+}
+
+.link1:hover {
+  color: #fb004b;
+  text-decoration: none;
+}
+
+.filterBtn {
+  font-size: 12px;
+  background: white;
+  border: black 2px solid;
+}
+
+.filterBtn1 {
+  font-size: 12px;
+  background: white;
+  border: black 2px solid;
+}
+

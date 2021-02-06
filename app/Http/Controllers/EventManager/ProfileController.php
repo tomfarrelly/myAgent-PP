@@ -88,10 +88,10 @@ class ProfileController extends Controller
 
      //$booking = Booking::all();
     //  DB::table('customer')->pluck('cust')
-     $djs = Dj::whereNotIn('bookings', [])->get();
+    
     // $djs = Dj::findOrFail($id)->booking()->where('dj_id', '!=', $id)->get();
      //User::find($id)->games()->where('user_id', '!=', $id)->get();
-     //$djs = Booking::with('dj')->get();
+     $djs = Dj::doesntHave('booking')->get();
      //$djs = Booking::where('dj_id', '!=', '')->get();
   //   $djs = Booking::select('dj_id')->whereNotIn('dj_id', []);
      //$bookings = Booking::find()->dj()->where('dj_id', '!=', '0')->get();

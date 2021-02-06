@@ -10903,3 +10903,390 @@ a.text-dark:focus {
   }
 }
 
+.card1 {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.05), 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.card1:hover,
+.card1.hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card1:hover .card1-content,
+.card1.hover .card1-content {
+  box-shadow: inset 0 3px 0 0 #fb004b;
+  border-color: #fb004b;
+}
+
+.card1:hover .card1-img .overlay,
+.card1.hover .card1-img .overlay {
+  background-color: rgba(25, 29, 38, 0.85);
+  transition: opacity 0.2s ease;
+  opacity: 1;
+}
+
+.card1-img {
+  position: relative;
+  height: 224px;
+  width: 100%;
+  background-color: #fff;
+  transition: opacity 0.2s ease;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card1-img .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0;
+}
+
+.card1-img .overlay .overlay-content {
+  line-height: 224px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.card1-img .overlay .overlay-content a {
+  color: #fff;
+  padding: 0 2rem;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  height: 40px;
+  line-height: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.card1-img .overlay .overlay-content a:hover,
+.card1-img .overlay .overlay-content a.hover {
+  background: #49AE81;
+  border-color: #49AE81;
+}
+
+.card1-content {
+  width: 100%;
+  min-height: 104px;
+  background-color: #fff;
+  border-top: 1px solid #E9E9EB;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 1rem 2rem;
+  transition: all 0.2s ease;
+}
+
+.card1-content a {
+  text-decoration: none;
+  color: #202927;
+}
+
+.card1-content h1,
+.card1-content a h1 {
+  font-size: 20px;
+  font-weight: 900;
+  text-decoration: underline;
+}
+
+.card1-content h2,
+.card1-content a h2 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.card1-content p,
+.card1-content a p {
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba(32, 41, 28, 0.8);
+}
+
+.text1 {
+  color: #FFF;
+  background-color: black;
+}
+
+.text2 {
+  color: grey;
+}
+
+.text2:hover {
+  color: #fb004b;
+  background: white;
+}
+
+.text3 {
+  color: #FFF;
+}
+
+.text4 {
+  color: grey;
+}
+
+.mm {
+  margin-top: 75px;
+}
+
+.top-link {
+  transition: all 0.25s ease-in-out;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: inline-flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3em 3em 0;
+  padding: 0.25em;
+  width: 80px;
+  height: 40px;
+  background-color: rgba(232, 97, 84, 0.8);
+  color: #fff5f5;
+}
+
+.top-link.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.top-link.hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.top-link svg {
+  fill: black;
+  width: 24px;
+  height: 12px;
+}
+
+.top-link:hover {
+  color: black;
+}
+
+.top-link:hover svg {
+  fill: black;
+}
+
+.editEvBtn {
+  font-size: 13px;
+  font-weight: 700;
+  background-color: #FDDA16;
+  border: #FDDA16 4px solid;
+}
+
+.editEvBtn1 {
+  text-align: right;
+  font-style: italic;
+}
+
+.editEvBtn:hover {
+  color: white;
+  background-color: orange;
+  border: orange 4px solid;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: "Overpass", sans-serif;
+  letter-spacing: 0px;
+  font-size: 17px;
+  color: #8d8f90;
+  font-weight: 400;
+  line-height: 32px;
+  background-color: #edefef;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #25292a;
+  margin: 0px 0px 10px 0px;
+  font-family: "Overpass", sans-serif;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+h1 {
+  font-size: 34px;
+}
+
+h2 {
+  font-size: 28px;
+  line-height: 38px;
+}
+
+h3 {
+  font-size: 22px;
+  line-height: 32px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 17px;
+}
+
+h6 {
+  font-size: 12px;
+}
+
+p {
+  margin: 0 0 20px;
+  line-height: 1.7;
+}
+
+p:last-child {
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #8d8f90;
+  transition: all 0.3s;
+}
+
+a:focus,
+a:hover {
+  text-decoration: none;
+  color: #f85759;
+}
+
+.page-header {
+  background: url(https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F123850369%2F438776807040%2F1%2Foriginal.20210121-225330?w=1024&auto=format%2Ccompress&q=75&sharp=10&s=8e0fb425d57212942bdcfd67653e9e20) no-repeat;
+  position: relative;
+  background-size: cover;
+}
+
+.page-caption {
+  padding-top: 170px;
+  padding-bottom: 174px;
+}
+
+.page-title {
+  font-size: 46px;
+  line-height: 1;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  background: black;
+  border: white 2px solid;
+}
+
+.card-section {
+  position: relative;
+  bottom: 60px;
+}
+
+.card-block {
+  padding: 80px;
+}
+
+.section-title {
+  margin-bottom: 60px;
+}
+
+.button {
+  display: inline-block;
+  background: #fb004b;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 20px 30px;
+  border-radius: 5px;
+  box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: all ease-in-out 300ms;
+}
+
+.button:hover {
+  box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
+  transform: translate(0px, -10px) scale(1.2);
+}
+
+.createBtn {
+  color: white;
+}
+
+.shadowE {
+  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.05), 0 40px 50px 0 rgba(0, 0, 0, 0.2);
+}
+
+.shadowE1 {
+  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.05), 0 15px 30px 0 rgba(0, 0, 0, 0.2);
+}
+
+.heightImg {
+  max-height: 475px;
+}
+
+.card2 {
+  width: 300px;
+  margin-right: 4px;
+  margin-left: 3px;
+  background-color: #F5F5F5;
+  border-radius: 0px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.card2 img {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+}
+
+.btn-primary2 {
+  border: 0px;
+  font-size: 12px;
+  width: 40px;
+  height: 20px;
+  padding: 0px;
+  text-align: center;
+  border-radius: 0%;
+  transform: translateY(-22px);
+  background-color: #00BFFF !important;
+}
+
+.btn-primary2 a {
+  color: #DFEFFF !important;
+}
+
+.btn-primary2:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.btn-primary2:hover {
+  background-color: #007bff !important;
+  color: black !important;
+}
+
+.btn-primary2:hover a {
+  color: black !important;
+}
+
