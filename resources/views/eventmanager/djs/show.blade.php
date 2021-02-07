@@ -46,9 +46,9 @@
 
                     <a href="{{ route('eventmanager.djs.index') }}" class="btn btn-default">Back</a>
 
-                    <a href="{{ route('eventmanager.djs.index') }}" class="btn btn-warning">View DJs for Event</a>
+                    <a href="{{ route('eventmanager.djs.available') }}" class="btn btn-warning">View DJs for Event</a>
 
-                    <a href="{{ route('eventmanager.events.bookings.create', $dj) }}" class="btn btn-primary float-right">Make Booking</a>
+                    <a href="{{ route('eventmanager.events.bookings.create', $dj->id) }}" class="btn btn-primary float-right">Make Booking</a>
 
                 </div>
             </div>

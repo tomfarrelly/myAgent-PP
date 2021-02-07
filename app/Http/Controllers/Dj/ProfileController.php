@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-16T22:47:21+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-16T23:34:05+00:00
+# @Last modified time: 2021-02-07T19:28:29+00:00
 
 
 
@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Models\User;
+use App\Models\Dj;
 
 
 class ProfileController extends Controller
@@ -33,6 +34,7 @@ class ProfileController extends Controller
       $user->bio = $request->input('bio');
       $user->genre = $request->input('genre');
       $user->location = $request->input('location');
+      $user->dj->genre_id = $request->input('genre_id');
 
       if($request->hasfile('image'))
       {
@@ -47,7 +49,15 @@ class ProfileController extends Controller
         $user->image = $filename;
       }
 
-      $user->update();
+      $user->dj->update();
       return redirect()->back()->with('status','Profile Updated');
    }
+
+   public function myprofileUnavailableDate(Request $request)
+   {
+     $user_id = Auth::user()->id;
+     $user = User::findOrFail($user_id);
+
+   }
+
 }

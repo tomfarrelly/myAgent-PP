@@ -9,13 +9,14 @@
 
             <div class="card">
                 <div class="card-header">
-                    DJ Roster
+                    Available DJ Roster
 
                 </div>
 
                 <div class="card-body">
+
                     @if (count($djs) === 0)
-                    <p>There are no events!</p>
+                    <p>There are no DJs!</p>
                     @else
                     <table id="table-djs" class="table table-hover">
                         <thead>
@@ -28,12 +29,19 @@
                             <th>Actions</th>
                         </thead>
                         <tbody>
-                            @foreach ($djs as $dj)
+
+
+                          @foreach ($djs as $dj)
+
+
+
                             <tr data-id="{{ $dj->id }}">
+
                                 <td>{{ $dj->user->name }}</td>
                                 <td>{{ $dj->user->bio }}</td>
                                 <td>{{ $dj->user->genre }}</td>
                                 <td>{{ $dj->user->location }}</td>
+
                                 <td>{{ $dj->price }}</td>
                                 <td>{{ $dj->user_id }}</td>
                                 <td>
@@ -41,6 +49,7 @@
 
                                 </td>
                             </tr>
+
                             @endforeach
                         </tbody>
                     </table>

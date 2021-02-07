@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-16T22:47:21+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-01-18T21:52:05+00:00
+# @Last modified time: 2021-02-04T15:54:11+00:00
 
 
 
@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Models\Dj;
 use App\Models\Booking;
+use App\Models\Availability;
+use Carbon\Carbon;
 
 
 class ProfileController extends Controller
@@ -32,12 +34,7 @@ class ProfileController extends Controller
 
   public function index()
   {
-
-      $djs = Dj::all();
-
-      return view('eventmanager.page.index', [
-        'djs' => $djs
-      ]);
+      //
   }
 
 
@@ -84,14 +81,57 @@ class ProfileController extends Controller
    }
 
 /**  Displaying available DJs **/
-   public function availableDj(){
+   public function availableDj(Request $request){
 
      //$booking = Booking::all();
-    //  DB::table('customer')->pluck('cust')
+
      //$djs = Dj::whereNotIn('bookings', [])->get();
     // $djs = Dj::findOrFail($id)->booking()->where('dj_id', '!=', $id)->get();
      //User::find($id)->games()->where('user_id', '!=', $id)->get();
-     $djs = Dj::doesntHave('booking')->get();
+
+    // $djs = Dj::doesntHave('booking')->where('dj_id', '!=', $id)->get();
+
+    //  $date = $request->input('date');
+     //
+     //   $bookings = Booking::whereNotIn('event_id', function($query) use ($date) {
+     //     $query->from('bookings')
+     //      ->select('event_id')
+     //      ->whereDate('date_booked', '!=', $date);
+     //  })->get();
+
+      //$djs = Dj::doesntHave('booking')->get();
+
+     // $djs = Dj::with('bookings')->whereHas('bookings', function (Query $query) use ($date) {``
+     //                 $query->where(function ($q2) use ($date) {
+     //                     $q2->where('date', '!=', $date);
+     //                 }
+
+     /* WORKS */
+     // $date_booked = $request->input('date_booked');
+     //
+     // $djs = Dj::with('booking')->whereHas('booking', function ($q) use ($date_booked) {
+     //   $q->where('date_booked', '!=', Carbon::today());
+     //  })->orWhereDoesntHave('booking')->get();
+
+     // $date = $request->input('date');
+     //     /* WORKS */
+     // $djs = Dj::with('boooking')->whereHas('event', function ($q) use ($date) {
+     //   $q->where('date', '!=', Carbon::today());
+     //  })->get();
+
+
+         // $date_start = $request->input('date_start');
+         // $date_end = $request->input('date_end');
+        //
+        //
+        //     $djs = Dj::with('booking','availability')->whereHas('booking', function ($q) use ($date_booked,$date_start, $date_end) {
+        //         $q->where(function ($q2) use ($date_booked,$date_start, $date_end) {
+        //             $q2->where('date_booked', '!=', Carbon::today())
+        //             //   ->orWhere('date_start', '>=', $date_start)
+        //                ->orWhere('date_end', '<=', $date_end);
+        //         });
+        //     })->orWhereDoesntHave('booking')->get();
+
      //$djs = Booking::where('dj_id', '!=', '')->get();
      //$djs = Booking::select('dj_id')->whereNotNull('dj_id');
     // $djs = Dj::all();
@@ -99,9 +139,32 @@ class ProfileController extends Controller
      //$djs = Booking::find()->dj()->whereNotIn('bookings', ['*'])->get();
      //$bookings = Booking::where('status', 0)->get();
   //  $bookings = Booking::all()->sortBy('dj_id')->where('status', '=', '0')->get();
+    // $date_start = Availability::select('date_start')->get();
+    // $date_end = Availability::select('date_end')->get();
+
+       $date_start = Carbon::today();
+       $date_end = Carbon::tomorrow();
+
+
+
+       $djs = Dj::whereHas('availability', function ($q) use ($date_start, $date_end) {
+           $q->where(function ($q2) use ($date_start, $date_end) {
+               $q2->whereDate('date_start', '>', $date_start)
+                  ->orWhereDate('date_end', '<' ,$date_end);
+           });
+         })->orWhereDoesntHave('availability')->get();
+
+         //
+         // $djs = Availability::where('date_start', '>'||'=', $date_start)
+         //                    ->where('date_end', '<'||'=', $date_end)
+         //                    ->get();
+
+//
+
     return view('eventmanager.page.availableDj',[
       //'bookings' => $bookings,
-      'djs' => $djs
+      'djs' => $djs,
+      //'bookings' => $bookings
     ]);
   }
 }

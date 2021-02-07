@@ -3,7 +3,7 @@
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-01-17T16:10:54+00:00
+# @Last modified time: 2021-02-04T15:53:07+00:00
 
 
 
@@ -18,6 +18,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\EventManager\EventController as EventManagerEventController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\EventManager\BookingController as EventManagerBookingController;
+use App\Http\Controllers\Dj\AvailabilityController as DjAvailabilityController;
+use App\Http\Controllers\EventManager\DjController as EventManagerDjController;
 
 
 
@@ -48,6 +50,11 @@ Route::get('/admin/home', [App\Http\Controllers\Admin\HomeController::class, 'in
 Route::get('/dj/home', [App\Http\Controllers\Dj\HomeController::class, 'index'])->name('dj.home');
 Route::get('/eventmanager/home', [App\Http\Controllers\EventManager\HomeController::class, 'index'])->name('eventmanager.home');
 
+//DJ - Availability
+Route::get('/dj/availability/create', [DjAvailabilityController::class, 'create'])->name('dj.availability.create');
+Route::post('/dj/availability/store', [DjAvailabilityController::class, 'store'])->name('dj.availability.store');
+
+
 //DJ Profile
 Route::get('/my-profile', [App\Http\Controllers\Dj\ProfileController::class, 'myprofile'])->name('dj.page.profile');
 Route::post('/my-profile-update', [App\Http\Controllers\Dj\ProfileController::class, 'myprofileupdate'])->name('dj.page.profile');
@@ -55,15 +62,19 @@ Route::post('/my-profile-update', [App\Http\Controllers\Dj\ProfileController::cl
 //EM Profile
 //Route::get('/my-profile', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofile'])->name('eventmanager.page.profile');
 //Route::post('/my-profile-update', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofileupdate'])->name('eventmanager.page.profile');
-Route::get('/eventmanager/page/index', [App\Http\Controllers\EventManager\ProfileController::class, 'index'])->name('eventmanager.page.profile.index');
-Route::get('/eventmanager/djs/{id}', [App\Http\Controllers\EventManager\ProfileController::class, 'show'])->name('eventmanager.page.profile.show');
-Route::get('/eventmanager/page/availableDj', [App\Http\Controllers\EventManager\ProfileController::class, 'availableDj'])->name('eventmanager.page.availableDj');
+//Route::get('/eventmanager/djs/{id}', [App\Http\Controllers\EventManager\ProfileController::class, 'show'])->name('eventmanager.page.profile.show');
+//Route::get('/eventmanager/page/availableDj', [App\Http\Controllers\EventManager\ProfileController::class, 'availableDj'])->name('eventmanager.page.availableDj');
 
 
 //EM bookings
 Route::get('/eventmanager/bookings', [EventManagerBookingController::class, 'index'])->name('eventmanager.bookings.index');
 Route::get('/eventmanager/events/{id}/bookings/create', [EventManagerBookingController::class, 'create'])->name('eventmanager.events.bookings.create');
 Route::post('/eventmanager/events/{id}/bookings/store', [EventManagerBookingController::class, 'store'])->name('eventmanager.events.bookings.store');
+
+//EM - DJs
+Route::get('/eventmanager/djs', [EventManagerDjController::class, 'index'])->name('eventmanager.djs.index');
+Route::get('/eventmanager/djs/available', [EventManagerDjController::class, 'available'])->name('eventmanager.djs.availableDj');
+Route::get('/eventmanager/djs/{id}', [EventManagerDjController::class, 'show'])->name('eventmanager.djs.show');
 
 
 // EM EVENT CRUD

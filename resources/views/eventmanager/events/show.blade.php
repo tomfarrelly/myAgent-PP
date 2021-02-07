@@ -44,20 +44,20 @@
 
 
 
-
-                            @foreach ($bookings as $booking)
-                            <tr>
-                                <td>DJ</td>
-                                <td>{{ $booking->dj->user->name }}</td>
-                            </tr>
+                            @foreach ($djs as $dj)
+                                <tr>
+                                   <td>DJ</td>
+                                   <td>{{ $dj->id }}</td>
+                               </tr>
                             @endforeach
+
 
                         </tbody>
                     </table>
 
                     <a href="{{ route('eventmanager.events.index') }}" class="btn btn-default">Back</a>
                     <a href="{{ route('eventmanager.events.edit', $events->id) }}" class="btn btn-warning">Edit</a>
-                    <a href="{{ route('eventmanager.page.profile.index') }}" class="btn btn-warning">Add DJ</a>
+                    <a href="{{ route('eventmanager.djs.available') }}" class="btn btn-warning">Add DJ</a>
                     <form style="display:inline-block" method="POST" action="{{ route('eventmanager.events.destroy', $events->id) }}">
                       <input type="hidden" name="_method" value="DELETE">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">

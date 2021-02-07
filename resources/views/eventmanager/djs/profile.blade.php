@@ -67,12 +67,6 @@
                               <input type="text" name="location" class="form-control" value="{{ Auth::user()->location}}">
                             </div>
                         </div>
-                        <div class="col-md-4">
-                          <div class="form-group">
-                            <label for="">Genre</label>
-                            <input type="text" name="genre_id" class="form-control" value="{{ Auth::user()->dj->genre_id}}">
-                          </div>
-                        </div>
 
                         </div>
                   </form>

@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:18+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-01-18T17:50:30+00:00
+# @Last modified time: 2021-02-04T14:15:34+00:00
 
 
 
@@ -117,19 +117,16 @@ class EventController extends Controller
      */
     public function show($id)
     {
-      // $event_id = $id;
+
         $events = Event::findOrFail($id);
-        //$djs = Dj::All();
-      //  $bookings = Booking::all()->where('event_id', '=', '2');
-        $bookings = Booking::where('event_id', $id)->get();
-      //  $bookings = DB::table("bookings")
-      //          ->select("Orders.event_id")
-      //  $bookings = Booking::with('event')->get();
+
+        $djs = Booking::where('event_id', $id)->get();
+
 
         return view('eventmanager.events.show',[
           'events' => $events,
         //  'djs' => $djs,
-          'bookings' => $bookings
+          'djs' => $djs
         ]);
     }
 

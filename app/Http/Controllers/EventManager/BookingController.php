@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-17T01:27:08+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-21T14:45:31+00:00
+# @Last modified time: 2021-01-31T17:38:45+00:00
 
 
 
@@ -14,7 +14,9 @@ use Illuminate\Http\Request;
 use App\Models\Dj;
 use App\Models\Event;
 use App\Models\Booking;
+use App\Models\Availability;
 use App\Models\User;
+use Carbon\Carbon;
 use Auth;
 
 class BookingController extends Controller
@@ -52,6 +54,8 @@ class BookingController extends Controller
       $events = Event::all();
       $djs = Dj::all();
 
+
+
       return view('eventmanager.events.bookings.create', [
 
         'events' => $events,
@@ -67,7 +71,7 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id, $dj)
+    public function store(Request $request, $id)
     {
 
 
@@ -78,8 +82,15 @@ class BookingController extends Controller
       $booking->dj_id=$request->input('dj_id');
 
       $booking->status= $request->has('status');
-      $booking->save();
+    //$booking->date_booked = Carbon::today();
 
+      $availability = new Availability;
+      $availability->dj_id = $booking->dj_id;
+      $availability->date_start = Event::where('id', $id)->select("date")->first();
+      $availability->date_end = Event::where('id', $id)->select("date")->first();
+
+      $booking->availability()->save($availability);
+      //$booking->save();
 
        return redirect()->route('eventmanager.events.index', $id);
 
