@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-08T18:42:57+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-13T21:05:58+00:00
+# @Last modified time: 2021-02-09T15:50:45+00:00
 
 
 
@@ -23,7 +23,7 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
           $table->id();
           $table->string('name');
-          $table->string('description');
+          $table->text('description');
           $table->string('venue');
           $table->date('date');
           $table->time('time');

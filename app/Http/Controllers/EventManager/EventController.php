@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:18+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-04T14:15:34+00:00
+# @Last modified time: 2021-02-09T15:36:55+00:00
 
 
 
@@ -207,4 +207,28 @@ class EventController extends Controller
 
       return redirect()->route('eventmanager.events.index');
     }
+
+    public function availableDj($id){
+
+      $event = Event::findOrFail($id);
+      $e_date = $event->date;
+
+     //$dj_id = $request->input('dj_id');
+
+     $djs = Dj::whereHas('availability', function ($q) use ($e_date) {
+         $q->where(function ($q2) use ($e_date) {
+             $q2->whereDate('date_start', '>', $e_date)
+                ->orWhereDate('date_end', '<' ,$e_date);
+         });
+       // });
+        })->orWhereDoesntHave('availability')->get();
+
+       return view('eventmanager.events.availableDj',[
+
+         'djs' => $djs,
+
+       ]);
+    }
+
+
 }

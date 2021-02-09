@@ -3,7 +3,7 @@
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-02-04T15:53:07+00:00
+# @Last modified time: 2021-02-09T14:44:20+00:00
 
 
 
@@ -57,7 +57,7 @@ Route::post('/dj/availability/store', [DjAvailabilityController::class, 'store']
 
 //DJ Profile
 Route::get('/my-profile', [App\Http\Controllers\Dj\ProfileController::class, 'myprofile'])->name('dj.page.profile');
-Route::post('/my-profile-update', [App\Http\Controllers\Dj\ProfileController::class, 'myprofileupdate'])->name('dj.page.profile');
+Route::post('/my-profile-update', [App\Http\Controllers\Dj\ProfileController::class, 'myprofileupdate'])->name('dj.page.profile.update');
 
 //EM Profile
 //Route::get('/my-profile', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofile'])->name('eventmanager.page.profile');
@@ -73,7 +73,7 @@ Route::post('/eventmanager/events/{id}/bookings/store', [EventManagerBookingCont
 
 //EM - DJs
 Route::get('/eventmanager/djs', [EventManagerDjController::class, 'index'])->name('eventmanager.djs.index');
-Route::get('/eventmanager/djs/available', [EventManagerDjController::class, 'available'])->name('eventmanager.djs.availableDj');
+Route::get('/eventmanager/djs/available', [EventManagerDjController::class, 'available'])->name('eventmanager.djs.available');
 Route::get('/eventmanager/djs/{id}', [EventManagerDjController::class, 'show'])->name('eventmanager.djs.show');
 
 
@@ -81,10 +81,14 @@ Route::get('/eventmanager/djs/{id}', [EventManagerDjController::class, 'show'])-
 Route::get('/eventmanager/events', [EventManagerEventController::class, 'index'])->name('eventmanager.events.index');
 Route::get('/eventmanager/events/create', [EventManagerEventController::class, 'create'])->name('eventmanager.events.create');
 Route::get('/eventmanager/events/{id}', [EventManagerEventController::class, 'show'])->name('eventmanager.events.show');
+Route::get('/eventmanager/events/{id}/availableDj', [EventManagerEventController::class, 'availableDj'])->name('eventmanager.events.availableDj');
 Route::post('/eventmanager/events/store', [EventManagerEventController::class, 'store'])->name('eventmanager.events.store');
 Route::get('/eventmanager/events/{id}/edit', [EventManagerEventController::class, 'edit'])->name('eventmanager.events.edit');
 Route::put('/eventmanager/events/{id}', [EventManagerEventController::class, 'update'])->name('eventmanager.events.update');
 Route::delete('/eventmanager/events/{id}', [EventManagerEventController::class, 'destroy'])->name('eventmanager.events.destroy');
+
+// EM - venues
+Route::get('/eventmanager/venues', [App\Http\Controllers\EventManager\VenueController::class, 'index'])->name('eventmanager.venues.index');
 
 
 // ADMIN EVENT CRUD 1
