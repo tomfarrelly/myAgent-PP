@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-01-24T15:01:16+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-14T18:05:05+00:00
+# @Last modified time: 2021-02-11T17:15:46+00:00
 
 
 
@@ -23,8 +23,8 @@ class CreateAvailabilitiesTable extends Migration
         Schema::create('availabilities', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('dj_id')->unsigned();
-            $table->date('date_start')->format('Y-m-d')->nullable();
-            $table->date('date_end')->format('Y-m-d')->nullable();
+            $table->date('date_start')->nullable();
+            $table->date('date_end')->nullable();
             $table->timestamps();
 
             $table->foreign('dj_id')->references('id')->on('djs')->onUpdate('cascade')->onDelete('restrict');

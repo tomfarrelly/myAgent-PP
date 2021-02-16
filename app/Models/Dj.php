@@ -3,7 +3,7 @@
 # @Date:   2020-12-16T22:47:21+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-02-07T18:33:10+00:00
+# @Last modified time: 2021-02-13T15:56:30+00:00
 
 
 
@@ -52,6 +52,6 @@ class Dj extends Model
 
     public function genre()
     {
-      return $this->hasMany('App\Models\Genre', 'genre_id');
+      return $this->belongsToMany('App\Models\Genre', 'dj_genres');
     }
 }

@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:18+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-09T15:36:55+00:00
+# @Last modified time: 2021-02-15T17:32:13+00:00
 
 
 
@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Dj;
 use App\Models\Booking;
+use Carbon\Carbon;
 use Auth;
 
 use Illuminate\Support\Facades\File;
@@ -226,6 +227,19 @@ class EventController extends Controller
        return view('eventmanager.events.availableDj',[
 
          'djs' => $djs,
+
+       ]);
+    }
+
+    public function past(){
+
+      $date = Carbon::today();
+      $events = Event::where('date', '<' ,$date)->get();
+
+
+       return view('eventmanager.events.past',[
+
+         'events' => $events,
 
        ]);
     }

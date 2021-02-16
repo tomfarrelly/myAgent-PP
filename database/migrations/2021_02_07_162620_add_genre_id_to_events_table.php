@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-02-07T16:26:20+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-07T16:42:44+00:00
+# @Last modified time: 2021-02-15T21:44:16+00:00
 
 
 
@@ -23,7 +23,7 @@ class AddGenreIdToEventsTable extends Migration
         Schema::table('events', function (Blueprint $table) {
             $table->unsignedBigInteger('genre_id')->nullable();
 
-            $table->foreign('genre_id')->references('id')->on('genres')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('genre_id')->references('id')->on('genres')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

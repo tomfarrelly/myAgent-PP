@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-17T01:27:08+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-01-31T17:38:45+00:00
+# @Last modified time: 2021-02-15T18:16:57+00:00
 
 
 
@@ -10,6 +10,8 @@
 namespace App\Http\Controllers\EventManager;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 use App\Models\Dj;
 use App\Models\Event;
@@ -80,31 +82,33 @@ class BookingController extends Controller
 
       $booking->event_id=$request->input('event_id');
       $booking->dj_id=$request->input('dj_id');
-
       $booking->status= $request->has('status');
-    //$booking->date_booked = Carbon::today();
 
-      $availability = new Availability;
-      $availability->dj_id = $booking->dj_id;
-      $availability->date_start = Event::where('id', $id)->select("date")->first();
-      $availability->date_end = Event::where('id', $id)->select("date")->first();
-
-      $booking->availability()->save($availability);
-      //$booking->save();
-
-       return redirect()->route('eventmanager.events.index', $id);
+      if ($request->has('status') == 1)
+      {
+        $availability = new Availability;
+        $availability->dj_id = $booking->dj_id;
+        $availability->date_start = Event::whereDateTime('id', $booking->event_id)->select('date')->first();
+        $availability->date_end = Event::whereDateTime('id', $booking->event_id)->select('date')->first();
 
 
 
 
+        $availability->save();
 
-      // $request->validate([
-      //   'user_id' => 'required|integer',
-      //   'event_id' => 'required|integer',
-      //   'date' => 'required|date',
-      //   'time' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
-      //   'description' => 'required|max:191',
-      // ]);
+        return redirect()->route('eventmanager.events.index');
+
+      }else{
+
+        $booking->save();
+
+      }
+
+       return redirect()->route('eventmanager.events.index');
+
+
+
+
     }
 
     /**
@@ -138,7 +142,7 @@ class BookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      //
     }
 
     /**

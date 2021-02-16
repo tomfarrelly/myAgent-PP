@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-02-04T14:22:02+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-08T18:49:10+00:00
+# @Last modified time: 2021-02-16T01:16:23+00:00
 
 
 
@@ -15,7 +15,9 @@ use App\Models\Dj;
 use App\Models\Booking;
 use App\Models\Availability;
 use App\Models\Event;
+use App\Models\Genre;
 use Carbon\Carbon;
+use Symfony\Component\Console\Input\Input;
 
 
 class DjController extends Controller
@@ -189,6 +191,115 @@ $djs = Dj::whereHas('availability', function ($q) use ($date) {
        //'bookings' => $bookings
      ]);
    }
+
+
+   public function search(Request $request)
+   {
+
+      // $genres = Genre::with('dj')
+      // ->whereHas('dj')
+      //   ->where('name','LIKE',"%{$str}%")
+      // //  ->where('dj_id','=','genre_id')
+      // ->get();
+
+      // $str = $request->str;
+      // $genres = Genre::get();
+      //
+      //   $djs = Dj::get();
+      //   if ($request->genre) {
+      //       $djs = $djs->whereIn('genre', $str->name)->get();
+      //     //  ->where('name','LIKE',"%{$request}%")->get();
+      //   }
+        //return $djs;
+
+        // if ($request->gender) {
+        //   $products = $products->whereIn('gender', $request->gender);
+        // }
+        //return $djs;
+
+
+
+//       $users = User::whereHas('roles' => function($q){
+//     $q->where('name', 'admin');
+// })->get();
+
+
+
+
+
+
+
+     // $djs = Dj::all();
+     // return view('eventmanager.djs.search', [
+     //   'djs' => $djs
+     // ]);
+
+     // $djs = Genre::whereHas('dj');
+     //
+     //  if ($request->has('genre_id')) {
+     //      $query->with('genre_id' ,$request->genre->name="jungle");
+     //  }
+
+      // if ($request->has('city_id')) {
+      //     $query->where('city_id', $request->city_id);
+      // }
+
+      //  return  $djs->get();
+      // $str = $request->str;
+      // $djs = Dj::with(['genre'])->get();
+      //  $genres = Genre::with(['dj'])
+      //     ->where('name','LIKE',"%{$str}%")->get();
+
+          // **************************************
+            // $str = $request->str;
+            // $djs = Dj::with(['genre'])
+            //   ->where('name','LIKE','%'.$str.'%')
+            // ->get();
+          // // //  ->whereHas('genre')->where('name','LIKE',"%{$str}%")
+
+          // ***************************************
+            //$q-> Genre::with(['dj'])  ->where('name','LIKE',"%{$str}%")->get();
+        //$genres = Genre::with(['dj'])->get();
+       //$genres = Genre::with('dj')->get();
+
+
+
+       // $str = $request->str;
+       //  $djs = Dj::with(['genre'], function ($q) use ($str) {
+       //      $q->where("name",'LIKE',"%{$request->str}%");
+       //    })->get();
+
+
+          $str = $request->str;
+          $genres = Genre::where("name",'LIKE',"%{$request->str}%")->with('dj')->get();
+
+     return view('eventmanager.djs.search', [
+       //'djs'=>$djs,
+        'genres'=>$genres,
+     ]);
+
+}
+
+// ->orWhereHas('genre' function ($q) use ($str){
+// $q->where('name', $str);
+//  });
+// $genres = Genre::with('dj', function ($q) use ($str) {
+//
+//         $q->where('name','LIKE',"%{$str}%");
+//
+//     })->get();
+
+// $products = Product::where('product_status', 'ACTIVE')
+//             ->with('images')
+//             ->whereHas('productTags', function($query) use($filter) {
+//                 $query->where('slug', $filter);
+//             })
+//             ->when($subfilter != '', function($query) use ($subfilter) {
+//                 $query->whereHas('productTags', function($query) use($subfilter) {
+//                     $query->where('slug', $subfilter);
+//                 });
+//             })
+//             ->paged($page);
 
     /**
      * Show the form for editing the specified resource.
