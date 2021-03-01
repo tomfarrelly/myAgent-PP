@@ -9,12 +9,12 @@
 
             <div class="card">
                 <div class="card-header">
-                    DJ Roster
+                    Event Roster
 
                 </div>
                 <div class="md-input-wrapper search-form">
 
-                  <form method="GET" id="djs">
+                  <form method="GET" id="events">
             			<select name="genre_id" id="input">
             				<option value="0">Select Genre</option>
             				@foreach ($genres as $genre)
@@ -30,10 +30,10 @@
 
                 <div class="card-body">
 
-                    <table id="table-djs" class="table table-hover">
+                    <table id="table-events" class="table table-hover">
                         <thead>
                             <th>Genre</th>
-                            <th>Dj</th>
+                            <th>Event</th>
 
                         </thead>
                         <tbody>
@@ -41,8 +41,8 @@
 
                                 <td>{{ $genre->name }}</td>
 
-                                  @foreach ($genre->dj as $dj)
-                                <td>{{ $dj->user->name }}</td>
+                                  @foreach ($genre->event as $event)
+                                <td>{{ $event->name }}</td>
                                   @endforeach
                                 <td>
 

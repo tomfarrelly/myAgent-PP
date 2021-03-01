@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-02-07T15:42:46+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-15T18:53:29+00:00
+# @Last modified time: 2021-03-01T19:09:12+00:00
 
 
 
@@ -34,6 +34,6 @@ class Genre extends Model
 
      public function event()
      {
-       return $this->belongsToMany('App\Models\Event', 'dj_event_genre');
+       return $this->belongsToMany('App\Models\Event', 'event_genres');
      }
 }

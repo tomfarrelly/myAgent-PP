@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-02-13T15:50:40+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-15T12:54:33+00:00
+# @Last modified time: 2021-03-01T18:57:59+00:00
 
 
 
@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDjEventGenreTable extends Migration
+class CreateEventGenresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,15 +20,14 @@ class CreateDjEventGenreTable extends Migration
      */
     public function up()
     {
-        Schema::create('dj_event_genre', function (Blueprint $table) {
+        Schema::create('event_genres', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('dj_id')->unsigned()->nullable();
             $table->unsignedBigInteger('event_id')->unsigned()->nullable();
             $table->unsignedBigInteger('genre_id')->unsigned();
             $table->timestamps();
 
 
-            $table->foreign('dj_id')->references('id')->on('djs')->onUpdate('cascade')->onDelete('restrict');
+
             $table->foreign('event_id')->references('id')->on('events')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('genre_id')->references('id')->on('genres')->onUpdate('cascade')->onDelete('restrict');
         });
@@ -41,6 +40,6 @@ class CreateDjEventGenreTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dj_event_genre');
+        Schema::dropIfExists('event_genres');
     }
 }

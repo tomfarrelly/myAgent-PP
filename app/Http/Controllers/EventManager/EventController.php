@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:18+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-15T17:32:13+00:00
+# @Last modified time: 2021-03-01T19:09:27+00:00
 
 
 
@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Dj;
 use App\Models\Booking;
+use App\Models\Genre;
 use Carbon\Carbon;
 use Auth;
 
@@ -243,6 +244,26 @@ class EventController extends Controller
 
        ]);
     }
+
+    public function search(Request $request)
+    {
+
+        $genres = Genre::where( function($query) use($request){
+                      return $request->genre_id ?
+                             $query->from('genres')->where('id',$request->genre_id) : '';
+                 })->with('event')->get();
+
+                 $selected_id = [];
+                 $selected_id['genre_id'] = $request->genre_id;
+
+
+      return view('eventmanager.events.search', [
+
+         'genres'=>$genres,
+         'selected_id'=>$selected_id
+      ]);
+
+ }
 
 
 }

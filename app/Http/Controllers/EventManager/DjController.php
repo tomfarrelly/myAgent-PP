@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-02-04T14:22:02+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-16T01:16:23+00:00
+# @Last modified time: 2021-03-01T18:54:07+00:00
 
 
 
@@ -264,21 +264,38 @@ $djs = Dj::whereHas('availability', function ($q) use ($date) {
 
 
 
+       $genres = Genre::where( function($query) use($request){
+                     return $request->genre_id ?
+                            $query->from('genres')->where('id',$request->genre_id) : '';
+                })->with('dj')->get();
+
+                $selected_id = [];
+                $selected_id['genre_id'] = $request->genre_id;
+
+
+
+
+
+
+
        // $str = $request->str;
        //  $djs = Dj::with(['genre'], function ($q) use ($str) {
        //      $q->where("name",'LIKE',"%{$request->str}%");
        //    })->get();
 
-
-          $str = $request->str;
-          $genres = Genre::where("name",'LIKE',"%{$request->str}%")->with('dj')->get();
+          //
+          // $str = $request->str;
+          // $genres = Genre::where("name",'LIKE',"%{$request->str}%")
+          //         ->with('dj')->get();
 
      return view('eventmanager.djs.search', [
        //'djs'=>$djs,
         'genres'=>$genres,
+        'selected_id'=>$selected_id
      ]);
 
 }
+
 
 // ->orWhereHas('genre' function ($q) use ($str){
 // $q->where('name', $str);
