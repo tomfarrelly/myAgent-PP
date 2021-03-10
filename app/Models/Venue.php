@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-02-07T17:31:44+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-07T18:17:37+00:00
+# @Last modified time: 2021-03-10T15:29:55+00:00
 
 
 
@@ -26,6 +26,6 @@ class Venue extends Model
 
     public function event()
     {
-      return $this->belongsTo('App\Models\Event');
+      return $this->hasMany('App\Models\Event', 'venue_id');
     }
 }

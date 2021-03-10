@@ -3,7 +3,7 @@
 # @Date:   2020-12-20T18:41:17+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-01-29T12:36:13+00:00
+# @Last modified time: 2021-03-09T16:40:00+00:00
 
 
 
@@ -37,18 +37,18 @@ class Booking extends Model
 
     public function event()
     {
-      return $this->belongsToMany('App\Models\Event','event_id');
+      return $this->belongsTo('App\Models\Event');
     }
 
     public function dj()
     {
-      return $this->belongsToMany('App\Models\Dj', 'dj_id');
+      return $this->belongsTo('App\Models\Dj');
     }
 
     public function eventmanager()
     {
-      return $this->belongsToMany('App\Models\Eventmanager');
+      return $this->belongsTo('App\Models\Eventmanager');
     }
 
-    
+
 }

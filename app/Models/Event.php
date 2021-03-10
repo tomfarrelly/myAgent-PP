@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:15:23+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-15T12:45:41+00:00
+# @Last modified time: 2021-03-10T15:29:50+00:00
 
 
 
@@ -70,7 +70,7 @@ class Event extends Model
 
     public function venue()
     {
-      return $this->hasOne('App\Models\Venue','venue_id');
+      return $this->belongsTo('App\Models\Venue','venue_id');
     }
 
     public function genre()

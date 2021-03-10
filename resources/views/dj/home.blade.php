@@ -16,7 +16,8 @@
 
                      You are logged in as a DJ.
                      <br>
-                     
+                       <a href="{{ route('dj.bookings.index') }}" class="btn btn-primary float-right">View My Bookings</a>
+
 
 
 

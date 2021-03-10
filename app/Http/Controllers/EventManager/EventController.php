@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:18+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-01T19:09:27+00:00
+# @Last modified time: 2021-03-08T18:13:54+00:00
 
 
 
@@ -41,7 +41,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
+        $events = Event::all();//->where('user_id' === Auth::user()->id);
+
+
       //  $user = Auth::user();
       //  $events = $user->events()->orderBy('date','asc')->paginate(8);
         //$djs = Dj::findOrFail($id);

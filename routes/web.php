@@ -3,7 +3,7 @@
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-03-01T19:05:45+00:00
+# @Last modified time: 2021-03-10T16:29:13+00:00
 
 
 
@@ -21,6 +21,8 @@ use App\Http\Controllers\EventManager\BookingController as EventManagerBookingCo
 use App\Http\Controllers\Dj\AvailabilityController as DjAvailabilityController;
 use App\Http\Controllers\EventManager\DjController as EventManagerDjController;
 
+
+use App\Http\Controllers\Dj\BookingController as DjBookingController;
 
 
 /*
@@ -58,6 +60,13 @@ Route::post('/dj/availability/store', [DjAvailabilityController::class, 'store']
 //DJ Profile
 Route::get('/my-profile', [App\Http\Controllers\Dj\ProfileController::class, 'myprofile'])->name('dj.page.profile');
 Route::post('/my-profile-update', [App\Http\Controllers\Dj\ProfileController::class, 'myprofileupdate'])->name('dj.page.profile.update');
+
+// DJ - Bookings
+Route::get('/dj/bookings', [DjBookingController::class, 'index'])->name('dj.bookings.index');
+Route::post('/dj/bookings/{id}/store', [DjBookingController::class, 'store'])->name('dj.bookings.store');
+Route::get('/dj/bookings/{id}/edit', [DjBookingController::class, 'edit'])->name('dj.bookings.edit');
+Route::put('/dj/bookings/{id}', [DjBookingController::class, 'update'])->name('dj.bookings.update');
+Route::delete('/dj/bookings/{id}', [DjBookingController::class, 'destroy'])->name('dj.bookings.destroy');
 
 //EM Profile
 //Route::get('/my-profile', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofile'])->name('eventmanager.page.profile');

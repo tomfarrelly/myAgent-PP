@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-02-04T14:22:02+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-01T18:54:07+00:00
+# @Last modified time: 2021-03-09T14:25:51+00:00
 
 
 
@@ -251,10 +251,10 @@ $djs = Dj::whereHas('availability', function ($q) use ($date) {
       //     ->where('name','LIKE',"%{$str}%")->get();
 
           // **************************************
-            // $str = $request->str;
-            // $djs = Dj::with(['genre'])
-            //   ->where('name','LIKE','%'.$str.'%')
-            // ->get();
+             // $str = $request->str;
+             // $djs = Dj::with(['genre'])
+             //   ->where('name','LIKE','%'.$str.'%')
+             // ->get();
           // // //  ->whereHas('genre')->where('name','LIKE',"%{$str}%")
 
           // ***************************************
