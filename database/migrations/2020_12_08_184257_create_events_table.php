@@ -27,13 +27,14 @@ class CreateEventsTable extends Migration
           $table->string('venue');
           $table->date('date');
           $table->time('time');
-          $table->bigInteger('user_id')->unsigned();
           $table->string('type');
+          $table->bigInteger('user_id')->unsigned();
         //  $table->string('image')->nullable();
           $table->rememberToken();
           $table->timestamps();
 
-          $table->foreign('user_id')->references('id')->on('users');
+
+         $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

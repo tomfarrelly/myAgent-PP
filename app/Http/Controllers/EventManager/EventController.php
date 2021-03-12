@@ -11,11 +11,17 @@ namespace App\Http\Controllers\EventManager;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
+
+use Auth;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Dj;
 use App\Models\Booking;
-use Auth;
+use App\Models\Venue;
+use App\Models\Type;
+use Carbon\Carbon;
+
 
 use Illuminate\Support\Facades\File;
 
@@ -37,22 +43,87 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+
+
+
+
+    public function index(Request $request)
     {
+
         $events = Event::all();
-      //  $user = Auth::user();
-      //  $events = $user->events()->orderBy('date','asc')->paginate(8);
-        //$djs = Dj::findOrFail($id);
 
-        return view('eventmanager.home', [
-          'events' => $events
+        $types = Type::all();
+
+       // $futureevents = Event::getEvents('', GlobalConstants::ALL, GlobalConstants::ALL,GlobalConstants::ALL);
+        $date = Carbon::today();
+        $pastevents = Event::where('date', '<' ,$date)->get();
+        $futureevents = Event::where('date', '>=' ,$date)->get();
+        $data['venues'] = Venue::orderBy('id')->get();
+        $post_query = Event::where('user_id',auth()->id());
+        $post_query = Event::where('date', '>=' ,$date);
+
+
+
+
+      if($request->venue){
+         $post_query->whereHas('venue',function($q) use ($request){
+         $q->where('name',$request->venue);
+        });
+      }
+
+      if($request->keyword){
+       $post_query->where('name','LIKE','%'.$request->keyword.'%');
+      }
+
+      if(isset($_GET['sort']) && !empty($_GET['sort'])){
+        if($_GET['sort']=="event_name_a_z"){
+       $post_query->orderBy('name', 'ASC');
+        }
+        else if($_GET['sort']=="event_name_z_a") {
+
+         $post_query->orderBy('name', 'Desc');
+       }else if($_GET['sort']=="event_date_>") {
+
+         $post_query->orderBy('date', 'Asc');
+       }else if($_GET['sort']=="event_date_<") {
+
+         $post_query->orderBy('date', 'Desc');
+       }else if($_GET['sort']=="event_time_>") {
+
+         $post_query->orderBy('time', 'Asc');
+       }else if($_GET['sort']=="event_time_<") {
+
+         $post_query->orderBy('time', 'Desc');
+        }
+        else {
+
+        }
+
+      }
+
+      $data['futureevents']=$post_query->orderBy('id','ASC')->paginate(20);
+
+
+
+        return view('eventmanager.home',$data, [
+          'futureevents' => $futureevents,
+          'pastevents' =>$pastevents,
+          'data' => $data,
+          'types' =>$types
         ]);
 
-        return view('eventmanager.events.index', [
-          'events' => $events,
-        //  'djs' => $djs
-        ]);
+
     }
+
+    // public function getMoreEvents(Request $request) {
+    //     $query = $request->search_query;
+    //     $venue = $request->venue;
+    //     $sort_by = $request->sort_by;
+    //     if($request->ajax()) {
+    //         $$futureevents = Event::getEvents($query, $venue, $sort_by,);
+    //             return view('pages.event_data', compact('$futureevents'))->render();
+    //     }
 
     /**
      * Show the form for creating a new resource.
@@ -61,7 +132,13 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('eventmanager.events.create');
+        $venues = Venue::all();
+        $types = Type::all();
+        return view('eventmanager.events.create',[
+          'venues' =>$venues,
+          'types' =>$types
+
+        ]);
     }
 
     /**
@@ -70,48 +147,48 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-      $request->validate([
-        'name' => 'required|max:191',
-        'description' => 'required',
-        'venue' => 'required|max:191',
-        'date' => 'required|date',
-        'time' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
-        'type' => 'required',
-        'cover' => 'file|image',
-        //'cover'=> 'file|image',
-        'user_id' => 'required|integer',
-      ]);
+     public function store(Request $request)
+     {
+       $request->validate([
+         'name' => 'required|max:191',
+         'description' => 'required',
+         'venue_id' => 'required',
+         'date' => 'required|date',
+         'time' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
+         'type_id' => 'required',
+         'cover' => 'file|image',
+         //'cover'=> 'file|image',
 
-      $event = new  Event();
+       ]);
 
-      if($request->hasfile('cover'))
-    {
-      $destination = 'uploads/event/' .$event->cover;
-      if(File::exists($destination)){
-         File::delete($destination);
-      }
-      $file = $request->file('cover');
-      $extension = $file->getClientOriginalExtension();
-      $filename = time() . '.' . $extension;
-      $file->move('uploads/event/',$filename);
-      $event->cover = $filename;
-    }
+       $event = new  Event();
+
+       if($request->hasfile('cover'))
+     {
+       $destination = 'uploads/event/' .$event->cover;
+       if(File::exists($destination)){
+          File::delete($destination);
+       }
+       $file = $request->file('cover');
+       $extension = $file->getClientOriginalExtension();
+       $filename = time() . '.' . $extension;
+       $file->move('uploads/event/',$filename);
+       $event->cover = $filename;
+     }
 
 
-      $event->name=$request->input('name');
-      $event->description=$request->input('description');
-      $event->venue=$request->input('venue');
-      $event->date=$request->input('date');
-      $event->time=$request->input('time');
-      $event->type=$request->input('type');
-      $event->user_id=$request->input('user_id');
+       $event->name=$request->input('name');
+       $event->description=$request->input('description');
+       $event->venue_id = $request->input('venue_id');
+       $event->date=$request->input('date');
+       $event->time=$request->input('time');
+       $event->type_id=$request->input('type_id');
+       $event->user_id = auth()->id();
 
-      $event->save();
+       $event->save();
 
-      return redirect()->route('eventmanager.events.index');
-    }
+       return redirect()->route('eventmanager.home');
+     }
 
     /**
      * Display the specified resource.
@@ -147,9 +224,14 @@ class EventController extends Controller
     {
 
       $event = Event::findOrFail($id);
-
+      $venues = Venue::all();
+      $types = Type::all();
+      $bookings = Booking::where('event_id', $id)->get();
       return view('eventmanager.events.edit',[
-        'event' => $event
+        'event' => $event,
+        'venues'=> $venues,
+        'types'=> $types,
+        'bookings' => $bookings
       ]);
     }
 
@@ -160,46 +242,53 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-      $event = Event::findOrFail($id);
+     public function update(Request $request, $id)
+     {
+       $event = Event::findOrFail($id);
 
-      $request->validate([
-        'name' => 'required|max:191',
-        'description' => 'required',
-        'venue' => 'required|max:191',
-        'date' => 'required|date',
-        'time' => 'required|date_format:H:i',//makes sure that the one you are adding to the DB is unique
-        'type' => 'required',
-        'cover' => 'file|image',
-        'user_id' => 'required|integer',
-      ]);
+       $request->validate([
+         'name' => 'required|max:191',
+         'description' => 'required',
+         'venue_id' => 'required',
+         'date' => 'required|date',
+         'time' => 'date_format:H:i:s',//makes sure that the one you are adding to the DB is unique
+         'type_id' => 'required',
+         'cover' => 'file|image',
+         //'cover'=> 'file|image',
 
-      if($request->hasfile('cover'))
-    {
-      $destination = 'uploads/event/' .$event->cover;
-      if(File::exists($destination)){
-         File::delete($destination);
-      }
-      $file = $request->file('cover');
-      $extension = $file->getClientOriginalExtension();
-      $filename = time() . '.' . $extension;
-      $file->move('uploads/event/',$filename);
-      $event->cover = $filename;
-    }
+       ]);
+
+       $event = new  Event();
+
+       if($request->hasfile('cover'))
+     {
+       $destination = 'uploads/event/' .$event->cover;
+       if(File::exists($destination)){
+          File::delete($destination);
+       }
+       $file = $request->file('cover');
+       $extension = $file->getClientOriginalExtension();
+       $filename = time() . '.' . $extension;
+       $file->move('uploads/event/',$filename);
+       $event->cover = $filename;
+     }
 
 
-      $event->name=$request->input('name');
-      $event->description=$request->input('description');
-      $event->venue=$request->input('venue');
-      $event->date=$request->input('date');
-      $event->time=$request->input('time');
-      $event->user_id=$request->input('user_id');
+       $event->name=$request->input('name');
+       $event->description=$request->input('description');
+       $event->venue_id = $request->input('venue_id');
+       $event->date=$request->input('date');
+       $event->time=$request->input('time');
+       $event->type_id=$request->input('type_id');
+       $event->user_id = auth()->id();
 
-      $event->save();
+       $event->save();
 
-      return redirect()->route('eventmanager.home');
-    }
+     return redirect()->route('eventmanager.home');
+     }
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -207,11 +296,15 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-      $event = Event::findOrFail($id);
-      $event->delete();
+     public function destroy(Request $request ,$id)
+     {
+         $event = Event::findOrFail($id);
 
-      return redirect()->route('eventmanager.events.index');
-    }
+         $event->delete();
+
+
+
+         return redirect()->route('eventmanager.home');
+     }
+
 }

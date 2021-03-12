@@ -68,93 +68,171 @@
        <h3>Events Taking Place</h3>
      </div>
      </div>
-   <div class="row">
-     <div class="col-md-2">
-     <form name="_token"  id="tour-dropdown" method="get" value="<?php echo csrf_token(); ?>">
-                        <div class="dropdown">
-    <button class="btn filterBtn dropdown-toggle" type="button" data-toggle="dropdown">Search by Venue
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu dropdown1">
-      @foreach ($events as $event)
-          <li class="link2"><a class="link1" href="">{!! $event->venue !!}</a></li>
-      @endforeach
-    </ul>
+     <div class="card-body">
+      <div class="mb-2">
+           <form class="form-inline" action="">
+           <label for="venue_filter">Filter By Category &nbsp;</label>
+            <select class="form-control" id="venue_filter" name="venue">
+             <option value="">Select Category</option>
+            @if(count($venues))
+               @foreach($venues as $venue)
+                  <option value="{{$venue->name}}"  {{(Request::query('venue') && Request::query('venue')==$venue->name)?'selected':''}}  >{{$venue->name}}</option>
+               @endforeach
+             @endif
 
-  </div>
 
-                    </form>
-                  </div>
-                    <form name="_token"  id="tour-dropdown" method="get" value="<?php echo csrf_token(); ?>">
-                                       <div class="dropdown">
-                   <button class="btn filterBtn1 dropdown-toggle" type="button" data-toggle="dropdown">Search by Genre
-                   <span class="caret"></span></button>
-                   <ul class="dropdown-menu dropdown1">
-                     @foreach ($events as $event)
-                         <li class="link2"><a class="link1" href="">{!! $event->type !!}</a></li>
-                     @endforeach
-                   </ul>
+           </select>
+           <label for="keyword">&nbsp;&nbsp;</label>
+           <input type="text" class="form-control"  name="keyword" placeholder="Enter keyword" id="keyword">
+           <span>&nbsp;</span>
+            <button type="button" onclick="search_event()" class="btn btn-primary" >Search</button>
+            @if(Request::query('venue') || Request::query('keyword'))
+             <a class="btn btn-success" href="{{route('eventmanager.home')}}">Clear</a>
+            @endif
 
-                 </div>
 
-                                   </form>
-                                 </div>
+
+                  <label class="control-label sort-by"> Sort By </label>
+                  <select class="sort-by-box" name="sort" id="sort">
+                    <option value="">Select</option>
+                    <option value="event_name_a_z">Name from A to Z</option>
+                    <option value="event_name_z_a">Name from Z to A</option>
+                    <option value="event_date_>">Newst release</option>
+                    <option value="event_date_<">Latest release</option>
+                    <option value="event_time_>">Newest Time</option>
+                    <option value="event_time_<">Latest Time</option>
+                  </select>
+
+
+
+
+         </form>
+       </div>
+
+
      <hr>
      <br>
-     <!-- <select id="catID">
-       <option value="">Select a Category</option>
-       @foreach ($events as $event)
-       <option class="option" value="{{$event->id}}">{{$event->name}}</option>
-       @endforeach
-     </select> -->
+
+
+
+
+@if(count($futureevents))
+     <div class="row">
+           @foreach ($futureevents as $event)
+             <div class="col-lg-4 col-md-6 col-sm-12">
+               <div class="card1">
+               <div class="card1-img" style="background-image:url({{ asset('uploads/event/'.$event->cover) }});">
+                 <div class="overlay">
+                   <div class="overlay-content">
+                     <a href="{{ route('eventmanager.events.show', $event->id) }}">View Event</a>
+                   </div>
+                 </div>
+               </div>
+
+               <div class="card1-content ">
+
+                   <h1>{{ $event->name }}</h1>
+                    <h2>{{ $event->venue->name }}</h2>
+                    <div class="row">
+                    <div class="col-6">
+                   <p>{{ $event->date }}</p>
+                  </div>
+                  <div class="col-4">
+                  <p>{{ $event->time }}</p>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-2">
+
+              </div>
+              <div class="col-6">
+
+            </div>
+
+            <p class="editEvBtn1"><a class="editEvBtn"  href="{{ route('eventmanager.events.edit', $event->id) }}">Edit</a></p>
+            <form style="display:inline-block" method="POST" action="{{ route('eventmanager.events.destroy', $event->id)}}">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="hidden" name="_token" value="{{ csrf_token()}}">
+              <button style="width: 100%; height: 22px;font-size: 13px; text-align: center;padding: 0px;border-radius: 0px;" type="submit" class="form-control btn-danger">Delete</a>
+            </form>
+
+
+          </div>
+               </div>
+              </div>
+     </div>
+
+     @endforeach
+     </div>
+
+     @else
+
+       <tr>
+         <td colspan="6" >No posts with this venue found</td>
+           <br>
+           <br>
+       </tr>
+     @endif
+
+
+     @if(count($futureevents))
+     <div>
+      {{$futureevents->appends(Request::query())->links()}}
+    </div>
+     @endif
 
  <div class="row">
-
-       @foreach ($events as $event)
+ <div class="col-4">
+ <h3>Past Events</h3>
+ </div>
+ </div>
+ <hr>
+ <br>
+ <div class="row">
+       @foreach ($pastevents as $event)
          <div class="col-lg-4 col-md-6 col-sm-12">
            <div class="card1">
-          	<div class="card1-img" style="background-image:url({{ asset('uploads/event/'.$event->cover) }});">
-          		<div class="overlay">
-          			<div class="overlay-content">
-          				<a href="{{ route('eventmanager.events.show', $event->id) }}">View Event</a>
-          			</div>
-          		</div>
-          	</div>
+           <div class="card1-img" style="background-image:url({{ asset('uploads/event/'.$event->cover) }});">
+             <div class="overlay">
+               <div class="overlay-content">
+                 <a href="{{ route('eventmanager.events.show', $event->id) }}">View Event</a>
+               </div>
+             </div>
+           </div>
 
-          	<div class="card1-content ">
+           <div class="card1-content ">
 
-          			<h1>{{ $event->name }}</h1>
-                <h2>{{ $event->venue }}</h2>
+               <h1>{{ $event->name }}</h1>
+                <h2>{{ $event->venue->name }}</h2>
                 <div class="row">
                 <div class="col-6">
-          			<p>{{ $event->date }}</p>
+               <p>{{ $event->date }}</p>
               </div>
               <div class="col-4">
               <p>{{ $event->time }}</p>
             </div>
           </div>
 
-          <p class="editEvBtn1"><a class="editEvBtn"  href="{{ route('eventmanager.events.edit', $event->id) }}">Edit</a></p>
 
 
-          	</div>
+
+           </div>
           </div>
  </div>
 
  @endforeach
  </div>
- <br>
- <div class="row">
- <div class="col-4">
- <h3>Past Events</h3>
- </div>
- </div>
 
       </div>
     </div>
-
+  </div>
 
 </body>
-<script>
 
-</script>
+
+
+
+
+
 </html>

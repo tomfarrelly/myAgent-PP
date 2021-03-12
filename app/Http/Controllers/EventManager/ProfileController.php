@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Models\Dj;
 use App\Models\Booking;
+use App\Models\Event;
 
 
 class ProfileController extends Controller
@@ -35,9 +36,14 @@ class ProfileController extends Controller
 
       $djs = Dj::all();
 
+      return view('eventmanager.events.show', [
+        'djs' => $djs
+      ]);
+
       return view('eventmanager.page.index', [
         'djs' => $djs
       ]);
+
   }
 
 
@@ -81,6 +87,8 @@ class ProfileController extends Controller
        return view('eventmanager.page.show',[
          'dj' => $dj
        ]);
+
+
    }
 
 /**  Displaying available DJs with status = 0 in bookings  **/
@@ -88,7 +96,7 @@ class ProfileController extends Controller
 
      //$booking = Booking::all();
     //  DB::table('customer')->pluck('cust')
-    
+
     // $djs = Dj::findOrFail($id)->booking()->where('dj_id', '!=', $id)->get();
      //User::find($id)->games()->where('user_id', '!=', $id)->get();
      $djs = Dj::doesntHave('booking')->get();

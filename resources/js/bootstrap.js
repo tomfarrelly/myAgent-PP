@@ -66,6 +66,8 @@ const scrollFunc = () => {
 
 window.addEventListener("scroll", scrollFunc);
 
+
+
 const scrollToTop = () => {
   // Let's set a variable for the number of pixels we are from the top of the document.
   const c = document.documentElement.scrollTop || document.body.scrollTop;

@@ -16,6 +16,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\EventManager\EventController as EventManagerEventController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\EventManager\BookingController as EventManagerBookingController;
+use App\Http\Controllers\EventManager\DjController as EventManagerDjController;
 
 
 
@@ -64,8 +65,12 @@ Route::get('/eventmanager/events/{id}/bookings/create', [EventManagerBookingCont
 Route::post('/eventmanager/events/{id}/bookings/store', [EventManagerBookingController::class, 'store'])->name('eventmanager.events.bookings.store');
 
 
+Route::get('/search', [EventManagerDjController::class, 'search'])->name('eventmanager.page.search');
+
+
+
 // EM EVENT CRUD
-Route::get('/eventmanager/events', [EventManagerEventController::class, 'index'])->name('eventmanager.events.index');
+
 Route::get('/eventmanager/home', [EventManagerEventController::class, 'index'])->name('eventmanager.home');
 Route::get('/eventmanager/events/create', [EventManagerEventController::class, 'create'])->name('eventmanager.events.create');
 Route::get('/eventmanager/events/{id}', [EventManagerEventController::class, 'show'])->name('eventmanager.events.show');
@@ -73,8 +78,6 @@ Route::post('/eventmanager/events/store', [EventManagerEventController::class, '
 Route::get('/eventmanager/events/{id}/edit', [EventManagerEventController::class, 'edit'])->name('eventmanager.events.edit');
 Route::put('/eventmanager/events/{id}', [EventManagerEventController::class, 'update'])->name('eventmanager.events.update');
 Route::delete('/eventmanager/events/{id}', [EventManagerEventController::class, 'destroy'])->name('eventmanager.events.destroy');
-
-
 // ADMIN EVENT CRUD 1
 Route::get('/admin/events', [AdminEventController::class, 'index'])->name('admin.events.index');
 Route::get('/admin/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');

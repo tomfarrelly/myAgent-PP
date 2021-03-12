@@ -28,6 +28,11 @@ class Dj extends Model
       return $this->belongsToMany('App\Models\Event' , 'event_id'); //'dj_event', 'event_id'
     }
 
+    public function genre()
+    {
+      return $this->belongsToMany('App\Models\Genre', 'dj_genres');
+    }
+
     public function booking()
     {
       return $this->hasMany('App\Models\Booking',);

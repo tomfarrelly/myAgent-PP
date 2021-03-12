@@ -3,4 +3,5 @@
 @section('content')
 @include('layouts.eventp1')
 
+
 @endsection
