@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-08T19:04:12+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-16T22:47:30+00:00
+# @Last modified time: 2021-03-14T23:27:59+00:00
 
 
 
@@ -33,7 +33,6 @@ class UserSeeder extends Seeder
       $admin->username = 'admin1';
       $admin->password = Hash::make('secret');
       $admin->bio = 'I am an Admin';
-      $admin->genre = 'none';
       $admin->location = 'wherever';
       $admin->save();
       $admin->roles()->attach($role_admin);
@@ -44,7 +43,6 @@ class UserSeeder extends Seeder
       $eventManager->username = 'SafeHaus Dublin';
       $eventManager->password = Hash::make('secret');
       $eventManager->bio = 'Safehaus is a Dublin based Collective set up with the aim of bringing like minded people together and throwing some serious parties with the best House, Disco and Dance music from every corner of the globe.';
-      $eventManager->genre = 'Breaks, House, Deconstruced Club ';
       $eventManager->location = 'Dublin, Ireland';
       $eventManager->save();
       $eventManager->roles()->attach($role_eventManager);
@@ -55,7 +53,6 @@ class UserSeeder extends Seeder
       $dj->username = 'outl1er';
       $dj->password = Hash::make('secret');
       $dj->bio = 'Dublin based DJ playing Break beat, ELectro and Deconstructed Club Music out to the Dublin Massive for 2 years.';
-      $dj->genre = 'Jungle, Electro, Deconstruced Club ';
       $dj->location = 'Dublin, Ireland';
       $dj->save();
       $dj->roles()->attach($role_dj);
@@ -66,7 +63,6 @@ class UserSeeder extends Seeder
       $dj->username = 'outl1er';
       $dj->password = Hash::make('secret');
       $dj->bio = 'ing Break beat, ELectro and Deconstructed Club Music out to the Dublin Massive for 2 years.';
-      $dj->genre = 'construced Club ';
       $dj->location = 'reland';
       $dj->save();
       $dj->roles()->attach($role_dj);
@@ -77,7 +73,6 @@ class UserSeeder extends Seeder
       $dj->username = 'dawid1';
       $dj->password = Hash::make('secret');
       $dj->bio = 'Based DJ playing Break beat, ELectro and Deconstructed Club Music out to the Dublin Massive for 2 years.';
-      $dj->genre = 'Electro, Deconstruced Club ';
       $dj->location = 'Ireland';
       $dj->save();
       $dj->roles()->attach($role_dj);
@@ -89,10 +84,18 @@ class UserSeeder extends Seeder
       $dj->username = 'tom1';
       $dj->password = Hash::make('secret');
       $dj->bio = 'Based DJ playing Break beat, ELectro and Deconstructed Club Music out to the Dublin Massive for 2 years.';
-      $dj->genre = 'Electro, Deconstruced Club ';
       $dj->location = 'Ireland';
       $dj->save();
       $dj->roles()->attach($role_dj);
+
+
+      for($i = 1; $i <= 10; $i++) {
+        User::factory()->hasDj()->create();
+      }
+
+      for($i = 1; $i <= 10; $i++) {
+        User::factory()->create();
+      }
 
 
 

@@ -27,7 +27,7 @@
                             </tr>
                             <tr>
                                 <td>Venue</td>
-                                <td>{{ $events->venue }}</td>
+                                <td>{{ $events->venue->name }}</td>
                             </tr>
                             <tr>
                                 <td>Date</td>
@@ -47,7 +47,7 @@
                             @foreach ($djs as $dj)
                                 <tr>
                                    <td>DJ</td>
-                                   <td>{{ $dj->id }}</td>
+                                   <td>{{ $dj->user->name }}</td>
                                </tr>
                             @endforeach
 

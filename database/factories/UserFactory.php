@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-21T17:39:20+00:00
+# @Last modified time: 2021-02-22T13:34:38+00:00
 
 
 
@@ -36,7 +36,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'bio' => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
-            'location' => $this->faker->city->country,
+            'location' => $this->faker->country,
             'remember_token' => Str::random(10),
         ];
     }

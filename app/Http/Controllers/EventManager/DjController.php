@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-02-04T14:22:02+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-09T14:25:51+00:00
+# @Last modified time: 2021-03-10T20:58:05+00:00
 
 
 
@@ -268,6 +268,13 @@ $djs = Dj::whereHas('availability', function ($q) use ($date) {
                      return $request->genre_id ?
                             $query->from('genres')->where('id',$request->genre_id) : '';
                 })->with('dj')->get();
+
+
+
+        //  $data = $genres->orderBy('price', 'asc')->get();
+          $data= Dj::orderBy('price','desc')->get();
+            dd($data);
+
 
                 $selected_id = [];
                 $selected_id['genre_id'] = $request->genre_id;

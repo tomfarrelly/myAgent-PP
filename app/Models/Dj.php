@@ -3,7 +3,7 @@
 # @Date:   2020-12-16T22:47:21+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-02-13T15:56:30+00:00
+# @Last modified time: 2021-03-12T16:51:31+00:00
 
 
 
@@ -20,7 +20,7 @@ class Dj extends Model
 
     protected $fillable = [
         'price',
-        'genre_id',
+        'mp3',
     ];
 
     protected $primaryKey = 'id';

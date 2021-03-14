@@ -1,8 +1,8 @@
-user()<?php
+<?php
 # @Author: tomfarrelly
 # @Date:   2020-12-16T22:47:21+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-10T14:20:07+00:00
+# @Last modified time: 2021-03-12T18:59:26+00:00
 
 
 
@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Models\Dj;
+use App\Models\User;
 use App\Models\Booking;
 use App\Models\Availability;
 use Carbon\Carbon;
@@ -43,7 +44,7 @@ class ProfileController extends Controller
       return view('eventmanager.page.profile');
    }
 
-   public function myprofileupdate(Request $request)
+   public function myprofileupdateEM(Request $request)
    {
       $user_id = Auth::user()->id;
       $user = User::findOrFail($user_id);

@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:18+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-08T18:13:54+00:00
+# @Last modified time: 2021-03-14T23:42:15+00:00
 
 
 
@@ -41,12 +41,10 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();//->where('user_id' === Auth::user()->id);
+      $event = Event::all();
 
-
-      //  $user = Auth::user();
-      //  $events = $user->events()->orderBy('date','asc')->paginate(8);
-        //$djs = Dj::findOrFail($id);
+      $id = Auth::user()->id;
+      $events = $event->where('user_id', $id);
 
         return view('eventmanager.events.index', [
           'events' => $events,
@@ -75,7 +73,7 @@ class EventController extends Controller
       $request->validate([
         'name' => 'required|max:191',
         'description' => 'required|max:191',
-        'venue' => 'required|max:191',
+        'venue_id' => 'required|integer',
         'date' => 'required|date',
         'time' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
         'type' => 'required',
@@ -102,7 +100,7 @@ class EventController extends Controller
 
       $event->name=$request->input('name');
       $event->description=$request->input('description');
-      $event->venue=$request->input('venue');
+      $event->venue_id=$request->input('venue_id');
       $event->date=$request->input('date');
       $event->time=$request->input('time');
       $event->type=$request->input('type');
@@ -164,7 +162,7 @@ class EventController extends Controller
       $request->validate([
         'name' => 'required|max:191',
         'description' => 'required|max:191',
-        'venue' => 'required|max:191',
+        'venue_id' => 'required|integer',
         'date' => 'required|date',
         'time' => 'required|date_format:H:i',//makes sure that the one you are adding to the DB is unique
         'type' => 'required',
@@ -188,7 +186,7 @@ class EventController extends Controller
 
       $event->name=$request->input('name');
       $event->description=$request->input('description');
-      $event->venue=$request->input('venue');
+      $event->venue_id=$request->input('venue_id');
       $event->date=$request->input('date');
       $event->time=$request->input('time');
       $event->user_id=$request->input('user_id');

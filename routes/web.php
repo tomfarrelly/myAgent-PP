@@ -3,7 +3,7 @@
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-03-10T16:29:13+00:00
+# @Last modified time: 2021-03-14T23:48:32+00:00
 
 
 
@@ -20,6 +20,8 @@ use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\EventManager\BookingController as EventManagerBookingController;
 use App\Http\Controllers\Dj\AvailabilityController as DjAvailabilityController;
 use App\Http\Controllers\EventManager\DjController as EventManagerDjController;
+
+use App\Http\Controllers\PaymentController as PaymentController;
 
 
 use App\Http\Controllers\Dj\BookingController as DjBookingController;
@@ -59,7 +61,7 @@ Route::post('/dj/availability/store', [DjAvailabilityController::class, 'store']
 
 //DJ Profile
 Route::get('/my-profile', [App\Http\Controllers\Dj\ProfileController::class, 'myprofile'])->name('dj.page.profile');
-Route::post('/my-profile-update', [App\Http\Controllers\Dj\ProfileController::class, 'myprofileupdate'])->name('dj.page.profile.update');
+Route::post('/my-profile-update-dj', [App\Http\Controllers\Dj\ProfileController::class, 'myprofileupdateDJ'])->name('dj.page.profile.update');
 
 // DJ - Bookings
 Route::get('/dj/bookings', [DjBookingController::class, 'index'])->name('dj.bookings.index');
@@ -69,8 +71,8 @@ Route::put('/dj/bookings/{id}', [DjBookingController::class, 'update'])->name('d
 Route::delete('/dj/bookings/{id}', [DjBookingController::class, 'destroy'])->name('dj.bookings.destroy');
 
 //EM Profile
-//Route::get('/my-profile', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofile'])->name('eventmanager.page.profile');
-//Route::post('/my-profile-update', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofileupdate'])->name('eventmanager.page.profile');
+// Route::get('/my-profile', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofile'])->name('eventmanager.page.profile');
+// Route::post('/my-profile-update-em', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofileupdateEM'])->name('eventmanager.page.profile');
 //Route::get('/eventmanager/djs/{id}', [App\Http\Controllers\EventManager\ProfileController::class, 'show'])->name('eventmanager.page.profile.show');
 //Route::get('/eventmanager/page/availableDj', [App\Http\Controllers\EventManager\ProfileController::class, 'availableDj'])->name('eventmanager.page.availableDj');
 
@@ -102,8 +104,18 @@ Route::delete('/eventmanager/events/{id}', [EventManagerEventController::class, 
 Route::get('/past', [EventManagerEventController::class, 'past'])->name('eventmanager.events.past');
 Route::get('/search-events', [EventManagerEventController::class, 'search'])->name('eventmanager.events.search');
 
-// EM - venues
+// EM - VENUES ////////////////////////
 Route::get('/eventmanager/venues', [App\Http\Controllers\EventManager\VenueController::class, 'index'])->name('eventmanager.venues.index');
+
+// Payments /////////////////
+Route::get('/payment',function(){
+  return view('payment');
+});
+Route::post('/payment',function(){
+  return view('payment');
+});
+
+//Route::get('/payment', 'App\Http\Controllers\PaymentController@paymentProcess');
 
 
 // ADMIN EVENT CRUD 1

@@ -13,7 +13,7 @@
             <div class="card-body">
                   <h4>My Profile Page</h4>
                   <hr>
-                  <form action="{{ url('my-profile-update')}}" method="POST" enctype="multipart/form-data">
+                  <form action="{{ url('my-profile-update-em')}}" method="POST" enctype="multipart/form-data">
                       {{csrf_field()}}
                     <div class="row">
                       <div class="col-md-4">
@@ -43,12 +43,7 @@
                                 <input type="text" name="username" class="form-control" value="{{ Auth::user()->username}}">
                               </div>
                           </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                              <label for="">Price</label>
-                              <input type="text" name="price" class="form-control" value="{{ Auth::user()->username}}">
-                            </div>
-                        </div>
+                          
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="">Bio</label>

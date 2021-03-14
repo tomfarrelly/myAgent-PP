@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-08T18:42:57+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-16T10:25:09+00:00
+# @Last modified time: 2021-03-14T23:40:29+00:00
 
 
 
@@ -24,16 +24,14 @@ class CreateEventsTable extends Migration
           $table->id();
           $table->string('name');
           $table->text('description');
-          $table->string('venue');
           $table->date('date');
           $table->time('time');
           $table->bigInteger('user_id')->unsigned();
-          $table->string('type');
-        //  $table->string('image')->nullable();
           $table->rememberToken();
           $table->timestamps();
 
           $table->foreign('user_id')->references('id')->on('users');
+
         });
     }
 

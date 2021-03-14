@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-08T18:20:26+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-08T23:39:16+00:00
+# @Last modified time: 2021-03-14T23:25:24+00:00
 
 
 
@@ -28,7 +28,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->text('bio');
-            $table->string('genre');
             $table->string('location');
             $table->rememberToken();
             $table->timestamps();
