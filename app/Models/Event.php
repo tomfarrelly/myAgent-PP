@@ -11,6 +11,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DB;
+use App\Constants\GlobalConstants;
 
 class Event extends Model
 {
@@ -40,7 +42,7 @@ class Event extends Model
 
     public function user()
     {
-      return $this->belongsTo('App\Models\User', 'user_id');
+      return $this->belongsTo('App\Models\User');
 
     }
 
@@ -63,10 +65,14 @@ class Event extends Model
       return $this->hasMany('App\Models\Booking');
     }
 
-    // public function genre()
-    // {
-    //   return $this->hasMany('App\Models\Genre', 'genre_id');
-    // }
+    public function venue(){
+   	return $this->belongsTo('App\Models\Venue');
+   }
+
+    public function type()
+    {
+      return $this->belongsTo('App\Models\Type');
+    }
 
     public function venue()
     {

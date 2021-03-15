@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\File;
 use App\Models\User;
 use App\Models\Dj;
 
-
 class ProfileController extends Controller
 {
    public function myprofile()

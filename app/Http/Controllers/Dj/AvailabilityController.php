@@ -1,12 +1,4 @@
 <?php
-# @Author: tomfarrelly
-# @Date:   2021-01-25T21:07:18+00:00
-# @Last modified by:   tomfarrelly
-# @Last modified time: 2021-01-26T14:32:21+00:00
-
-
-
-
 namespace App\Http\Controllers\Dj;
 
 use App\Http\Controllers\Controller;

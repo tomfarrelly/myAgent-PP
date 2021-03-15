@@ -1,24 +1,32 @@
+
 @extends('layouts.app')
 
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+@include('layouts.ehome1')
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+@endsection
+@section('javascript')
+<script type="text/javascript">
+  var query=<?php echo json_encode((object)Request::only(['venue','keyword'])); ?>;
 
-                    You are logged in as Event Manager!
-                    <a href="{{ route('eventmanager.events.index') }}" class="btn btn-primary float-right">View My Events</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+  function search_event(){
+
+    Object.assign(query,{'venue': $('#venue_filter').val()});
+    Object.assign(query,{'keyword': $('#keyword').val()});
+
+    window.location.href="{{route('eventmanager.home')}}?"+$.param(query);
+
+  }
+
+  $(document).ready(function(){
+     $("#sort").on('change', function(){
+       this.form.submit();
+     });
+  });
+
+
+
+</script>
 @endsection

@@ -23,6 +23,7 @@ class CreateDjsTable extends Migration
         Schema::create('djs', function (Blueprint $table) {
             $table->id();
             $table->decimal('price',6,2);
+            
             $table->unsignedBigInteger('user_id');
             $table->string('track1')->nullable();
             $table->string('track2')->nullable();

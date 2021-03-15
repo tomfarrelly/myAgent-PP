@@ -12,6 +12,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Venue;
+use App\Models\Type;
+use App\Models\User;
 use Illuminate\Support\Facades\File;
 
 
@@ -47,10 +50,19 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('admin.events.create');
-    }
+     public function create()
+     {
+         $venues = Venue::all();
+         $types = Type::all();
+    $users = User::all();
+
+         return view('admin.events.create',[
+           'venues' =>$venues,
+           'types' =>$types,
+           'users' =>$users
+
+         ]);
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -58,49 +70,54 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+     public function store(Request $request)
+     {
+       $request->validate([
+         'name' => 'required|max:191',
+         'description' => 'required',
+         'venue_id' => 'required',
+         'date' => 'required|date',
+         'time' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
+         'type_id' => 'required',
+         'cover' => 'file|image',
+         'user_id' => 'required|exists:users,id',
 
-        $request->validate([
-          'name' => 'required|max:191',
-          'description' => 'required|max:191',
-          'venue' => 'required|max:191',
-          'date' => 'required|date',
-          'time' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
-          'type' => 'required',
-          'cover' => 'file|image',
-          //'cover'=> 'file|image',
-          'user_id' => 'required|integer',
-        ]);
+         //'cover'=> 'file|image',
 
-        $event = new  Event();
+       ]);
 
-        if($request->hasfile('cover'))
-      {
-        $destination = 'uploads/event/' .$event->cover;
-        if(File::exists($destination)){
-           File::delete($destination);
-        }
-        $file = $request->file('cover');
-        $extension = $file->getClientOriginalExtension();
-        $filename = time() . '.' . $extension;
-        $file->move('uploads/event/',$filename);
-        $event->cover = $filename;
-      }
+       $event = new  Event();
+
+       if($request->hasfile('cover'))
+     {
+       $destination = 'uploads/event/' .$event->cover;
+       if(File::exists($destination)){
+          File::delete($destination);
+       }
+       $file = $request->file('cover');
+       $extension = $file->getClientOriginalExtension();
+       $filename = time() . '.' . $extension;
+       $file->move('uploads/event/',$filename);
+       $event->cover = $filename;
+     }
 
 
-        $event->name=$request->input('name');
-        $event->description=$request->input('description');
-        $event->venue_id=$request->input('venue_id');
-        $event->date=$request->input('date');
-        $event->time=$request->input('time');
-        $event->type=$request->input('type');
-        $event->user_id=$request->input('user_id');
 
-        $event->save();
+       $event->name=$request->input('name');
+       $event->description=$request->input('description');
+       $event->venue_id = $request->input('venue_id');
+       $event->date=$request->input('date');
+       $event->time=$request->input('time');
+       $event->type_id=$request->input('type_id');
+       $event->user_id=$request->input('user_id');
 
-        return redirect()->route('admin.events.index');
-    }
+
+
+       $event->save();
+
+       return redirect()->route('eventmanager.home');
+     }
+
 
     /**
      * Display the specified resource.

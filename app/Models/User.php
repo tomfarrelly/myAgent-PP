@@ -97,9 +97,10 @@ class User extends Authenticatable
     /**
      * The event manager that belongs to the user.
      */
-    public function eventmanager() {
-        return $this->hasOne('App\Models\Eventmanager');
+     public function genre(){
+    	return $this->belongsTo('App\Models\Genre');
     }
+
 
 
 }

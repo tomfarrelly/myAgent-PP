@@ -35,7 +35,14 @@ class ProfileController extends Controller
 
   public function index()
   {
-      //
+
+
+      $djs = Dj::all();
+
+      return view('eventmanager.page.index', [
+        'djs' => $djs
+      ]);
+
   }
 
 
@@ -79,6 +86,8 @@ class ProfileController extends Controller
        return view('eventmanager.page.show',[
          'dj' => $dj
        ]);
+
+
    }
 
 /**  Displaying available DJs **/
