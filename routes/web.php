@@ -3,7 +3,7 @@
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-03-14T23:48:32+00:00
+# @Last modified time: 2021-03-15T02:47:05+00:00
 
 
 
@@ -17,6 +17,8 @@ use App\Http\Controllers\Dj\ProfileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\EventManager\EventController as EventManagerEventController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Admin\EventManagerController as AdminEventManagerController;
+use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use App\Http\Controllers\EventManager\BookingController as EventManagerBookingController;
 use App\Http\Controllers\Dj\AvailabilityController as DjAvailabilityController;
 use App\Http\Controllers\EventManager\DjController as EventManagerDjController;
@@ -115,10 +117,20 @@ Route::post('/payment',function(){
   return view('payment');
 });
 
-//Route::get('/payment', 'App\Http\Controllers\PaymentController@paymentProcess');
+// ADMIN - Bookings
+Route::get('/admin/bookings', [AdminBookingController::class, 'index'])->name('admin.bookings.index');
+Route::delete('/admin/bookings/{id}', [AdminBookingController::class, 'destroy'])->name('admin.bookings.destroy');
 
+// ADMIN - EVENTMANAGER
+Route::get('/admin/eventmanagers', [AdminEventManagerController::class, 'index'])->name('admin.eventmanagers.index');
+Route::get('/admin/eventmanagers/create', [AdminEventManagerController::class, 'create'])->name('admin.eventmanagers.create');
+Route::get('/admin/eventmanagers/{id}', [AdminEventManagerController::class, 'show'])->name('admin.eventmanagers.show');
+Route::post('/admin/eventmanagers/store', [AdminEventManagerController::class, 'store'])->name('admin.eventmanagers.store');
+Route::get('/admin/eventmanagers/{id}/edit', [AdminEventManagerController::class, 'edit'])->name('admin.eventmanagers.edit');
+Route::put('/admin/eventmanagers/{id}', [AdminEventManagerController::class, 'update'])->name('admin.eventmanagers.update');
+Route::delete('/admin/eventmanagers/{id}', [AdminEventManagerController::class, 'destroy'])->name('admin.eventmanagers.destroy');
 
-// ADMIN EVENT CRUD 1
+// ADMIN EVENT CRUD
 Route::get('/admin/events', [AdminEventController::class, 'index'])->name('admin.events.index');
 Route::get('/admin/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
 Route::get('/admin/events/{id}', [AdminEventController::class, 'show'])->name('admin.events.show');

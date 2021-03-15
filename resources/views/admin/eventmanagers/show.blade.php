@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                 <div class="card-header">
-                    Event: {{ $event->name }}
+                    Event: {{ $evManager->name }}
                 </div>
 
                 <div class="card-body">
@@ -14,39 +14,41 @@
                         <tbody>
                           <tr>
                             <td rowspan="6">
-                              <img src="{{ asset('uploads/event/'.$event->cover) }}" class="w-100">
+                              <img src="{{ asset('uploads/profile/'.$evManager->image) }}" class="w-100">
                             </td>
                           </tr>
                             <tr>
                                 <td>Name</td>
-                                <td>{{ $event->name }}</td>
+                                <td>{{ $evManager->name }}</td>
                             </tr>
                             <tr>
-                                <td>Description</td>
-                                <td>{{ $event->description }}</td>
+                                <td>Email</td>
+                                <td>{{ $evManager->email }}</td>
                             </tr>
                             <tr>
-                                <td>Venue</td>
-                                <td>{{ $event->venue->name }}</td>
+                                <td>Bio</td>
+                                <td>{{ $evManager->bio }}</td>
                             </tr>
                             <tr>
-                                <td>Date</td>
-                                <td>{{ $event->date }}</td>
+                                <td>Location</td>
+                                <td>{{ $evManager->location }}</td>
                             </tr>
                             <tr>
-                                <td>Time</td>
-                                <td>{{ $event->time }}</td>
+                                <td>Username</td>
+                                <td>{{ $evManager->username }}</td>
                             </tr>
                             <tr>
-                                <td>Type</td>
-                                <td>{{ $event->genre->name }}</td>
+                                <td>ID</td>
+                                <td>{{ $evManager->id }}</td>
                             </tr>
+
+
                         </tbody>
                     </table>
 
-                    <a href="{{ route('admin.events.index') }}" class="btn btn-default">Back</a>
-                    <a href="{{ route('admin.events.edit', $event->id) }}" class="btn btn-warning">Edit</a>
-                    <form style="display:inline-block" method="POST" action="{{ route('admin.events.destroy', $event->id) }}">
+                    <a href="{{ route('admin.eventmanagers.index') }}" class="btn btn-default">Back</a>
+                    <a href="{{ route('admin.eventmanagers.edit', $evManager->id) }}" class="btn btn-warning">Edit</a>
+                    <form style="display:inline-block" method="POST" action="{{ route('admin.eventmanagers.destroy', $evManager->id) }}">
                       <input type="hidden" name="_method" value="DELETE">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       <button type="submit" class="form-control btn btn-danger">Delete</button>

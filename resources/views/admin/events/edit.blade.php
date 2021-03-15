@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="venue">Venue</label>
-                        <input type="text" class="form-control" id="venue" name="venue" value="{{ old('venue', $event->venue) }}" />
+                        <input type="text" class="form-control" id="venue" name="venue" value="{{ old('venue', $event->venue->name) }}" />
                     </div>
                     <div class="form-group">
                         <label for="date">Date</label>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group">
                         <label for="type">Type</label>
-                        <input type="text" class="form-control" id="type" name="type" value="{{ old('type', $event->type) }}" />
+                        <input type="text" class="form-control" id="type" name="type" value="{{ old('type', $event->genre->name) }}" />
                     </div>
                     <div class="form-group">
                         <label for="user_id">Made By</label>
