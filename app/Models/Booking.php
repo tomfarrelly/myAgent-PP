@@ -26,7 +26,12 @@ class Booking extends Model
          'dj_id',
          'event_id',
          'status',
+
      ];
+     // protected $hidden = [
+     //     'dj_id',
+     //
+     //   ];
 
     public function event()
     {
@@ -40,6 +45,8 @@ class Booking extends Model
 
     public function eventmanager()
     {
-      return $this->belongsToMany('App\Models\Eventmanager');
+      return $this->belongsTo('App\Models\Eventmanager');
     }
+
+
 }

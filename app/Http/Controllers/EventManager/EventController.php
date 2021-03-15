@@ -258,7 +258,7 @@ class EventController extends Controller
 
        ]);
 
-       $event = new  Event();
+
 
        if($request->hasfile('cover'))
      {

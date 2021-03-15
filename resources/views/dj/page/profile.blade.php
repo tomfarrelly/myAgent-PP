@@ -46,7 +46,7 @@
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="">Price</label>
-                              <input type="text" name="price" class="form-control" value="{{ Auth::user()->username}}">
+                              <input type="text" name="price" class="form-control" value="{{ Auth::user()->dj->price}}">
                             </div>
                         </div>
                           <div class="col-md-12">

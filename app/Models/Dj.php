@@ -15,6 +15,18 @@ use Illuminate\Database\Eloquent\Model;
 class Dj extends Model
 {
     use HasFactory;
+    protected $fillable = [
+    'price',
+    'mp3',
+    ];
+
+
+
+    protected $primaryKey = 'id';
+    protected $hidden = [
+    'user_id',
+    // 'dj_id',
+    ];
 
 
 
@@ -35,6 +47,11 @@ class Dj extends Model
 
     public function booking()
     {
-      return $this->hasMany('App\Models\Booking',);
+      return $this->hasMany('App\Models\Booking');
+    }
+
+    public function availability()
+    {
+      return $this->hasMany('App\Models\Availability');
     }
 }

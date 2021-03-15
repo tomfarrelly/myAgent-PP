@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Models\User;
-
+use App\Models\Dj;
 
 class ProfileController extends Controller
 {
@@ -33,6 +33,7 @@ class ProfileController extends Controller
       $user->bio = $request->input('bio');
       $user->genre = $request->input('genre');
       $user->location = $request->input('location');
+      $user->dj->price = $request->input('price');
 
       if($request->hasfile('image'))
       {

@@ -33,25 +33,41 @@
                         <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}" />
                     </div>
                     <div class="form-group">
-                        <label for="venue">Venue</label>
-                        <input type="text" class="form-control" id="venue" name="venue" value="{{ old('venue') }}" />
+                      <label for="venue">Venue: </label>
+                      <select name="venue_id">
+                        @foreach ($venues as $venue)
+                         <option value="{{ $venue->id }}" {{ (old('venue_id') == $venue->id) ? "selected" : "" }} >{{ $venue->name }}</option>
+                        @endforeach
+                      </select>
                     </div>
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <input type="text" class="form-control" id="date" name="date" value="{{ old('date') }}" />
+                        <input type="date" name="date" value="{{ old('date') }}"/>
                     </div>
                     <div class="form-group">
                         <label for="time">Time</label>
-                        <input type="text" class="form-control" id="time" name="time" value="{{ old('time') }}" />
+                        <input type="time" name="time"  value="{{ old('time') }}"/>
                     </div>
                     <div class="form-group">
-                        <label for="type">Type</label>
-                        <input type="text" class="form-control" id="type" name="type" value="{{ old('type') }}" />
+                      <label for="type">Type: </label>
+                      <select name="type_id">
+                        @foreach ($types as $type)
+                         <option value="{{ $type->id }}" {{ (old('type_id') == $type->id) ? "selected" : "" }} >{{ $type->name }}</option>
+                        @endforeach
+                      </select>
                     </div>
-                    <div class="form-group">
-                        <label for="user_id">Made By</label>
-                        <input type="text" class="form-control" id="user_id" name="user_id" value="{{ old('user_id') }}" />
-                    </div>
+                    <tr>
+                        <td>evManagers</td>
+                        <td>
+                              <select name="user_id">
+                                @foreach ($users as $user)
+                                 <option value="{{ $user->id }}" {{ (old('$user_id') == $user->id) ? "selected" : "" }} >{{ $user->name }}</option>
+                                @endforeach
+                              </select>
+                        </td>
+
+                    </tr>
+
                     <div class="float-right">
                         <a href="{{ route('admin.events.index') }}" class="btn btn-default">Cancel</a>
                         <button type="submit" class="btn btn-primary pull-right">Submit</button>

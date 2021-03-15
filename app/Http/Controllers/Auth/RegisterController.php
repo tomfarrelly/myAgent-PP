@@ -17,7 +17,7 @@ use App\Models\Dj;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Auth;
 class RegisterController extends Controller
 {
     /*
@@ -48,9 +48,11 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+
+
     }
 
-    /**
+       /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -61,7 +63,12 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'bio' => ['required', 'string', 'max:255'],
+            'genre' => ['required'],
+            'location' => ['required', 'string', 'max:255'],
+
         ]);
     }
 
@@ -73,27 +80,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        // ]);
 
-        $dj = new User();
-        $dj->name = $data['name'];
-        $dj->email = $data['email'];
-        $dj->username = '';
-        $dj->bio = '';
-        $dj->genre = '';
-        $dj->location = '';
-        $dj->password = Hash::make($data['password']);
-        $dj->save();
 
-        $dj->roles()->attach(Role::where('name', 'user')->first());
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->username = $data['username'];
+        $user->password = Hash::make($data['password']);
+        $user->bio = $data['bio'];
+        $user->genre = $data['genre'];
+        $user->location = $data['location'];
+
+
+        $user->save();
+
+        $user->roles()->attach(Role::where('name', 'dj')->first());
 
         $dj = new Dj();
         $dj->price = '22.11';
-        $dj->user_id = $dj->id;
+        $dj->user_id = $user->id;
         $dj->save();
+
+        return $user;
     }
+
+
 }

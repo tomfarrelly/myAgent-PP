@@ -33,10 +33,10 @@
                             <tr data-id="{{ $event->id }}">
                                 <td>{{ $event->name }}</td>
                                 <td>{{ $event->description }}</td>
-                                <td>{{ $event->venue }}</td>
+                                <td>{{ $event->venue->name }}</td>
                                 <td>{{ $event->date }}</td>
                                 <td>{{ $event->time }}</td>
-                                <td>{{ $event->type }}</td>
+                                <td>{{ $event->type->name }}</td>
                                 <td>{{ $event->user_id }}</td>
                                 <td>
                                     <a href="{{ route('admin.events.show', $event->id) }}" class="btn btn-primary">View</a>
@@ -57,3 +57,4 @@
         </div>
     </div>
 </div>
+@endsection

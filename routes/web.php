@@ -18,6 +18,10 @@ use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\EventManager\BookingController as EventManagerBookingController;
 use App\Http\Controllers\EventManager\DjController as EventManagerDjController;
 
+use App\Http\Controllers\Dj\AvailabilityController as DjAvailabilityController;
+use App\Http\Controllers\Dj\BookingController as DjBookingController;
+
+use App\Http\Controllers\Admin\DjController as DjController;
 
 
 /*
@@ -41,6 +45,22 @@ Route::get('/', [PageController::class, 'welcome'])->name('welcome');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 
 Auth::routes();
+
+//DJ - Availability
+Route::get('/dj/availability/create', [DjAvailabilityController::class, 'create'])->name('dj.availability.create');
+Route::post('/dj/availability/store', [DjAvailabilityController::class, 'store'])->name('dj.availability.store');
+
+// DJ - Bookings
+Route::get('/dj/bookings', [DjBookingController::class, 'index'])->name('dj.bookings.index');
+Route::post('/dj/bookings/{id}/store', [DjBookingController::class, 'store'])->name('dj.bookings.store');
+Route::get('/dj/bookings/{id}/edit', [DjBookingController::class, 'edit'])->name('dj.bookings.edit');
+Route::put('/dj/bookings/{id}', [DjBookingController::class, 'update'])->name('dj.bookings.update');
+Route::delete('/dj/bookings/{id}', [DjBookingController::class, 'destroy'])->name('dj.bookings.destroy');
+
+//EM bookings
+Route::get('/eventmanager/bookings', [EventManagerBookingController::class, 'index'])->name('eventmanager.bookings.index');
+Route::get('/eventmanager/events/{id}/bookings/create', [EventManagerBookingController::class, 'create'])->name('eventmanager.events.bookings.create');
+Route::post('/eventmanager/events/{id}/bookings/store', [EventManagerBookingController::class, 'store'])->name('eventmanager.events.bookings.store');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
@@ -86,3 +106,9 @@ Route::post('/admin/events/store', [AdminEventController::class, 'store'])->name
 Route::get('/admin/events/{id}/edit', [AdminEventController::class, 'edit'])->name('admin.events.edit');
 Route::put('/admin/events/{id}', [AdminEventController::class, 'update'])->name('admin.events.update');
 Route::delete('/admin/events/{id}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
+
+Route::get('/admin/djs', [DjController::class, 'index'])->name('admin.dj.index');
+Route::get('/admin/djs/{id}', [DjController::class, 'show'])->name('admin.dj.show');
+Route::delete('/admin/djs/{id}', [DjController::class, 'destroy'])->name('admin.dj.destroy');
+Route::get('/admin/djs/{id}/edit', [DjController::class, 'edit'])->name('admin.dj.edit');
+Route::put('/admin/djs/{id}', [DjController::class, 'update'])->name('admin.dj.update');
