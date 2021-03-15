@@ -1,4 +1,11 @@
 <?php
+# @Author: tomfarrelly
+# @Date:   2020-10-30T15:07:53+00:00
+# @Last modified by:   tomfarrelly
+# @Last modified time: 2021-03-09T10:44:42+00:00
+
+
+
 
 return [
 
@@ -52,7 +59,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost/public'),
 
     'asset_url' => env('ASSET_URL', null),
 

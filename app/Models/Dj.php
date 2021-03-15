@@ -3,7 +3,7 @@
 # @Date:   2020-12-16T22:47:21+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-01-16T14:44:10+00:00
+# @Last modified time: 2021-03-12T16:51:31+00:00
 
 
 
@@ -20,6 +20,7 @@ class Dj extends Model
 
     protected $fillable = [
         'price',
+        'mp3',
     ];
 
     protected $primaryKey = 'id';
@@ -41,6 +42,16 @@ class Dj extends Model
 
     public function booking()
     {
-      return $this->hasMany('App\Models\Booking',);
+      return $this->hasMany('App\Models\Booking');
+    }
+
+    public function availability()
+    {
+      return $this->hasMany('App\Models\Availability');
+    }
+
+    public function genre()
+    {
+      return $this->belongsToMany('App\Models\Genre', 'dj_genres');
     }
 }

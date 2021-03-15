@@ -1,3 +1,12 @@
+/**
+ * @Author: tomfarrelly
+ * @Date:   2020-12-16T22:20:03+00:00
+ * @Last modified by:   tomfarrelly
+ * @Last modified time: 2021-03-13T22:42:35+00:00
+ */
+
+
+
 const mix = require('laravel-mix');
 
 /*

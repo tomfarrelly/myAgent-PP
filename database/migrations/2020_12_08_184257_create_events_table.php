@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-08T18:42:57+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-13T21:05:58+00:00
+# @Last modified time: 2021-03-14T23:40:29+00:00
 
 
 
@@ -23,17 +23,15 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
           $table->id();
           $table->string('name');
-          $table->string('description');
-          $table->string('venue');
+          $table->text('description');
           $table->date('date');
           $table->time('time');
           $table->bigInteger('user_id')->unsigned();
-          $table->string('type');
-        //  $table->string('image')->nullable();
           $table->rememberToken();
           $table->timestamps();
 
           $table->foreign('user_id')->references('id')->on('users');
+
         });
     }
 

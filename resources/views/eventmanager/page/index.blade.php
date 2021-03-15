@@ -37,8 +37,8 @@
                                 <td>{{ $dj->price }}</td>
                                 <td>{{ $dj->user_id }}</td>
                                 <td>
-                                    <a href="{{ route('eventmanager.page.profile.show', $dj->id) }}" class="btn btn-primary">View</a>
-                                    
+                                    <a href="{{ route('eventmanager.djs.show', $dj->id) }}" class="btn btn-primary">View</a>
+
                                 </td>
                             </tr>
                             @endforeach

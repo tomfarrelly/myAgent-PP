@@ -27,7 +27,7 @@
                             </tr>
                             <tr>
                                 <td>Venue</td>
-                                <td>{{ $event->venue }}</td>
+                                <td>{{ $event->venue->name }}</td>
                             </tr>
                             <tr>
                                 <td>Date</td>
@@ -39,7 +39,7 @@
                             </tr>
                             <tr>
                                 <td>Type</td>
-                                <td>{{ $event->type }}</td>
+                                <td>{{ $event->genre->name }}</td>
                             </tr>
                         </tbody>
                     </table>

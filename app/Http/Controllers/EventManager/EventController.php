@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:18+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-01-18T17:50:30+00:00
+# @Last modified time: 2021-03-14T23:42:15+00:00
 
 
 
@@ -15,6 +15,8 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Dj;
 use App\Models\Booking;
+use App\Models\Genre;
+use Carbon\Carbon;
 use Auth;
 
 use Illuminate\Support\Facades\File;
@@ -39,10 +41,10 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
-      //  $user = Auth::user();
-      //  $events = $user->events()->orderBy('date','asc')->paginate(8);
-        //$djs = Dj::findOrFail($id);
+      $event = Event::all();
+
+      $id = Auth::user()->id;
+      $events = $event->where('user_id', $id);
 
         return view('eventmanager.events.index', [
           'events' => $events,
@@ -71,7 +73,7 @@ class EventController extends Controller
       $request->validate([
         'name' => 'required|max:191',
         'description' => 'required|max:191',
-        'venue' => 'required|max:191',
+        'venue_id' => 'required|integer',
         'date' => 'required|date',
         'time' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
         'type' => 'required',
@@ -98,7 +100,7 @@ class EventController extends Controller
 
       $event->name=$request->input('name');
       $event->description=$request->input('description');
-      $event->venue=$request->input('venue');
+      $event->venue_id=$request->input('venue_id');
       $event->date=$request->input('date');
       $event->time=$request->input('time');
       $event->type=$request->input('type');
@@ -117,19 +119,16 @@ class EventController extends Controller
      */
     public function show($id)
     {
-      // $event_id = $id;
+
         $events = Event::findOrFail($id);
-        //$djs = Dj::All();
-      //  $bookings = Booking::all()->where('event_id', '=', '2');
-        $bookings = Booking::where('event_id', $id)->get();
-      //  $bookings = DB::table("bookings")
-      //          ->select("Orders.event_id")
-      //  $bookings = Booking::with('event')->get();
+
+        $djs = Booking::where('event_id', $id)->get();
+
 
         return view('eventmanager.events.show',[
           'events' => $events,
         //  'djs' => $djs,
-          'bookings' => $bookings
+          'djs' => $djs
         ]);
     }
 
@@ -163,7 +162,7 @@ class EventController extends Controller
       $request->validate([
         'name' => 'required|max:191',
         'description' => 'required|max:191',
-        'venue' => 'required|max:191',
+        'venue_id' => 'required|integer',
         'date' => 'required|date',
         'time' => 'required|date_format:H:i',//makes sure that the one you are adding to the DB is unique
         'type' => 'required',
@@ -187,7 +186,7 @@ class EventController extends Controller
 
       $event->name=$request->input('name');
       $event->description=$request->input('description');
-      $event->venue=$request->input('venue');
+      $event->venue_id=$request->input('venue_id');
       $event->date=$request->input('date');
       $event->time=$request->input('time');
       $event->user_id=$request->input('user_id');
@@ -210,4 +209,61 @@ class EventController extends Controller
 
       return redirect()->route('eventmanager.events.index');
     }
+
+    public function availableDj($id){
+
+      $event = Event::findOrFail($id);
+      $e_date = $event->date;
+
+     //$dj_id = $request->input('dj_id');
+
+     $djs = Dj::whereHas('availability', function ($q) use ($e_date) {
+         $q->where(function ($q2) use ($e_date) {
+             $q2->whereDate('date_start', '>', $e_date)
+                ->orWhereDate('date_end', '<' ,$e_date);
+         });
+       // });
+        })->orWhereDoesntHave('availability')->get();
+
+       return view('eventmanager.events.availableDj',[
+
+         'djs' => $djs,
+
+       ]);
+    }
+
+    public function past(){
+
+      $date = Carbon::today();
+      $events = Event::where('date', '<' ,$date)->get();
+
+
+       return view('eventmanager.events.past',[
+
+         'events' => $events,
+
+       ]);
+    }
+
+    public function search(Request $request)
+    {
+
+        $genres = Genre::where( function($query) use($request){
+                      return $request->genre_id ?
+                             $query->from('genres')->where('id',$request->genre_id) : '';
+                 })->with('event')->get();
+
+                 $selected_id = [];
+                 $selected_id['genre_id'] = $request->genre_id;
+
+
+      return view('eventmanager.events.search', [
+
+         'genres'=>$genres,
+         'selected_id'=>$selected_id
+      ]);
+
+ }
+
+
 }

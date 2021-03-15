@@ -34,11 +34,14 @@
                           @foreach ($djs as $dj)
 
 
+
                             <tr data-id="{{ $dj->id }}">
+
                                 <td>{{ $dj->user->name }}</td>
                                 <td>{{ $dj->user->bio }}</td>
                                 <td>{{ $dj->user->genre }}</td>
                                 <td>{{ $dj->user->location }}</td>
+
                                 <td>{{ $dj->price }}</td>
                                 <td>{{ $dj->user_id }}</td>
                                 <td>
@@ -46,6 +49,7 @@
 
                                 </td>
                             </tr>
+
                             @endforeach
                         </tbody>
                     </table>

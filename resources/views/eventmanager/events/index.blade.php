@@ -33,7 +33,7 @@
                             <tr data-id="{{ $event->id }}">
                                 <td>{{ $event->name }}</td>
                                 <td>{{ $event->description }}</td>
-                                <td>{{ $event->venue }}</td>
+                                <td>{{ $event->venue->name }}</td>
                                 <td>{{ $event->date }}</td>
                                 <td>{{ $event->time }}</td>
                                 <td>{{ $event->type }}</td>

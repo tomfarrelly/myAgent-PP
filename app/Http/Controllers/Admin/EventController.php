@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:48+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-16T21:35:37+00:00
+# @Last modified time: 2021-03-15T00:16:59+00:00
 
 
 
@@ -91,12 +91,12 @@ class EventController extends Controller
 
         $event->name=$request->input('name');
         $event->description=$request->input('description');
-        $event->venue=$request->input('venue');
+        $event->venue_id=$request->input('venue_id');
         $event->date=$request->input('date');
         $event->time=$request->input('time');
         $event->type=$request->input('type');
         $event->user_id=$request->input('user_id');
-        $event->cover=$filename;
+
         $event->save();
 
         return redirect()->route('admin.events.index');
@@ -171,11 +171,11 @@ class EventController extends Controller
 
         $event->name=$request->input('name');
         $event->description=$request->input('description');
-        $event->venue=$request->input('venue');
+        $event->venue_id=$request->input('venue_id');
         $event->date=$request->input('date');
         $event->time=$request->input('time');
         $event->user_id=$request->input('user_id');
-        $event->cover=$filename;
+
         $event->save();
 
         return redirect()->route('admin.events.index');

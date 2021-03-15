@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-01-11T21:42:38+00:00
+# @Last modified time: 2021-03-14T23:39:46+00:00
 
 
 
@@ -23,9 +23,12 @@ class DatabaseSeeder extends Seeder
 
       $this->call(RoleSeeder::class);
       $this->call(UserSeeder::class);
-      $this->call(EventSeeder::class);
+      $this->call(VenueSeeder::class);
       $this->call(DjSeeder::class);
-      //$this->call(BookingSeeder::class);
+      $this->call(GenreSeeder::class);
+      $this->call(EventSeeder::class);
+
+
 
 
     }

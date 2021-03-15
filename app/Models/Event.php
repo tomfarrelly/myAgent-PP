@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:15:23+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-01-16T14:44:05+00:00
+# @Last modified time: 2021-03-15T00:23:26+00:00
 
 
 
@@ -28,6 +28,7 @@ class Event extends Model
         'date',
         'time',
         'type',
+        'genre_id',
     ];
 
     /**
@@ -61,11 +62,21 @@ class Event extends Model
     {
       return $this->hasMany('App\Models\Booking');
     }
-    // public function djEvent()
+
+    // public function genre()
     // {
-    //   $events = Event::with('dj');
-    //   return Datatables::of($events)->make(true);
+    //   return $this->hasMany('App\Models\Genre', 'genre_id');
     // }
+
+    public function venue()
+    {
+      return $this->belongsTo('App\Models\Venue');
+    }
+
+    public function genre()
+    {
+      return $this->hasOne('App\Models\Genre');
+    }
 
 
 }

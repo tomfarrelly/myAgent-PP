@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-17T01:27:08+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-21T14:45:31+00:00
+# @Last modified time: 2021-02-22T23:21:12+00:00
 
 
 
@@ -10,11 +10,15 @@
 namespace App\Http\Controllers\EventManager;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 use App\Models\Dj;
 use App\Models\Event;
 use App\Models\Booking;
+use App\Models\Availability;
 use App\Models\User;
+use Carbon\Carbon;
 use Auth;
 
 class BookingController extends Controller
@@ -52,6 +56,8 @@ class BookingController extends Controller
       $events = Event::all();
       $djs = Dj::all();
 
+
+
       return view('eventmanager.events.bookings.create', [
 
         'events' => $events,
@@ -67,7 +73,7 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id, $dj)
+    public function store(Request $request, $id)
     {
 
 
@@ -76,24 +82,39 @@ class BookingController extends Controller
 
       $booking->event_id=$request->input('event_id');
       $booking->dj_id=$request->input('dj_id');
-
       $booking->status= $request->has('status');
-      $booking->save();
+
+      if ($request->has('status') == 1)
+      {
+        $availability = new Availability;
+        //$date_ev = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
+        //dd($date_ev);
+        //$date_end = Event::where('id', $booking->event_id)->select("date")->first();
+      //  $timezone = new DateTimeZone($_SESSION['Europe/Dublin']);
+        //$format = 'Y-m-d';
+        $availability->dj_id = $booking->dj_id;
+        $availability->date_start = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
+        $availability->date_end = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
+        //dd($date_ev.date);
+        //dd(strtotime($date_ev));
+        //date('Y-m-d', strtotime($date_ev))
+        //dd(date('Y-m-d', strtotime($date_ev)));
+
+        $availability->save();
+
+        return redirect()->route('eventmanager.events.index');
+
+      }else{
+
+        $booking->save();
+
+      }
+
+       return redirect()->route('eventmanager.events.index');
 
 
-       return redirect()->route('eventmanager.events.index', $id);
 
 
-
-
-
-      // $request->validate([
-      //   'user_id' => 'required|integer',
-      //   'event_id' => 'required|integer',
-      //   'date' => 'required|date',
-      //   'time' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
-      //   'description' => 'required|max:191',
-      // ]);
     }
 
     /**
@@ -127,7 +148,7 @@ class BookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      //
     }
 
     /**
