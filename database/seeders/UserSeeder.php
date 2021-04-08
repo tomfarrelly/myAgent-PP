@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-08T19:04:12+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-14T23:27:59+00:00
+# @Last modified time: 2021-03-15T17:34:00+00:00
 
 
 
@@ -34,6 +34,7 @@ class UserSeeder extends Seeder
       $admin->password = Hash::make('secret');
       $admin->bio = 'I am an Admin';
       $admin->location = 'wherever';
+
       $admin->save();
       $admin->roles()->attach($role_admin);
 
@@ -44,6 +45,7 @@ class UserSeeder extends Seeder
       $eventManager->password = Hash::make('secret');
       $eventManager->bio = 'Safehaus is a Dublin based Collective set up with the aim of bringing like minded people together and throwing some serious parties with the best House, Disco and Dance music from every corner of the globe.';
       $eventManager->location = 'Dublin, Ireland';
+
       $eventManager->save();
       $eventManager->roles()->attach($role_eventManager);
 
@@ -54,6 +56,7 @@ class UserSeeder extends Seeder
       $dj->password = Hash::make('secret');
       $dj->bio = 'Dublin based DJ playing Break beat, ELectro and Deconstructed Club Music out to the Dublin Massive for 2 years.';
       $dj->location = 'Dublin, Ireland';
+
       $dj->save();
       $dj->roles()->attach($role_dj);
 
@@ -64,6 +67,7 @@ class UserSeeder extends Seeder
       $dj->password = Hash::make('secret');
       $dj->bio = 'ing Break beat, ELectro and Deconstructed Club Music out to the Dublin Massive for 2 years.';
       $dj->location = 'reland';
+
       $dj->save();
       $dj->roles()->attach($role_dj);
 
@@ -74,6 +78,7 @@ class UserSeeder extends Seeder
       $dj->password = Hash::make('secret');
       $dj->bio = 'Based DJ playing Break beat, ELectro and Deconstructed Club Music out to the Dublin Massive for 2 years.';
       $dj->location = 'Ireland';
+
       $dj->save();
       $dj->roles()->attach($role_dj);
 
@@ -85,6 +90,7 @@ class UserSeeder extends Seeder
       $dj->password = Hash::make('secret');
       $dj->bio = 'Based DJ playing Break beat, ELectro and Deconstructed Club Music out to the Dublin Massive for 2 years.';
       $dj->location = 'Ireland';
+
       $dj->save();
       $dj->roles()->attach($role_dj);
 
@@ -94,10 +100,10 @@ class UserSeeder extends Seeder
       }
 
       for($i = 1; $i <= 10; $i++) {
-        User::factory()->create();
+        User::factory()->create()->roles()->attach($role_eventManager);
       }
 
 
-
+//roles()->attach($role_eventManager)->where('name', $role)
     }
 }

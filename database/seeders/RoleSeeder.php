@@ -3,7 +3,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-08T19:04:27+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2020-12-08T23:39:21+00:00
+# @Last modified time: 2021-03-22T17:08:46+00:00
 
 
 
@@ -36,7 +36,7 @@ class RoleSeeder extends Seeder
 
       $role_dj = new Role();
       $role_dj->name = 'dj';
-      $role_dj->description = 'An dj user';
+      $role_dj->description = 'A dj user';
       $role_dj->save();
 
     }

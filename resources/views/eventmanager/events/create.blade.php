@@ -49,14 +49,14 @@
                         <input type="time" name="time"  value="{{ old('time') }}"/>
                     </div>
                     <div class="form-group">
-                      <label for="type">Type: </label>
-                      <select name="type_id">
+                      <label for="genre">Type: </label>
+                      <select name="genre_id">
                         @foreach ($types as $type)
-                         <option value="{{ $type->id }}" {{ (old('type_id') == $type->id) ? "selected" : "" }} >{{ $type->name }}</option>
+                         <option value="{{ $type->id }}" {{ (old('genre_id') == $type->id) ? "selected" : "" }} >{{ $type->name }}</option>
                         @endforeach
                       </select>
                     </div>
-                    
+
                     <div class="float-right">
                         <a href="{{ route('eventmanager.home') }}" class="btn btn-default">Cancel</a>
                         <button type="submit" class="btn btn-primary pull-right">Submit</button>

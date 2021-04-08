@@ -106,7 +106,7 @@
                      <h5 style="font-weight:400;">Where it's taking place: {{ $events->venue->name }}</h5>
                   </div>
                   <div class="col-4">
-                      <h5 style="font-weight:400;">Type of the event: {{ $events->type->name}}</h5>
+                      <h5 style="font-weight:400;">Type of the event: {{ $events->genre->name}}</h5>
                   </div>
                   <div class="col-2">
                      <h5 style="font-weight:400;">{{ $events->date }}</h5>

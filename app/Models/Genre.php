@@ -1,4 +1,11 @@
 <?php
+# @Author: tomfarrelly
+# @Date:   2021-03-15T15:31:24+00:00
+# @Last modified by:   tomfarrelly
+# @Last modified time: 2021-04-06T23:20:48+01:00
+
+
+
 
 namespace App\Models;
 
@@ -22,16 +29,14 @@ class Genre extends Model
 
 
      public function Dj()
-
-
      {
-       return $this->belongsToMany('App\Models\Dj', 'dj_genres');
+       return $this->hasMany('App\Models\Dj', 'dj_genres');
      }
 
      public function event()
      {
 
-       return $this->belongsToMany('App\Models\Event', 'event_genres');
+       return $this->hasOne('App\Models\Event', 'genre_id');
 
      }
 }

@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-16T22:47:21+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-01-18T20:28:54+00:00
+# @Last modified time: 2021-04-07T20:23:00+01:00
 
 
 
@@ -155,17 +155,6 @@ class DjController extends Controller
 
  // $date = Event::findOrFail($id);
 
- $date = Carbon::today();
-
-//$dj_id = $request->input('dj_id');
-
-$djs = Dj::whereHas('availability', function ($q) use ($date) {
-    $q->where(function ($q2) use ($date) {
-        $q2->whereDate('date_start', '>', $date)
-           ->orWhereDate('date_end', '<' ,$date);
-    });
-  })->orWhereDoesntHave('availability')->get();
-
  // $djs = Dj::whereHas('availability')
  //          ->whereDate('date_start', '>', $date)
  //            ->orWhereDate('date_end', '<' ,$date)->get();
@@ -176,19 +165,25 @@ $djs = Dj::whereHas('availability', function ($q) use ($date) {
  // $djs = Availability::where('dj_id','=',$request->dj_id)
  //         ->whereBetween('date_start', '>', array($date))
  //            ->orWhereBetween('date_end', '<' ,array($date))
- //            ->orWhereDoesntHave('dj')->get();
+ //            ->orWhereDoesntHave('dj')->get(); 
 
 //
 // $djs = Availability::where('dj_id','=',$request->dj_id)
 //     ->whereBetween('date_start', array($date))
 //     ->whereBetween('date_end', array($date))
 //     ->get();
+ $date = Carbon::today();
+
+ $djs = Dj::whereHas('availability', function ($q) use ($date) {
+    $q->where(function ($q2) use ($date) {
+        $q2->whereDate('date_start', '>', $date)
+           ->orWhereDate('date_end', '<' ,$date);
+    });
+  })->orWhereDoesntHave('availability')->get();
 
 
      return view('eventmanager.djs.available',[
-       //'bookings' => $bookings,
        'djs' => $djs,
-       //'bookings' => $bookings
      ]);
    }
 

@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-16T22:47:21+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-14T23:13:44+00:00
+# @Last modified time: 2021-04-08T15:03:54+01:00
 
 
 
@@ -13,6 +13,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Dj;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Genre;
 class DjSeeder extends Seeder
 {
     /**
@@ -29,6 +30,22 @@ class DjSeeder extends Seeder
        $dj = new Dj();
        $dj->price = '' . $this->random_str(3, '123456789');
        $dj->user_id = $djs->id;
+       foreach(Genre::all() as $genre) {
+
+
+                        $dj->genre()->attach($genre);
+
+
+                        //$genre->dj()->attach($dj);
+
+      }
+     //  foreach(DJ::all() as $dj) {
+     //
+     //
+     //                   //$dj->genre()->attach($genre->id);
+     //                   $genre->Dj()->attach($dj);
+     //
+     // }
        $dj->save();
       }
     }

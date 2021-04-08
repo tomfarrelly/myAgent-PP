@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:15:23+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-15T00:23:26+00:00
+# @Last modified time: 2021-04-08T17:23:05+01:00
 
 
 
@@ -26,10 +26,10 @@ class Event extends Model
     protected $fillable = [
         'name',
         'description',
-        'venue',
+        'venue_id',
         'date',
         'time',
-        'type',
+        'cover',
         'genre_id',
     ];
 
@@ -48,14 +48,14 @@ class Event extends Model
 
     public function dj()
     {
-      return $this->belongsTo('App\Models\Dj' );//'dj_event', 'dj_id'
+      return $this->belongsTo('App\Models\Dj' );
 
 
     }
 
     public function eventmanager()
     {
-      return $this->belongsToMany('App\Models\Eventmanager' );//'dj_event', 'dj_id'
+      return $this->belongsToMany('App\Models\Eventmanager' );
 
 
     }
@@ -65,23 +65,20 @@ class Event extends Model
       return $this->hasMany('App\Models\Booking');
     }
 
-    public function venue(){
-   	return $this->belongsTo('App\Models\Venue');
-   }
-
-    public function type()
-    {
-      return $this->belongsTo('App\Models\Type');
-    }
-
     public function venue()
     {
-      return $this->belongsTo('App\Models\Venue');
+   	  return $this->belongsTo('App\Models\Venue');
     }
+
+    // public function type()
+    // {
+    //   return $this->belongsTo('App\Models\Type');
+    // }
+
 
     public function genre()
     {
-      return $this->hasOne('App\Models\Genre');
+      return $this->belongsTo('App\Models\Genre');
     }
 
 

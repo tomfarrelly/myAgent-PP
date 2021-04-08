@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:48+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-15T00:16:59+00:00
+# @Last modified time: 2021-03-15T17:14:49+00:00
 
 
 
@@ -13,7 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Venue;
-use App\Models\Type;
+use App\Models\Genre;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
 
@@ -53,8 +53,13 @@ class EventController extends Controller
      public function create()
      {
          $venues = Venue::all();
-         $types = Type::all();
-    $users = User::all();
+         $types = Genre::all();
+         //$users = User::roles('eventManager')->get();
+         $users = User::whereHas('roles', function($role) {
+              $role->where('name', '=', 'eventManager');
+          })->get();
+
+         //dd($users);
 
          return view('admin.events.create',[
            'venues' =>$venues,

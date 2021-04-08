@@ -15,6 +15,8 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    <script type="text/javascript">window.loop11_pp = [100, 76388];</script><script src="//cdn.loop11.com/embed.js" type="text/javascript" async="async"></script>
                 </div>
             </div>
         </div>

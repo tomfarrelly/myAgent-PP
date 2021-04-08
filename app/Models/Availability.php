@@ -1,4 +1,11 @@
 <?php
+# @Author: tomfarrelly
+# @Date:   2021-03-15T15:31:24+00:00
+# @Last modified by:   tomfarrelly
+# @Last modified time: 2021-04-07T19:32:45+01:00
+
+
+
 
 namespace App\Models;
 
@@ -21,9 +28,7 @@ class Availability extends Model
          'date_start',
          'date_end',
      ];
-     // protected $hidden = [
-     //
-     //   ];
+
 
      public function dj()
      {

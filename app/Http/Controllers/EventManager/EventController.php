@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:18+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-14T23:42:15+00:00
+# @Last modified time: 2021-04-08T17:22:29+01:00
 
 
 
@@ -19,7 +19,7 @@ use App\Models\Event;
 use App\Models\Dj;
 use App\Models\Booking;
 use App\Models\Venue;
-use App\Models\Type;
+use App\Models\Genre;
 use Carbon\Carbon;
 
 
@@ -51,14 +51,17 @@ class EventController extends Controller
     public function index(Request $request)
     {
 
+
+
+        $types = Genre::all();
+
         $events = Event::all();
-
-        $types = Type::all();
-
-       // $futureevents = Event::getEvents('', GlobalConstants::ALL, GlobalConstants::ALL,GlobalConstants::ALL);
+        
         $date = Carbon::today();
+
         $pastevents = Event::where('date', '<' ,$date)->get();
         $futureevents = Event::where('date', '>=' ,$date)->get();
+
         $data['venues'] = Venue::orderBy('id')->get();
         $post_query = Event::where('user_id',auth()->id());
         $post_query = Event::where('date', '>=' ,$date);
@@ -133,7 +136,7 @@ class EventController extends Controller
     public function create()
     {
         $venues = Venue::all();
-        $types = Type::all();
+        $types = Genre::all();
         return view('eventmanager.events.create',[
           'venues' =>$venues,
           'types' =>$types
@@ -155,7 +158,7 @@ class EventController extends Controller
          'venue_id' => 'required',
          'date' => 'required|date',
          'time' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
-         'type_id' => 'required',
+         'genre_id' => 'required',
          'cover' => 'file|image',
          //'cover'=> 'file|image',
 
@@ -182,7 +185,7 @@ class EventController extends Controller
        $event->venue_id = $request->input('venue_id');
        $event->date=$request->input('date');
        $event->time=$request->input('time');
-       $event->type_id=$request->input('type_id');
+       $event->genre_id=$request->input('genre_id');
        $event->user_id = auth()->id();
 
        $event->save();
@@ -201,13 +204,13 @@ class EventController extends Controller
 
         $events = Event::findOrFail($id);
 
-        $djs = Booking::where('event_id', $id)->get();
+        $bookings = Booking::where('event_id', $id)->get();
 
 
         return view('eventmanager.events.show',[
           'events' => $events,
         //  'djs' => $djs,
-          'djs' => $djs
+          'bookings' => $bookings
         ]);
     }
 
@@ -222,7 +225,7 @@ class EventController extends Controller
 
       $event = Event::findOrFail($id);
       $venues = Venue::all();
-      $types = Type::all();
+      $types = Genre::all();
       $bookings = Booking::where('event_id', $id)->get();
       return view('eventmanager.events.edit',[
         'event' => $event,
@@ -276,7 +279,7 @@ class EventController extends Controller
        $event->venue_id = $request->input('venue_id');
        $event->date=$request->input('date');
        $event->time=$request->input('time');
-       $event->type_id=$request->input('type_id');
+       $event->genre_id=$request->input('genre_id');
        $event->user_id = auth()->id();
 
        $event->save();

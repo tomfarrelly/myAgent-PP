@@ -3,7 +3,7 @@
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-03-15T02:47:05+00:00
+# @Last modified time: 2021-03-16T15:05:14+00:00
 
 
 
@@ -88,10 +88,11 @@ Route::put('/dj/bookings/{id}', [DjBookingController::class, 'update'])->name('d
 Route::delete('/dj/bookings/{id}', [DjBookingController::class, 'destroy'])->name('dj.bookings.destroy');
 
 //EM Profile
-// Route::get('/my-profile', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofile'])->name('eventmanager.page.profile');
-// Route::post('/my-profile-update-em', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofileupdateEM'])->name('eventmanager.page.profile');
-//Route::get('/eventmanager/djs/{id}', [App\Http\Controllers\EventManager\ProfileController::class, 'show'])->name('eventmanager.page.profile.show');
-//Route::get('/eventmanager/page/availableDj', [App\Http\Controllers\EventManager\ProfileController::class, 'availableDj'])->name('eventmanager.page.availableDj');
+Route::get('/my-profile', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofile'])->name('eventmanager.page.profile');
+Route::post('/my-profile-update-em', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofileupdateEM'])->name('eventmanager.page.profile');
+Route::get('/eventmanager/page/djs/{id}', [App\Http\Controllers\EventManager\ProfileController::class, 'show'])->name('eventmanager.page.profile.show');
+Route::get('/eventmanager/page/availableDj', [App\Http\Controllers\EventManager\ProfileController::class, 'availableDj'])->name('eventmanager.page.availableDj');
+Route::get('/eventmanager/events/show', [App\Http\Controllers\EventManager\ProfileController::class, 'availableDj'])->name('eventmanager.events.show');
 
 
 //EM bookings

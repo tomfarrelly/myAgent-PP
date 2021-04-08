@@ -36,8 +36,8 @@
                                 <td>{{ $event->venue->name }}</td>
                                 <td>{{ $event->date }}</td>
                                 <td>{{ $event->time }}</td>
-                                <td>{{ $event->type->name }}</td>
-                                <td>{{ $event->user_id }}</td>
+                                <td>{{ $event->genre }}</td>
+                                <td>{{ $event->user->name }}</td>
                                 <td>
                                     <a href="{{ route('admin.events.show', $event->id) }}" class="btn btn-primary">View</a>
                                     <a href="{{ route('admin.events.edit', $event->id) }}" class="btn btn-warning">Edit</a>

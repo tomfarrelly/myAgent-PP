@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-16T22:47:21+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-01-18T20:28:54+00:00
+# @Last modified time: 2021-03-15T17:41:29+00:00
 
 
 
@@ -426,9 +426,9 @@ $djs = Dj::whereHas('availability', function ($q) use ($date) {
        $dj->user->email = $request->input('email');
        $dj->user->username = $request->input('username');
        $dj->user->bio = $request->input('bio');
-       $dj->user->genre = $request->input('genre');
+       $dj->user->genre = $request->input('genre_id');
        $dj->user->location = $request->input('location');
-       
+
 
        $dj->user->save();
 

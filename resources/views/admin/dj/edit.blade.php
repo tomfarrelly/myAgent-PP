@@ -21,7 +21,7 @@
                 <form method="POST" action="{{ route('admin.dj.update', $dj->id) }}" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="_method" value="PUT">
-                    
+
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $dj->user->name)}}" />
@@ -39,8 +39,8 @@
                         <input type="text" class="form-control" id="bio" name="bio" value="{{ old('bio', $dj->user->bio) }}" />
                     </div>
                     <div class="form-group">
-                        <label for="genre">Genre</label>
-                        <input type="text" class="form-control" id="genre" name="genre" value="{{ old('genre', $dj->user->genre) }}" />
+                        <label for="genre_id">Genre ID</label>
+                        <input type="text" class="form-control" id="genre_id" name="genre_id" value="{{ old('genre_id', $dj->user->genre) }}" />
                     </div>
                     <div class="form-group">
                         <label for="location">Location</label>

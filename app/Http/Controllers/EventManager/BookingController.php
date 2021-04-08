@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-17T01:27:08+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-22T23:21:12+00:00
+# @Last modified time: 2021-04-08T17:22:30+01:00
 
 
 
@@ -73,13 +73,20 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     //$date_ev = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
+     //dd($date_ev);
+     //$date_end = Event::where('id', $booking->event_id)->select("date")->first();
+   //  $timezone = new DateTimeZone($_SESSION['Europe/Dublin']);
+     //$format = 'Y-m-d';
+//dd($date_ev.date);
+     //dd(strtotime($date_ev));
+     //date('Y-m-d', strtotime($date_ev))
+     //dd(date('Y-m-d', strtotime($date_ev)));
+
     public function store(Request $request, $id)
     {
-
-
       $booking = new Booking();
-
-
       $booking->event_id=$request->input('event_id');
       $booking->dj_id=$request->input('dj_id');
       $booking->status= $request->has('status');
@@ -87,33 +94,22 @@ class BookingController extends Controller
       if ($request->has('status') == 1)
       {
         $availability = new Availability;
-        //$date_ev = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
-        //dd($date_ev);
-        //$date_end = Event::where('id', $booking->event_id)->select("date")->first();
-      //  $timezone = new DateTimeZone($_SESSION['Europe/Dublin']);
-        //$format = 'Y-m-d';
+
         $availability->dj_id = $booking->dj_id;
         $availability->date_start = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
         $availability->date_end = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
-        //dd($date_ev.date);
-        //dd(strtotime($date_ev));
-        //date('Y-m-d', strtotime($date_ev))
-        //dd(date('Y-m-d', strtotime($date_ev)));
 
         $availability->save();
 
-        return redirect()->route('eventmanager.events.index');
+        return redirect()->route('eventmanager.home');
 
       }else{
 
         $booking->save();
 
       }
-
-       return redirect()->route('eventmanager.events.index');
-
-
-
+      
+       return redirect()->route('eventmanager.home');
 
     }
 

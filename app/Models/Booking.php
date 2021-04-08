@@ -3,7 +3,7 @@
 # @Date:   2020-12-20T18:41:17+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-03-09T16:40:00+00:00
+# @Last modified time: 2021-04-08T17:22:25+01:00
 
 
 
@@ -30,10 +30,7 @@ class Booking extends Model
          'status',
 
      ];
-     // protected $hidden = [
-     //     'dj_id',
-     //
-     //   ];
+
 
     public function event()
     {

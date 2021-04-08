@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-02-07T16:43:49+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-02-07T17:14:49+00:00
+# @Last modified time: 2021-03-15T18:10:07+00:00
 
 
 
@@ -11,6 +11,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Genre;
+use App\Models\Dj;
 
 class GenreSeeder extends Seeder
 {
@@ -55,6 +56,26 @@ class GenreSeeder extends Seeder
       $genre->name = "Hip-Hop";
       $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
       $genre->save();
+
+      // $dj = User::whereHas('roles', function($role) {
+      //      $role->where('name', '=', 'dj');
+      //  })->pluck('id');
+      //$dj = Dj::all()->pluck('id');
+
+      //foreach($djs as $dj) {
+
+
+                       //$genre->Dj()->attach($dj->id);
+
+     //}
+
+    //  foreach(Dj::all() as $dj) {
+    //
+    //
+    //                   //$dj->genre()->attach($genre->id);
+    //                   $genre->Dj()->attach($dj->id);
+    //
+    // }
 
     }
 }
