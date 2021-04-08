@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:15:23+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-04-08T17:23:05+01:00
+# @Last modified time: 2021-04-08T17:24:42+01:00
 
 
 
@@ -70,10 +70,7 @@ class Event extends Model
    	  return $this->belongsTo('App\Models\Venue');
     }
 
-    // public function type()
-    // {
-    //   return $this->belongsTo('App\Models\Type');
-    // }
+
 
 
     public function genre()
