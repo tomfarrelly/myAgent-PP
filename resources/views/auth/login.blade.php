@@ -2,135 +2,220 @@
 
 @section('content')
 <style>
-@import url('https://rsms.me/inter/inter-ui.css');
-::selection {
-  background: #2D2F36;
-}
-::-webkit-selection {
-  background: #2D2F36;
-}
-::-moz-selection {
-  background: #2D2F36;
+input,
+textarea {
+    background-color: #F3E5F5;
+    border-radius: 50px !important;
+    padding: 12px 15px 12px 15px !important;
+    width: 100%;
+    box-sizing: border-box;
+    border: none !important;
+    border: 1px solid #F3E5F5 !important;
+    font-size: 16px !important;
+    color: #000 !important;
+    font-weight: 400;
 }
 
-.page {
-  background: #e2e2e5;
-  display: flex;
-  flex-direction: column;
-  height: calc(100% - 40px);
-  position: absolute;
-  place-content: center;
-  width: calc(100% - 40px);
+input:focus,
+textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #D500F9 !important;
+    outline-width: 0;
+    font-weight: 400
 }
-@media (max-width: 767px) {
-  .page {
-    height: auto;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-  }
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0
 }
-.container1 {
-  display: flex;
-  height: 320px;
-  margin: 0 auto;
-  width: 640px;
+
+.card {
+    border-radius: 0;
+    border: none;
+    background: #edefef;
+
 }
-@media (max-width: 767px) {
-  .container {
-    flex-direction: column;
-    height: 630px;
-    width: 320px;
-  }
+
+.card1 {
+    width: 50%;
+
+    background-color: #fff !important;
+    margin-top:25px;
 }
-.left {
-  background: white;
-  height: calc(100% - 40px);
-  top: 20px;
-  position: relative;
-  width: 50%;
+
+.card2 {
+    width: 50%;
+    background-image: linear-gradient(to right, #272725 ,black,#fb004b)
 }
-@media (max-width: 767px) {
-  .left {
-    height: 100%;
-    left: 20px;
-    width: calc(100% - 40px);
-    max-height: 270px;
-  }
+
+#logo {
+    width: 250px;
+    height: 50px
 }
-.login {
-  font-size: 50px;
-  font-weight: 900;
-  margin: 50px 40px 40px;
+
+.heading {
+    margin-bottom: 20px !important
 }
-.eula {
-  color: #999;
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 40px;
+
+::placeholder {
+    color: #000 !important;
+    opacity: 1
 }
-.right {
-  background: #474A59;
-  box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
-  color: #F1F1F2;
-  position: relative;
-  width: 50%;
+
+:-ms-input-placeholder {
+    color: #000 !important
 }
-@media (max-width: 767px) {
-  .right {
-    flex-shrink: 0;
-    height: 100%;
+
+::-ms-input-placeholder {
+    color: #000 !important
+}
+
+.form-control-label {
+    font-size: 12px;
+    margin-left: 15px
+}
+
+.msg-info {
+  font-size: 16px;
+    padding-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 15px
+}
+
+.btn-color {
+    border-radius: 50px;
+    color: #fff;
+    background-image: linear-gradient(to right, #fb004b ,#272725 ,black);
+    padding: 15px;
+    cursor: pointer;
+    border: none !important;
+    margin-top: 40px
+}
+
+.btn-color:hover {
+    color: #fff;
+    background-image: linear-gradient(to right, #272725 ,black,#fb004b);
+}
+
+.btn-white {
+    border-radius: 50px;
+    color: #D500F9;
+    background-color: #fff;
+    padding: 8px 40px;
+    cursor: pointer;
+    border: 2px solid #D500F9 !important
+}
+
+.btn-white:hover {
+    color: #fff;
+    background-image: linear-gradient(to right, #272725 ,black,#fb004b)
+}
+
+a {
+    color: #000
+}
+
+a:hover {
+    color: #000
+}
+
+.bottom {
     width: 100%;
-    max-height: 350px;
-  }
+    margin-top: 50px !important
 }
-svg {
-  position: absolute;
-  width: 320px;
+
+.sm-text {
+    font-size: 15px
 }
-path {
-  fill: none;
-  stroke: url(#linearGradient);;
-  stroke-width: 4;
-  stroke-dasharray: 240 1386;
+
+@media screen and (max-width: 992px) {
+    .card1 {
+        width: 100%;
+        padding: 40px 30px 10px 30px
+    }
+
+    .card2 {
+        width: 100%
+    }
+
+    .right {
+        margin-top: 100px !important;
+        margin-bottom: 100px !important
+    }
 }
-.form {
-  margin: 40px;
-  position: absolute;
-}
-label {
-  color:  #c2c2c5;
-  display: block;
-  font-size: 14px;
-  height: 16px;
-  margin-top: 20px;
-  margin-bottom: 5px;
-}
-input {
-  background: transparent;
-  border: 0;
-  color: #f2f2f2;
-  font-size: 20px;
-  height: 30px;
-  line-height: 30px;
-  outline: none !important;
-  width: 100%;
-}
-input::-moz-focus-inner {
-  border: 0;
-}
-#submit {
-  color: #707075;
-  margin-top: 40px;
-  transition: color 300ms;
-}
-#submit:focus {
-  color: #f2f2f2;
-}
-#submit:active {
-  color: #d0d0d2;
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px !important
+    }
+
+    .card2 {
+        padding: 50px
+    }
+
+    .right {
+        margin-top: 50px !important;
+        margin-bottom: 50px !important
+    }
 }
 </style>
-<div class="container">
+<form method="POST" action="{{ route('login') }}">
+    @csrf
+<div class="container px-4 py-5 mx-auto">
+    <div class="card card0">
+        <div class="d-flex flex-lg-row flex-column-reverse">
+            <div class="card card1">
+              <a href="{{ route('welcome') }}"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16" style="margin-left: 25px; margin-top: 15px;">
+            <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+            </svg></a>
+                <div class="row justify-content-center my-auto">
+                    <div class="col-md-8 col-10 my-5">
+                      <h3 class="mb-5 text-center heading">We are</h3>
+                        <div class="row justify-content-center px-3 mb-3"> <img id="logo" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fairbnb-myagent.com%2Fwp-content%2Fthemes%2FMyAgent%2Fimages%2Flogo.png&f=1&nofb=1"> </div>
+
+                        <h6 class="msg-info">Please login to your account</h6>
+                        <div class="form-group"> <label for="email" class="form-control-label text-muted">Email Address</label> <input id="email" type="email" name="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror name="email" value="{{ old('email') }}" required autocomplete="email" autofocus">
+                          @error('email')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
+                        </div>
+                        <div class="form-group"> <label for="password" class="form-control-label text-muted">Password</label> <input placeholder="Password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                          @error('password')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
+
+                        </div>
+                        <div class="form-group"> <label class="form-check-label" for="remember">{{ __('Remember Me') }}</label> <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} class="form-check-input">
+                        </div>
+
+                        <div class="row justify-content-center my-3 px-3"> <button type="submit" class="btn-block btn-color">Login In</button> </div>
+                        @if (Route::has('password.request'))
+                        <div class="row justify-content-center my-2"> <a href="{{ route('password.request') }}"><small class="text-muted">{{ __('Forgot Your Password?') }}</small></a> </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="bottom text-center mb-5">
+                    <p class="sm-text mx-auto mb-3">Don't have an account?<a href="{{ route('register') }}"><butto class="btn btn-white ml-2">Create new</button></a></p>
+                </div>
+            </div>
+            <div class="card card2">
+                <div class="my-auto mx-md-5 px-md-5 right">
+                    <h3 class="text-white">We are more than just a platform</h3> <small class="text-white">MyAgent is a booking platform where famous and novice DJs have a great opportunity for becoming even better versions of themselves. Allowing the Event Managers to book DJs in a new intuitive process.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<!-- <div class="container" style="padding-top: 50px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -198,97 +283,6 @@ input::-moz-focus-inner {
             </div>
         </div>
     </div>
-</div>
-
-<div class="page">
-  <div class="container1">
-    <div class="left">
-      <div class="login">Login</div>
-      <div class="eula">By logging in you agree to the ridiculously long terms that you didn't bother to read</div>
-    </div>
-    <div class="right">
-      <svg viewBox="0 0 320 300">
-        <defs>
-          <linearGradient
-                          inkscape:collect="always"
-                          id="linearGradient"
-                          x1="13"
-                          y1="193.49992"
-                          x2="307"
-                          y2="193.49992"
-                          gradientUnits="userSpaceOnUse">
-            <stop
-                  style="stop-color:#ff00ff;"
-                  offset="0"
-                  id="stop876" />
-            <stop
-                  style="stop-color:#ff0000;"
-                  offset="1"
-                  id="stop878" />
-          </linearGradient>
-        </defs>
-        <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
-      </svg>
-      <div class="form">
-        <label for="email">Email</label>
-        <input type="email" id="email">
-        <label for="password">Password</label>
-        <input type="password" id="password">
-        <input type="submit" id="submit" value="Submit">
-      </div>
-    </div>
-  </div>
-</div>
+</div> -->
 
 @endsection
-<script>
-var current = null;
-document.querySelector('#email').addEventListener('focus', function(e) {
-  if (current) current.pause();
-  current = anime({
-    targets: 'path',
-    strokeDashoffset: {
-      value: 0,
-      duration: 700,
-      easing: 'easeOutQuart'
-    },
-    strokeDasharray: {
-      value: '240 1386',
-      duration: 700,
-      easing: 'easeOutQuart'
-    }
-  });
-});
-document.querySelector('#password').addEventListener('focus', function(e) {
-  if (current) current.pause();
-  current = anime({
-    targets: 'path',
-    strokeDashoffset: {
-      value: -336,
-      duration: 700,
-      easing: 'easeOutQuart'
-    },
-    strokeDasharray: {
-      value: '240 1386',
-      duration: 700,
-      easing: 'easeOutQuart'
-    }
-  });
-});
-document.querySelector('#submit').addEventListener('focus', function(e) {
-  if (current) current.pause();
-  current = anime({
-    targets: 'path',
-    strokeDashoffset: {
-      value: -730,
-      duration: 700,
-      easing: 'easeOutQuart'
-    },
-    strokeDasharray: {
-      value: '530 1386',
-      duration: 700,
-      easing: 'easeOutQuart'
-    }
-  });
-});
-</script>

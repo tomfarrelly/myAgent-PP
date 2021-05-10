@@ -77,8 +77,8 @@ Route::post('/dj/availability/store', [DjAvailabilityController::class, 'store']
 
 
 //DJ Profile
-Route::get('/my-profile', [App\Http\Controllers\Dj\ProfileController::class, 'myprofile'])->name('dj.page.profile');
-Route::post('/my-profile-update-dj', [App\Http\Controllers\Dj\ProfileController::class, 'myprofileupdateDJ'])->name('dj.page.profile.update');
+Route::get('/myprofile', [App\Http\Controllers\Dj\ProfileController::class, 'myprofile'])->name('dj.page.profile');
+Route::post('/my-profile-update-dj', [App\Http\Controllers\Dj\ProfileController::class, 'myprofileupdateDJ'])->name('dj.page.profile');
 
 // DJ - Bookings
 Route::get('/dj/bookings', [DjBookingController::class, 'index'])->name('dj.bookings.index');
@@ -115,7 +115,7 @@ Route::get('/search', [EventManagerDjController::class, 'search'])->name('eventm
 
 
 // EM EVENT CRUD
-
+// Route::get('/eventmanager/djs/available', [EventManagerEventController::class, 'available'])->name('eventmanager.event.show');
 Route::get('/eventmanager/home', [EventManagerEventController::class, 'index'])->name('eventmanager.home');
 Route::get('/eventmanager/events/create', [EventManagerEventController::class, 'create'])->name('eventmanager.events.create');
 Route::get('/eventmanager/events/{id}', [EventManagerEventController::class, 'show'])->name('eventmanager.events.show');
@@ -154,6 +154,7 @@ Route::get('/admin/events/{id}/edit', [AdminEventController::class, 'edit'])->na
 Route::put('/admin/events/{id}', [AdminEventController::class, 'update'])->name('admin.events.update');
 Route::delete('/admin/events/{id}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
 
+// Admin DJ CRUD
 Route::get('/admin/djs', [DjController::class, 'index'])->name('admin.dj.index');
 Route::get('/admin/djs/{id}', [DjController::class, 'show'])->name('admin.dj.show');
 Route::delete('/admin/djs/{id}', [DjController::class, 'destroy'])->name('admin.dj.destroy');

@@ -59,7 +59,6 @@ class ProfileController extends Controller
       $user->email = $request->input('email');
       $user->username = $request->input('username');
       $user->bio = $request->input('bio');
-      $user->genre = $request->input('genre');
       $user->location = $request->input('location');
 
       if($request->hasfile('image'))

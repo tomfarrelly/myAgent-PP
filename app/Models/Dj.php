@@ -47,7 +47,7 @@ class Dj extends Model
 
     public function genre()
     {
-      return $this->belongsToMany('App\Models\Genre', 'dj_genres');
+      return $this->belongsToMany('App\Models\Genre');
     }
 
     public function booking()

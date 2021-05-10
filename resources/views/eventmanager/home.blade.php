@@ -3,10 +3,11 @@
 
 
 @section('content')
-@include('layouts.ehome1')
+@include('layouts.EMHomepage')
 
 @endsection
 @section('javascript')
+
 <script type="text/javascript">
   var query=<?php echo json_encode((object)Request::only(['venue','keyword'])); ?>;
 
