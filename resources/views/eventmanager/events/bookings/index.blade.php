@@ -10,8 +10,7 @@
             <div class="card">
                 <div class="card-header">
                     Events
-                    <a href="{{ route('eventmanager.events.bookings.create') }}" class="btn btn-primary float-right">Make Booking</a>
-                </div>
+
 
                 <div class="card-body">
                     @if (count($bookings) === 0)

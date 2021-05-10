@@ -57,7 +57,7 @@
                                   @endforeach
                                     {{-- <a href="{{ route('eventmanager.bookings.show', $booking->id) }}" class="btn btn-primary">View</a>
                                     <a href="{{ route('eventmanager.bookings.edit', $booking->id) }}" class="btn btn-warning">Edit</a>
-                                    <form style="display:inline-block" method="POST" action="{{ route('eventmanager.events.destroy', $booking->id) }}">
+                                    <form style="display:inline-block" method="POST" action="{{ route('dj.booking.destroy', $bookings->id) }}">
                                       <input type="hidden" name="_method" value="DELETE">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       <button type="submit" class="form-control btn btn-danger">Delete</button> --}}
@@ -118,9 +118,9 @@
 
                                   <a href="{{ route('dj.bookings.edit', $booking->id) }}" class="btn btn-primary float-right">Edit Booking</a>
                                   @endforeach
-                                    {{-- <a href="{{ route('eventmanager.bookings.show', $booking->id) }}" class="btn btn-primary">View</a>
-                                    <a href="{{ route('eventmanager.bookings.edit', $booking->id) }}" class="btn btn-warning">Edit</a>
-                                    <form style="display:inline-block" method="POST" action="{{ route('eventmanager.events.destroy', $booking->id) }}">
+                                    {{-- <a href="{{ route('dj.bookings.show', $booking->id) }}" class="btn btn-primary">View</a>
+                                    <a href="{{ route('dj.bookings.edit', $booking->id) }}" class="btn btn-warning">Edit</a>
+                                    <form style="display:inline-block" method="POST" action="{{ route('dj.bookings.index', $booking->id) }}">
                                       <input type="hidden" name="_method" value="DELETE">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       <button type="submit" class="form-control btn btn-danger">Delete</button> --}}

@@ -128,7 +128,7 @@ class BookingController extends Controller
         return redirect()->route('dj.bookings.index');
 
       }else{
-
+         $booking->destroy($id);
         $booking->update();
 
       }
@@ -224,6 +224,6 @@ class BookingController extends Controller
       $booking = Booking::findOrFail($id);
       $booking->delete();
 
-      return redirect()->route('dj.bookings.index');
+      return redirect()->route('dj.bookings.destroy');
     }
 }

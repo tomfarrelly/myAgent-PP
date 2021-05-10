@@ -59,7 +59,7 @@ Route::get('/dj/bookings', [DjBookingController::class, 'index'])->name('dj.book
 Route::post('/dj/bookings/{id}/store', [DjBookingController::class, 'store'])->name('dj.bookings.store');
 Route::get('/dj/bookings/{id}/edit', [DjBookingController::class, 'edit'])->name('dj.bookings.edit');
 Route::put('/dj/bookings/{id}', [DjBookingController::class, 'update'])->name('dj.bookings.update');
-Route::delete('/dj/bookings/{id}', [DjBookingController::class, 'destroy'])->name('dj.bookings.destroy');
+Route::delete('/dj/bookings/{id}/destroy', [DjBookingController::class, 'destroy'])->name('dj.bookings.destroy');
 
 //EM bookings
 Route::get('/eventmanager/bookings', [EventManagerBookingController::class, 'index'])->name('eventmanager.bookings.index');
@@ -80,12 +80,7 @@ Route::post('/dj/availability/store', [DjAvailabilityController::class, 'store']
 Route::get('/myprofile', [App\Http\Controllers\Dj\ProfileController::class, 'myprofile'])->name('dj.page.profile');
 Route::post('/my-profile-update-dj', [App\Http\Controllers\Dj\ProfileController::class, 'myprofileupdateDJ'])->name('dj.page.profile');
 
-// DJ - Bookings
-Route::get('/dj/bookings', [DjBookingController::class, 'index'])->name('dj.bookings.index');
-Route::post('/dj/bookings/{id}/store', [DjBookingController::class, 'store'])->name('dj.bookings.store');
-Route::get('/dj/bookings/{id}/edit', [DjBookingController::class, 'edit'])->name('dj.bookings.edit');
-Route::put('/dj/bookings/{id}', [DjBookingController::class, 'update'])->name('dj.bookings.update');
-Route::delete('/dj/bookings/{id}', [DjBookingController::class, 'destroy'])->name('dj.bookings.destroy');
+
 
 //EM Profile
 Route::get('/my-profile', [App\Http\Controllers\EventManager\ProfileController::class, 'myprofile'])->name('eventmanager.page.profile');
