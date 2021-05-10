@@ -28,7 +28,7 @@ class Genre extends Model
      ];
 
 
-     public function Dj()
+     public function dj()
      {
        return $this->hasMany('App\Models\Dj', 'dj_genres');
      }

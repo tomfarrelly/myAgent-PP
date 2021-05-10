@@ -56,10 +56,10 @@ class EventController extends Controller
         $types = Genre::all();
 
         $events = Event::all();
-        
+
         $date = Carbon::today();
 
-        $pastevents = Event::where('date', '<' ,$date)->get();
+        $pastevents = Event::where('date', '<' ,$date)->paginate(12);
         $futureevents = Event::where('date', '>=' ,$date)->get();
 
         $data['venues'] = Venue::orderBy('id')->get();
@@ -105,7 +105,8 @@ class EventController extends Controller
 
       }
 
-      $data['futureevents']=$post_query->orderBy('id','ASC')->paginate(20);
+      $data['futureevents']=$post_query->orderBy('id','ASC')->paginate(12);
+
 
 
 
@@ -206,10 +207,19 @@ class EventController extends Controller
 
         $bookings = Booking::where('event_id', $id)->get();
 
+        $date = Event::where('date', $events->date)->get(['date'])->pluck('date')->implode('date');
+
+
+        $djs = Dj::whereHas('availability', function ($q) use ($date) {
+           $q->where(function ($q2) use ($date) {
+               $q2->whereDate('date_start', '>', $date)
+                  ->orWhereDate('date_end', '<' ,$date);
+           });
+         })->orWhereDoesntHave('availability')->get();
 
         return view('eventmanager.events.show',[
           'events' => $events,
-        //  'djs' => $djs,
+          'djs' => $djs,
           'bookings' => $bookings
         ]);
     }
@@ -252,7 +262,7 @@ class EventController extends Controller
          'venue_id' => 'required',
          'date' => 'required|date',
          'time' => 'date_format:H:i:s',//makes sure that the one you are adding to the DB is unique
-         'type_id' => 'required',
+         'genre_id' => 'required',
          'cover' => 'file|image',
          //'cover'=> 'file|image',
 
@@ -287,7 +297,23 @@ class EventController extends Controller
      return redirect()->route('eventmanager.home');
      }
 
+     public function available(){
 
+
+  $date = Carbon::today();
+
+  $djs = Dj::whereHas('availability', function ($q) use ($date) {
+     $q->where(function ($q2) use ($date) {
+         $q2->whereDate('date_start', '>', $date)
+            ->orWhereDate('date_end', '<' ,$date);
+     });
+   })->orWhereDoesntHave('availability')->get();
+
+
+      return view('eventmanager.event.show',[
+        'djs' => $djs,
+      ]);
+    }
 
 
     /**

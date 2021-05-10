@@ -66,7 +66,6 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'bio' => ['required', 'string', 'max:255'],
-            'genre' => ['required'],
             'location' => ['required', 'string', 'max:255'],
 
         ]);
@@ -88,7 +87,6 @@ class RegisterController extends Controller
         $user->username = $data['username'];
         $user->password = Hash::make($data['password']);
         $user->bio = $data['bio'];
-        $user->genre = $data['genre'];
         $user->location = $data['location'];
 
 
@@ -102,6 +100,7 @@ class RegisterController extends Controller
         $dj->save();
 
         return $user;
+
     }
 
 
