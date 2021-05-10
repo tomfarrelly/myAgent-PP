@@ -1,8 +1,9 @@
 <?php
 # @Author: tomfarrelly
-# @Date:   2021-04-08T17:24:16+01:00
+# @Date:   2021-03-08T15:39:51+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-05-10T14:15:01+01:00
+# @Last modified time: 2021-05-10T19:00:49+01:00
+
 
 
 
@@ -128,7 +129,7 @@ class BookingController extends Controller
         return redirect()->route('dj.bookings.index');
 
       }else{
-         $booking->destroy($id);
+
         $booking->update();
 
       }
@@ -200,9 +201,11 @@ class BookingController extends Controller
         $availability->date_start = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
         $availability->date_end = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
 
-        $availability->save();
-
-        return redirect()->route('dj.bookings.index');
+      //$availability->save();
+      //  $booking->destroy($id);
+      $booking->destroy($id);
+      $booking->save();
+      $availability->save();
 
       }else{
 
@@ -224,6 +227,6 @@ class BookingController extends Controller
       $booking = Booking::findOrFail($id);
       $booking->delete();
 
-      return redirect()->route('dj.bookings.destroy');
+      return redirect()->route('dj.bookings.index');
     }
 }
