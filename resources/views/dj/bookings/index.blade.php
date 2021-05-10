@@ -25,7 +25,7 @@
                             <th>Date</th>
                             <th>Time</th>
                             <th>Location</th>
-                            <th>Description00000</th>
+                            <th>Description</th>
 
                         </thead>
                         <tbody>
@@ -33,10 +33,11 @@
                             <tr data-id="{{ $booking->id }}">
 
                               <td>{{ $booking->event->user->name}}</td>
+                              </a>
                               <td>{{ $booking->event->name }}</td>
                                   <td>{{ $booking->event->date }}</td>
                                   <td>{{ $booking->event->time }}</td>
-                                  <td>{{ $booking->event->venue }}</td>
+                                  <td>{{ $booking->event->venue->name }}</td>
                                   <td>{{ $booking->event->description}}</td>
 
                                     {{-- <td>{{$events->id=1}}</td> --}}
@@ -52,7 +53,7 @@
                                 @endforeach --}}
                                 <td>
 
-                                  <a href="{{ route('dj.bookings.edit', $booking->id) }}" class="btn btn-primary float-right">Edit Booking</a>
+                                  <a href="{{ route('dj.bookings.edit', $booking->id) }}" class="btn btn-primary float-right">View Booking</a>
                                   @endforeach
                                     {{-- <a href="{{ route('eventmanager.bookings.show', $booking->id) }}" class="btn btn-primary">View</a>
                                     <a href="{{ route('eventmanager.bookings.edit', $booking->id) }}" class="btn btn-warning">Edit</a>

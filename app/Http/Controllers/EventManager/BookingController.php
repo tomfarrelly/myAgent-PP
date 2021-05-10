@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-17T01:27:08+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-04-08T17:22:30+01:00
+# @Last modified time: 2021-05-10T14:19:14+01:00
 
 
 
@@ -55,7 +55,7 @@ class BookingController extends Controller
     {
       $events = Event::all();
       $djs = Dj::all();
-
+      
 
 
       return view('eventmanager.events.bookings.create', [
@@ -108,7 +108,7 @@ class BookingController extends Controller
         $booking->save();
 
       }
-      
+
        return redirect()->route('eventmanager.home');
 
     }

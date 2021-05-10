@@ -33,7 +33,7 @@
                     <div class="form-group">
                       <label class="form-check-label" for="status">status</label>
 
-                      <input type="checkbox" class="form-check-input" id="status" name="status" value="{{csrf_field()}}">
+                      {{-- <input type="checkbox" class="form-check-input" id="status" name="status" value="{{csrf_field()}}"> --}}
                     </div>
                     <div class="card-body">
                         <table class="table table-hover">
@@ -91,8 +91,9 @@
                             </tbody>
                         </table>
                       </div>
+                      {{-- <button type="submit" class="btn btn-success pull-left" id="status" name="status" value="{{csrf_field()}}"> Book </button> --}}
                     <a href="{{ route('eventmanager.events.show', $event->id) }}" class="btn btn-warning">Cancel</a>
-                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                    <button type="submit" class="btn btn-success pull-right">Send Booking</button>
                   </form>
                </div>
             </div>

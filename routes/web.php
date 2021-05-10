@@ -3,7 +3,7 @@
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-03-16T15:05:14+00:00
+# @Last modified time: 2021-05-05T16:41:18+01:00
 
 
 
@@ -127,7 +127,7 @@ Route::delete('/eventmanager/events/{id}', [EventManagerEventController::class, 
 Route::get('/past', [EventManagerEventController::class, 'past'])->name('eventmanager.events.past');
 Route::get('/search-events', [EventManagerEventController::class, 'search'])->name('eventmanager.events.search');
 
-// EM - VENUES ////////////////////////
+// EM - VENUES
 Route::get('/eventmanager/venues', [App\Http\Controllers\EventManager\VenueController::class, 'index'])->name('eventmanager.venues.index');
 
 
