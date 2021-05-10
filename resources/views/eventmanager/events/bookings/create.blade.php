@@ -1,104 +1,82 @@
 @extends('layouts.app')
 
-@section('title')
-   Booking
-@endsection
-
 @section('content')
+<style>
+.custom-file {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: $custom-file-height;
+  margin-bottom: 0;
+  border: none;
+}
 
-  <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div class="card">
-            <div class= "card-header">
-              @foreach($events as $event)
-              {{ $event->name }}: Make a Booking
-              @endforeach
-            </div>
-            <div class="panel-body">
-              @if ($errors->any())
-                <div class="alert alert-danger">
-                  <ul>
-                    @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                    @endforeach
-                  </ul>
+label{
+  font-size: 16px;
+  font-weight: 400px;
+  color: black;
+  text-shadow: 1px 1px black;
+}
+
+</style>
+<div class="section">
+<div class="container shadowE col-md-6" style="padding-top: 25px; padding-bottom: 25px; background-color: #fff; margin-top: 100px;">
+  <div style="background-color: red; margin-bottom: 60px;"class="container ">
+    <div class=" bg-white ">
+        <div class="row">
+            <div style="padding-top: 15px; padding-bottom: 10px;"class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <!-- section-title -->
+                <div class="section-title mb-0" style="text-align: center;">
+                    <h1>Book DJ for Event</h1>
+
                 </div>
-              @endif
-
-                    <form method="POST" action="{{ route('eventmanager.events.bookings.store', $event->id)}}">
-                    @csrf
-                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                    <div class="form-group">
-                      <label class="form-check-label" for="status">status</label>
-
-                      {{-- <input type="checkbox" class="form-check-input" id="status" name="status" value="{{csrf_field()}}"> --}}
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover">
-                            <tbody>
-                              <tr>
-                                <td rowspan="6">
-                                  <img src="{{ asset('uploads/event/'.$event->cover) }}" class="w-100">
-                                </td>
-                              </tr>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>{{ $event->name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Description</td>
-                                    <td>{{ $event->description }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Venue</td>
-                                    <td>{{ $event->venue->name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Date</td>
-                                    <td>{{ $event->date }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Time</td>
-                                    <td>{{ $event->time }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Type</td>
-                                    <td>{{ $event->type }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Event</td>
-                                    <td>
-                                      <select name="event_id">
-                                        @foreach ($events as $event)
-                                         <option value="{{ $event->id }}" {{ (old('event_id') == $event->id) ? "selected" : "" }} >{{ $event->name }}</option>
-                                        @endforeach
-                                      </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Djs</td>
-                                    <td>
-                                          <select name="dj_id">
-                                            @foreach ($djs as $dj)
-                                             <option value="{{ $dj->id }}" {{ (old('dj_id') == $dj->id) ? "selected" : "" }} >{{ $dj->user->name }}</option>
-                                            @endforeach
-                                          </select>
-                                    </td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                      </div>
-                      {{-- <button type="submit" class="btn btn-success pull-left" id="status" name="status" value="{{csrf_field()}}"> Book </button> --}}
-                    <a href="{{ route('eventmanager.events.show', $event->id) }}" class="btn btn-warning">Cancel</a>
-                    <button type="submit" class="btn btn-success pull-right">Send Booking</button>
-                  </form>
-               </div>
+                <!-- /.section-title -->
             </div>
         </div>
     </div>
-  </div>
+    </div>
+    <div class="row justify-content-center">
+      <div style="display: none !important;" class= "card-header">
+        @foreach($events as $event)
+        {{ $event->name }}: Make a Booking
+        @endforeach
+      </div>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ route('eventmanager.events.bookings.store', $event->id)}}">
+                @csrf
+                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <div class="row">
+          <div class="form-group col-md-8">
+            <label for="event_id">Event</label>
+            <br>
+            <select name="event_id">
+              @foreach ($events as $event)
+               <option value="{{ $event->id }}" {{ (old('event_id') == $event->id) ? "selected" : "" }} >{{ $event->name }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="genre">DJ</label>
+            <br>
+            <select name="dj_id">
+              @foreach ($djs as $dj)
+               <option value="{{ $dj->id }}" {{ (old('dj_id') == $dj->id) ? "selected" : "" }} >{{ $dj->user->name }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+        <br>
+          <div class="row justify-content-center">
+          <div class="form-group ">
+            <a href="{{ route('eventmanager.home') }}" class="btn shadow">Cancel</a>
+            <button type="submit" style=" font-size: 16px; border-radius: 0px; background-color: #1cffac; margin-left: 25px;" class="btn pull-right shadow">Send Booking</button>
+          </div>
+          </div>
+
+        </form>
+    </div>
+</div>
+</div>
 
 @endsection
