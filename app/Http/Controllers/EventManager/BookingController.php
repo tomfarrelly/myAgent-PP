@@ -11,7 +11,7 @@ namespace App\Http\Controllers\EventManager;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Models\Dj;
 use App\Models\Event;
@@ -55,7 +55,7 @@ class BookingController extends Controller
     {
       $events = Event::all();
       $djs = Dj::all();
-      
+
 
 
       return view('eventmanager.events.bookings.create', [
