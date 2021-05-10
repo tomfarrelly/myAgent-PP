@@ -71,11 +71,11 @@
                                     {{-- <input type="checkbox" class="form-check-input" id="status" name="status" value="{{csrf_field()}}" /> --}}
                                     <button type="submit" class="btn btn-success pull-left" id="status" name="status" value="{{csrf_field()}}"> Accept </button>
                                     <br>
-                                    <form style="display:inline-block" method="POST" action="{{ route('dj.bookings.destroy', $bookings->id) }}">
+                                    {{-- <form style="display:inline-block" method="POST" action="{{ route('dj.bookings.destroy', $bookings->id) }}">
                                       <input type="hidden" name="_method" value="DELETE">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       <button type="submit" class="form-control btn btn-danger">Decline</button>
-                                    </form>
+                                    </form> --}}
                                   </td>
                                 </tr>
                             </tbody>
@@ -85,11 +85,11 @@
                     {{-- <a href="{{ route('dj.events.show', $events->id) }}" class="btn btn-warning">Show Event</a> --}}
                     <button type="submit" class="btn btn-primary pull-right">Submit</button>
                   </form>
-                  {{-- <form style="display:inline-block" method="POST" action="{{ route('dj.bookings.destroy', $bookings->id) }}">
+                  <form style="display:inline-block" method="POST" action="{{ route('dj.bookings.destroy', $bookings->id) }}">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="form-control btn btn-danger">Delete</button>
-                  </form> --}}
+                    <button type="submit" class="form-control btn btn-danger">Decline</button>
+                  </form>
                </div>
             </div>
         </div>
