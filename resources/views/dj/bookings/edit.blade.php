@@ -66,8 +66,15 @@
                                 </tr>
                                 <tr>
                                   <td>
-                                    <label class="form-check-label" for="status">status</label>
-                                    <input type="checkbox" class="form-check-input" id="status" name="status" value="{{csrf_field()}}" />
+                                    {{-- <label class="form-check-label" for="status">status</label>
+                                    <input type="checkbox" class="form-check-input" id="status" name="status" value="{{csrf_field()}}" /> --}}
+                                    <button type="submit" class="btn btn-success pull-left" id="status" name="status" value="{{csrf_field()}}" /> Accept </button>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <br>
+
                                   </td>
                                 </tr>
                             </tbody>
@@ -80,8 +87,13 @@
                   <form style="display:inline-block" method="POST" action="{{ route('dj.bookings.destroy', $bookings->id) }}">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="form-control btn btn-danger">Delete</button>
+                    <button type="submit" class="form-control btn btn-danger">Decline</button>
                   </form>
+                  {{-- <form style="display:inline-block" method="POST" action="{{ route('dj.bookings.destroy', $bookings->id) }}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="form-control btn btn-danger">Delete</button>
+                  </form> --}}
                </div>
             </div>
         </div>

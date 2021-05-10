@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-03-08T15:39:51+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-10T16:23:07+00:00
+# @Last modified time: 2021-05-10T19:00:49+01:00
 
 
 
@@ -201,9 +201,11 @@ class BookingController extends Controller
         $availability->date_start = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
         $availability->date_end = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
 
-        $availability->save();
-
-        return redirect()->route('dj.bookings.index');
+      //$availability->save();
+      //  $booking->destroy($id);
+      $booking->destroy($id);
+      $booking->save();
+      $availability->save();
 
       }else{
 
