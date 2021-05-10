@@ -20,7 +20,7 @@ label{
 
 </style>
 <div class="section ">
-<div class="container shadowE" style="padding-top: 25px; padding-bottom: 25px; background-color: #fff; margin-top: 100px;">
+<div class="container shadowE col-md-10" style="padding-top: 25px; padding-bottom: 25px; background-color: #fff; margin-top: 100px;">
   <div style="background-color: red; margin-bottom: 60px;"class="container ">
     <div class=" bg-white ">
         <div class="row">
