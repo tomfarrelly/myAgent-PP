@@ -1,7 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+     .box {
+       width: 120px;
+       height: 35px;
+       border: 1px solid #999;
+       font-size: 16px;
+       color: black;
+       background-color: #fff;
+       border-radius: 5px;
 
+     }
+
+     .box1 {
+       width: 120px;
+       height: 35px;
+       border: 1px solid #999;
+       font-size: 14px;
+       color: black;
+       background-color: #fff;
+       border-radius: 5px;
+
+     }
+   </style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -12,7 +34,7 @@
                  <div class="mb-2">
                       <form class="form-inline" action="">
                       <label for="genre_filter">Filter By Category &nbsp;</label>
-                       <select class="form-control" id="genre_filter" name="genre_id[]" >
+                       <select class="form-control box shadow" id="genre_filter" name="genre_id[]" >
                         <option value="">Select Category</option>
                        @if(count($genres))
                           @foreach($genres as $genre)
@@ -23,11 +45,11 @@
 
 
                       </select>
-                      
+
                       <span>&nbsp;</span>
-                       <button type="button" onclick="search_dj()" class="btn btn-primary" >Search</button>
+                       <button type="button" onclick="search_dj()" class="btn btn-primary box1 shadow" >Search</button>
                        @if(Request::query('genre_id'))
-                        <a class="btn btn-success" href="{{route('eventmanager.page.search')}}">Clear</a>
+                        <a class="btn btn-success box1 shadow" style="color: black; margin-left: 5px;" href="{{route('eventmanager.page.search')}}">Clear</a>
                        @endif
                     </form>
                   </div>
@@ -42,9 +64,9 @@
 
 
                                     <div class="card1-content ordering">
-                                    <a href="{{ route('eventmanager.page.profile.show', $dj->id) }} " <h1>{{ $dj->user->name}}</h1></a>
+                                    <a href="{{ route('eventmanager.page.profile.show', $dj->id) }} " ><h1>{{ $dj->user->name}}</h1></a>
                                     <h2>{{ $dj->price }} </h2>
-                                    <h3>{{ $genre->name }} </h3>
+                                    <h4>{{ $genre->name }} </h4>
 
 
 
