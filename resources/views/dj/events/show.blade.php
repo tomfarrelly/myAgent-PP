@@ -22,7 +22,7 @@
                                 <td>{{ $events->name }}</td>
                             </tr>
                             <tr>
-                                <td>Description</td>
+                                <td>Description0</td>
                                 <td>{{ $events->description }}</td>
                             </tr>
                             <tr>
