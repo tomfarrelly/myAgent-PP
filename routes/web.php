@@ -3,7 +3,7 @@
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-05-05T16:41:18+01:00
+# @Last modified time: 2021-05-11T19:34:10+01:00
 
 
 
@@ -24,6 +24,7 @@ use App\Http\Controllers\EventManager\DjController as EventManagerDjController;
 
 use App\Http\Controllers\Dj\AvailabilityController as DjAvailabilityController;
 use App\Http\Controllers\Dj\BookingController as DjBookingController;
+use App\Http\Controllers\Dj\EventController as DjEventController;
 
 use App\Http\Controllers\Admin\DjController as DjController;
 
@@ -74,6 +75,10 @@ Route::get('/eventmanager/home', [App\Http\Controllers\EventManager\HomeControll
 //DJ - Availability
 Route::get('/dj/availability/create', [DjAvailabilityController::class, 'create'])->name('dj.availability.create');
 Route::post('/dj/availability/store', [DjAvailabilityController::class, 'store'])->name('dj.availability.store');
+
+// DJ - Events
+Route::get('/dj/events/{id}', [DjEventController::class, 'show'])->name('dj.events.show');
+//Route::get('/eventmanager/events/{id}', [EventManagerEventController::class, 'show'])->name('eventmanager.events.show');
 
 
 //DJ Profile
