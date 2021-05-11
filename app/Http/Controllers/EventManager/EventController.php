@@ -297,23 +297,6 @@ class EventController extends Controller
      return redirect()->route('eventmanager.home');
      }
 
-     public function available(){
-
-
-  $date = Carbon::today();
-
-  $djs = Dj::whereHas('availability', function ($q) use ($date) {
-     $q->where(function ($q2) use ($date) {
-         $q2->whereDate('date_start', '>', $date)
-            ->orWhereDate('date_end', '<' ,$date);
-     });
-   })->orWhereDoesntHave('availability')->get();
-
-
-      return view('eventmanager.event.show',[
-        'djs' => $djs,
-      ]);
-    }
 
 
     /**

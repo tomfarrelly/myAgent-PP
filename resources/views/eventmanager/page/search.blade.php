@@ -23,38 +23,14 @@
 
 
                       </select>
-                      <label for="keyword">&nbsp;&nbsp;</label>
-                      <input type="text" class="form-control"  name="keyword" placeholder="Enter keyword" id="keyword">
+                      
                       <span>&nbsp;</span>
                        <button type="button" onclick="search_dj()" class="btn btn-primary" >Search</button>
-                       @if(Request::query('genre_id') || Request::query('keyword'))
+                       @if(Request::query('genre_id'))
                         <a class="btn btn-success" href="{{route('eventmanager.page.search')}}">Clear</a>
                        @endif
-
-
                     </form>
                   </div>
-
-                  <form method="POST" name="sortDj" id="sortDj" class="form-horizontal" >
-                    <div class="control-group">
-                      <label class="control-label"> Sort By </label>
-                      <select name="sort" id="sort">
-                        <option value="">Select</option>
-                        <option value="djprice_lowest" id="lowOrdering"> Low</option>
-                      </select>
-                    </div>
-
-                  </form>
-
-                  <button type="button" name="button" id="orderLow">
-                    Low
-                  </button>
-
-
-
-
-
-
                         @if(count($genres))
                         <div class="album py-5 ">
       <div class="container">
@@ -66,8 +42,9 @@
 
 
                                     <div class="card1-content ordering">
-                                    <h1>{{ $dj->user->name}}</h1>
+                                    <a href="{{ route('eventmanager.page.profile.show', $dj->id) }} " <h1>{{ $dj->user->name}}</h1></a>
                                     <h2>{{ $dj->price }} </h2>
+                                    <h3>{{ $genre->name }} </h3>
 
 
 
@@ -118,12 +95,6 @@
     window.location.href="{{route('eventmanager.page.search')}}?"+$.param(query);
 
   }
-
- $(document).ready(function(){
-    $("#sort").on('change', function(){
-      this.form.submit();
-    });
- });
 
 </script>
 @endsection

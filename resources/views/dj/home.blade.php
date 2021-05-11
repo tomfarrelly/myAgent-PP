@@ -16,7 +16,9 @@
 
                      You are logged in as a DJ.
                      <br>
+                     <br>
                        <a href="{{ route('dj.bookings.index') }}" class="btn btn-primary float-right">View My Bookings</a>
+                       <a href="{{ route('dj.availability.create') }}" class="btn btn-primary float-left">Book Days Off</a>
 
 
 

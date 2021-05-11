@@ -20,17 +20,17 @@
                 @endif
                 <form method="POST" action="{{ route('dj.availability.store') }}" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="dj_id">DJ</label>
-                        <input type="text" class="form-control" id="dj_id" name="dj_id" value="{{ old('dj_id') }}" />
-                    </div>
+                        <input type="text" class="form-control" id="dj_id" name="dj_id" value="{{ old('auth()->dj_id') }}" />
+                    </div> --}}
 
                         <label for="date_start">Start Date</label>
-                        <input type="text" class="form-control" id="date" name="date_start" value="{{ old('date_start') }}" />
-                    </div>
-                    <div class="form-group">
+                        <input type="date" class="form-control" id="date" name="date_start" value="{{ old('date_start') }}" />
+                    {{-- </div>
+                    <div class="form-group"> --}}
                         <label for="date_end">End Date</label>
-                        <input type="text" class="form-control" id="date" name="date_end" value="{{ old('date_end') }}" />
+                        <input type="date" class="form-control" id="date" name="date_end" value="{{ old('date_end') }}" />
                     </div>
 
                     <div class="float-right">

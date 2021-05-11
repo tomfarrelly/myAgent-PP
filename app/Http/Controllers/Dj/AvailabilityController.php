@@ -1,4 +1,11 @@
 <?php
+# @Author: tomfarrelly
+# @Date:   2021-05-11T16:18:31+01:00
+# @Last modified by:   tomfarrelly
+# @Last modified time: 2021-05-11T16:59:42+01:00
+
+
+
 namespace App\Http\Controllers\Dj;
 
 use App\Http\Controllers\Controller;
@@ -43,14 +50,14 @@ class AvailabilityController extends Controller
       ]);
 
       $availability = new Availability;
-      $availability->dj_id = $request->input('dj_id');
+      $availability->dj_id = auth()->id();
       $availability->date_start=$request->input('date_start');
       $availability->date_end=$request->input('date_end');
       $availability->save();
 
-      return redirect()->back()->with('status','Dates Updated');
+      //return redirect()->back()->with('status','Dates Updated');
 
-      //return redirect()->route('eventmanager.events.index');
+      return redirect()->route('dj.home');
     }
 
     /**

@@ -30,7 +30,7 @@ class Genre extends Model
 
      public function dj()
      {
-       return $this->hasMany('App\Models\Dj', 'dj_genres');
+       return $this->belongsToMany('App\Models\Dj', 'dj_genres');
      }
 
      public function event()

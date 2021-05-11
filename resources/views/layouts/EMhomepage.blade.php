@@ -25,6 +25,17 @@
 
      }
 
+     .box2 {
+       width: 120px;
+       height: 35px;
+       border: 1px solid #999;
+       font-size: 14px;
+       color: black;
+       background-color: #fff;
+       border-radius: 5px;
+
+     }
+
 
    </style>
 <body style="background-color:#f9f5f5;">
@@ -117,8 +128,8 @@
             @if(Request::query('venue') || Request::query('keyword'))
              <a class="btn btn-success box1 shadow" style="color: black; margin-left: 5px;" href="{{route('eventmanager.home')}}">Clear</a>
             @endif
-                  <label style="color: black;" class="control-label sort-by"> Sort Event By </label>
-                  <select class="sort-by-box box shadow" name="sort" id="sort">
+                  <label style=" padding-left: 80px; color: black;" class="sort-by"> Sort Event By </label>
+                  <select class="sort-by-box box2 shadow" name="sort" id="sort">
                     <option value="">Select</option>
                     <option value="event_name_a_z">Name from A to Z</option>
                     <option value="event_name_z_a">Name from Z to A</option>
@@ -172,10 +183,10 @@
             <form style="display:inline-block" method="POST" action="{{ route('eventmanager.events.destroy', $event->id)}}">
               <input type="hidden" name="_method" value="DELETE">
               <input type="hidden" name="_token" value="{{ csrf_token()}}">
-              <a onclick="return confirm('Are you sure you want to delete this event?');" style=" height: 21px;  text-align: center; padding: 0px; border-radius: 0px;  border: 0px;" type="submit" class="form-control "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" fill="red" class="bi bi-trash" viewBox="0 0 16 18">
+              <button style=" height: 2px;  text-align: center; padding: 0px; border-radius: 0px;  border: 0px;"  type="submit" class="form-control btn-md"><a onclick="return confirm('Are you sure you want to delete this event?');" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" fill="red" class="bi bi-trash" viewBox="0 0 16 18">
   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
   <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-</svg></a>
+</svg></a></button>
             </form>
 
 

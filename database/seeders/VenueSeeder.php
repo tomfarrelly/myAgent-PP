@@ -55,5 +55,68 @@ class VenueSeeder extends Seeder
         $venue->capacity = 250;
         $venue->services = "Alcohol, Food, DJ Decks, AV Lighting, Security";
         $venue->save();
+
+        $venue = new Venue();
+        $venue->name = "The George";
+        $venue->location = "Located on Georges St";
+        $venue->capacity = 2250;
+        $venue->services = "Alcohol, Food, DJ Decks, AV Lighting, Security";
+        $venue->save();
+
+        $venue = new Venue();
+        $venue->name = "TIME";
+        $venue->location = "40-42 James St, Cookstown BT80 8LT";
+        $venue->capacity = 250;
+        $venue->services = "Alcohol, Food, DJ Decks, AV Lighting, Security";
+        $venue->save();
+
+        $venue = new Venue();
+        $venue->name = "Sintillate";
+        $venue->location = "Garvoge river Sintillate, formally HMV Soundgarden";
+        $venue->capacity = 250;
+        $venue->services = "Alcohol, Food, DJ Decks, AV Lighting, Security";
+        $venue->save();
+
+        $venue = new Venue();
+        $venue->name = "Lavery’s";
+        $venue->location = "12-18 Bradbury Pl, Belfast BT7 1RS";
+        $venue->capacity = 250;
+        $venue->services = "Alcohol, Food, DJ Decks, AV Lighting, Security";
+        $venue->save();
+
+        $venue = new Venue();
+        $venue->name = "Coyotes Late Bar & Club";
+        $venue->location = "34 Shop St, Galway, Ireland";
+        $venue->capacity = 250;
+        $venue->services = "Alcohol, Food, DJ Decks, AV Lighting, Security";
+        $venue->save();
+
+        $venue = new Venue();
+        $venue->name = "The Foundry";
+        $venue->location = "Tullow St, Graigue, Carlow, Ireland";
+        $venue->capacity = 250;
+        $venue->services = "Alcohol, Food, DJ Decks, AV Lighting, Security";
+        $venue->save();
+
+        $venue = new Venue();
+        $venue->name = "Pulse Nightclubx";
+        $venue->location = "55-61 Port Rd, Gortlee, Letterkenny, Co. Donegal, Ireland";
+        $venue->capacity = 250;
+        $venue->services = "Alcohol, Food, DJ Decks, AV Lighting, Security";
+        $venue->save();
+
+        $venue = new Venue();
+        $venue->name = "Dali";
+        $venue->location = "13 Carey’s Ln, Centre, Cork, T12 RD00, Ireland";
+        $venue->capacity = 250;
+        $venue->services = "Alcohol, Food, DJ Decks, AV Lighting, Security";
+        $venue->save();
+
+        $venue = new Venue();
+        $venue->name = "The Wright Venue";
+        $venue->location = "South Quarter, Airside Retail Park, Crowscastle, Swords, Co. Dublin, Ireland";
+        $venue->capacity = 250;
+        $venue->services = "Alcohol, Food, DJ Decks, AV Lighting, Security";
+        $venue->save();
     }
 }

@@ -20,7 +20,7 @@ label{
 
 </style>
 <div class="section ">
-<div class="container shadowE" style="padding-top: 25px; padding-bottom: 25px; background-color: #fff; margin-top: 100px;">
+<div class="container shadowE col-md-10" style="padding-top: 25px; padding-bottom: 25px; background-color: #fff; margin-top: 100px;">
   <div style="background-color: red; margin-bottom: 60px;"class="container ">
     <div class=" bg-white ">
         <div class="row">
@@ -63,6 +63,7 @@ label{
             <div class="row">
             <div class="form-group col-md-6">
               <label for="venue">Event Venue</label>
+              <br>
               <select name="venue_id">
                 @foreach ($venues as $venue)
                  <option value="{{ $venue->id }}" {{ (old('venue_id') == $venue->id) ? "selected" : "" }} >{{ $venue->name }}</option>
@@ -71,6 +72,7 @@ label{
             </div>
             <div class="form-group col-md-6">
               <label for="genre">Event Genre</label>
+              <br>
               <select name="genre_id">
                 @foreach ($types as $genre)
                  <option value="{{ $genre->id }}" {{ (old('genre_id') == $genre->id) ? "selected" : "" }} >{{ $genre->name }}</option>
@@ -81,10 +83,12 @@ label{
           <div class="row">
             <div class="form-group col-md-6">
                 <label for="date">Event's Date</label>
+                <br>
                 <input type="date" name="date" value="{{ old('date') }}"/>
             </div>
             <div class="form-group col-md-6">
                 <label for="time">Event's Time</label>
+                <br>
                 <input type="time" name="time"  value="{{ old('time') }}"/>
             </div>
           </div>
