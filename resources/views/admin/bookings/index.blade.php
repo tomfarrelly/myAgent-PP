@@ -37,7 +37,7 @@
                               <td>{{ $booking->event->name }}</td>
                                   <td>{{ $booking->event->date }}</td>
                                   <td>{{ $booking->event->time }}</td>
-                                  
+
                                   <td>{{ $booking->event->description}}</td>
 
                                     {{-- <td>{{$events->id=1}}</td> --}}
@@ -79,3 +79,4 @@
         </div>
     </div>
 </div>
+@endsection

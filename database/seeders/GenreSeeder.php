@@ -57,25 +57,70 @@ class GenreSeeder extends Seeder
       $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
       $genre->save();
 
-      // $dj = User::whereHas('roles', function($role) {
-      //      $role->where('name', '=', 'dj');
-      //  })->pluck('id');
-      //$dj = Dj::all()->pluck('id');
+      $genre = new Genre();
+      $genre->name = "Reggae";
+      $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
+      $genre->save();
 
-      //foreach($djs as $dj) {
+      $genre = new Genre();
+      $genre->name = "Soul & Funk";
+      $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
+      $genre->save();
 
+      $genre = new Genre();
+      $genre->name = "R & B";
+      $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
+      $genre->save();
 
-                       //$genre->Dj()->attach($dj->id);
+      $genre = new Genre();
+      $genre->name = "Jazz";
+      $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
+      $genre->save();
 
-     //}
+      $genre = new Genre();
+      $genre->name = "Heavy Metal";
+      $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
+      $genre->save();
 
-    //  foreach(Dj::all() as $dj) {
-    //
-    //
-    //                   //$dj->genre()->attach($genre->id);
-    //                   $genre->Dj()->attach($dj->id);
-    //
-    // }
+      $genre = new Genre();
+      $genre->name = "Lounge";
+      $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
+      $genre->save();
+
+      $genre = new Genre();
+      $genre->name = "Metal";
+      $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
+      $genre->save();
+
+      $genre = new Genre();
+      $genre->name = "Folk";
+      $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
+      $genre->save();
+
+      $genre = new Genre();
+      $genre->name = "Electronic";
+      $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
+      $genre->save();
+
+      $genre = new Genre();
+      $genre->name = "Blues";
+      $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
+      $genre->save();
+
+      $genre = new Genre();
+      $genre->name = "Bluegrass";
+      $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
+      $genre->save();
+
+      $genre = new Genre();
+      $genre->name = "Alternative & Punk";
+      $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
+      $genre->save();
+
+      $genre = new Genre();
+      $genre->name = "Soundtrack";
+      $genre->description = "Consists of a stylized rhythmic music that commonly accompanies rapping, a rhythmic and rhyming speech that is chanted.";
+      $genre->save();
 
     }
 }

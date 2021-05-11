@@ -17,6 +17,7 @@ use App\Models\Availability;
 use App\Models\Event;
 use App\Models\Genre;
 use Carbon\Carbon;
+use App\Models\User;
 use Symfony\Component\Console\Input\Input;
 
 
@@ -103,17 +104,13 @@ class DjController extends Controller
          // echo($genres);
         if($request->genres){
            $genres->whereHas('id',function($q) use ($request){
-           $q->where('name',$request->id);
+           $q->where('name',$request->genre_id);
           });
 
         }
 
-
-
           return view('eventmanager.page.search',[
             'genres' => $genres
-
-
           ]);
 
      }

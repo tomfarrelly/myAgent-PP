@@ -25,6 +25,17 @@
 
      }
 
+     .box2 {
+       width: 120px;
+       height: 35px;
+       border: 1px solid #999;
+       font-size: 14px;
+       color: black;
+       background-color: #fff;
+       border-radius: 5px;
+
+     }
+
 
    </style>
 <body style="background-color:#f9f5f5;">
@@ -117,8 +128,8 @@
             @if(Request::query('venue') || Request::query('keyword'))
              <a class="btn btn-success box1 shadow" style="color: black; margin-left: 5px;" href="{{route('eventmanager.home')}}">Clear</a>
             @endif
-                  <label style="color: black;" class="control-label sort-by"> Sort Event By </label>
-                  <select class="sort-by-box box shadow" name="sort" id="sort">
+                  <label style=" padding-left: 80px; color: black;" class="sort-by"> Sort Event By </label>
+                  <select class="sort-by-box box2 shadow" name="sort" id="sort">
                     <option value="">Select</option>
                     <option value="event_name_a_z">Name from A to Z</option>
                     <option value="event_name_z_a">Name from Z to A</option>
