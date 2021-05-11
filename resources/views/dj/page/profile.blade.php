@@ -103,7 +103,7 @@ label{
                                   <div class="form-group">
                                     <label for="">DJ Genre</label>
                                     <br>
-                                    <input type="text" name="genre"  value="{{ Auth::user()->genre}}">
+                                    <input type="text" name="genre"  value="{{ Auth::user()->dj->genre}}">
                                   </div>
                                   </div>
                                   <div class="col-md-6">

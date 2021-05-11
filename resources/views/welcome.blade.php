@@ -196,7 +196,7 @@ p {
 
 .btn-default {
   color: #fff;
-  background-color: red;
+  background-color: #fb004b;
   border-color: black;
   transition: all 1s ease;
 }
@@ -206,8 +206,8 @@ p {
   padding: 18px 28px;
   font-size: 18px;
   line-height: 1.3333333;
-  border-radius: 50px;
-  border: solid 2px grey;
+  border-radius: 0px;
+  border: solid 2px black;
 }
 
 .btn-group .btn-or {
@@ -282,7 +282,7 @@ p {
   <div class="col-md-8">
       <div class="card" style="border: none; margin-top: -14px;">
         <div class="c2a-btn footer-c2a-btn">
-            <div class="btn-group btn-group-lg" role="group" aria-label="Call to action">
+            <div class="btn-group btn-group-lg shadowE" role="group" aria-label="Call to action">
               <a type="button" class="btn btn-default btn-lg" href="{{ route('login') }}">Login</a>
               <span class="btn-circle btn-or">or</span>
               <a type="button" class="btn btn-default btn-lg" href="{{ route('register') }}">Register</a>
