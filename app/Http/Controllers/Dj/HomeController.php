@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-16T22:20:03+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-05-11T19:18:50+01:00
+# @Last modified time: 2021-05-12T12:22:18+01:00
 
 
 
@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Dj;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Dj;
 use Auth;
 
 class HomeController extends Controller
@@ -40,10 +41,11 @@ class HomeController extends Controller
        //$events = Event::all();
        //$events = Event::where('dj_id', auth()->id())->get();
 
-
+       $dj_id = Dj::where('user_id', auth()->id())->pluck('id');
+       //dd($dj_id);
 
        $bookings = Booking::whereHas('event')
-          ->where('dj_id', auth()->id())->get('event_id');
+          ->where('dj_id', $dj_id)->get('event_id');
       //  })->orWhereDoesntHave('availability')->get();
 
         return view('dj.home',[
