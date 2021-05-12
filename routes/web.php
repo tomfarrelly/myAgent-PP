@@ -104,18 +104,11 @@ Route::post('/eventmanager/events/{id}/bookings/store', [EventManagerBookingCont
 Route::get('/eventmanager/djs', [EventManagerDjController::class, 'index'])->name('eventmanager.djs.index');
 Route::get('/eventmanager/djs/available', [EventManagerDjController::class, 'available'])->name('eventmanager.djs.available');
 Route::get('/eventmanager/djs/{id}', [EventManagerDjController::class, 'show'])->name('eventmanager.djs.show');
-//Route::get('/eventmanager/djs/search-dj', [EventManagerDjController::class, 'search'])->name('eventmanager.djs.search');
-Route::get('/search', [EventManagerDjController::class, 'search'])->name('eventmanager.djs.search');
 
-
-
-
-Route::get('/search', [EventManagerDjController::class, 'search'])->name('eventmanager.page.search');
 
 
 
 // EM EVENT CRUD
-// Route::get('/eventmanager/djs/available', [EventManagerEventController::class, 'available'])->name('eventmanager.event.show');
 Route::get('/eventmanager/home', [EventManagerEventController::class, 'index'])->name('eventmanager.home');
 Route::get('/eventmanager/events/create', [EventManagerEventController::class, 'create'])->name('eventmanager.events.create');
 Route::get('/eventmanager/events/{id}', [EventManagerEventController::class, 'show'])->name('eventmanager.events.show');

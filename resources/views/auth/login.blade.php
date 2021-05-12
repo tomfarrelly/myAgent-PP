@@ -196,7 +196,7 @@ a:hover {
                         <div class="form-group"> <label class="form-check-label" for="remember">{{ __('Remember Me') }}</label> <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} class="form-check-input">
                         </div>
 
-                        <div class="row justify-content-center my-3 px-3"> <button type="submit" class="btn-block btn-color">Login In</button> </div>
+                        <div class="row justify-content-center my-3 px-3"> <button type="submit" class="btn-block btn-color">Log In</button> </div>
                         @if (Route::has('password.request'))
                         <div class="row justify-content-center my-2"> <a href="{{ route('password.request') }}"><small class="text-muted">{{ __('Forgot Your Password?') }}</small></a> </div>
                         @endif

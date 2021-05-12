@@ -197,7 +197,7 @@ p {
 .btn-default {
   color: #fff;
   background-color: #fb004b;
-  border-color: black;
+  border-color: white;
   transition: all 1s ease;
 }
 
@@ -207,7 +207,7 @@ p {
   font-size: 18px;
   line-height: 1.3333333;
   border-radius: 0px;
-  border: solid 2px black;
+  border-right: solid 2px white;
 }
 
 .btn-group .btn-or {

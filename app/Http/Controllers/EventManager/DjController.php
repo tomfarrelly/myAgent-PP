@@ -92,28 +92,28 @@ class DjController extends Controller
    }
 
 
-   public function search(Request $request)
-   {
-     $genres = Genre::where( function($query) use($request){
-                        return $request->genre_id ?
-                               $query->from('genres')->where('id',$request->genre_id) : '';
-
-                   })->with('dj')->get();
-
-
-         // echo($genres);
-        if($request->genres){
-           $genres->whereHas('id',function($q) use ($request){
-           $q->where('name',$request->genre_id);
-          });
-
-        }
-
-          return view('eventmanager.page.search',[
-            'genres' => $genres
-          ]);
-
-     }
+   // public function search(Request $request)
+   // {
+   //   $genres = Genre::where( function($query) use($request){
+   //                      return $request->genre_id ?
+   //                             $query->from('genres')->where('id',$request->genre_id) : '';
+   //
+   //                 })->with('dj')->get();
+   //
+   //
+   //       // echo($genres);
+   //      if($request->genres){
+   //         $genres->whereHas('id',function($q) use ($request){
+   //         $q->where('name',$request->genre_id);
+   //        });
+   //
+   //      }
+   //
+   //        return view('eventmanager.page.availableDj',[
+   //          'genres' => $genres
+   //        ]);
+   //
+   //   }
 
 
 

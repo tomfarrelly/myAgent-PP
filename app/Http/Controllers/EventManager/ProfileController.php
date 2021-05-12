@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Models\Dj;
 use App\Models\User;
+use App\Models\Genre;
 use App\Models\Booking;
 use App\Models\Availability;
 use Carbon\Carbon;
@@ -170,10 +171,49 @@ class ProfileController extends Controller
 
 //
 
+$genres = Genre::where( function($query) use($request){
+                   return $request->genre_id ?
+                          $query->from('genres')->where('id',$request->genre_id) : '';
+
+              })->with('dj')->get();
+
+
+    // echo($genres);
+   if($request->genres){
+      $genres->whereHas('id',function($q) use ($request){
+      $q->where('name',$request->genre_id);
+     });
+
+   }
+
     return view('eventmanager.page.availableDj',[
       //'bookings' => $bookings,
       'djs' => $djs,
-      //'bookings' => $bookings
+      'genres' => $genres
     ]);
   }
+
+  // public function search(Request $request)
+  // {
+  //   $genres = Genre::where( function($query) use($request){
+  //                      return $request->genre_id ?
+  //                             $query->from('genres')->where('id',$request->genre_id) : '';
+  //
+  //                 })->with('dj')->get();
+  //
+  //
+  //       // echo($genres);
+  //      if($request->genres){
+  //         $genres->whereHas('id',function($q) use ($request){
+  //         $q->where('name',$request->genre_id);
+  //        });
+  //
+  //      }
+  //
+  //        return view('eventmanager.page.availableDj',[
+  //          'genres' => $genres
+  //        ]);
+  //
+  //   }
+
 }
