@@ -3,7 +3,7 @@
 
 
 @section('content')
-@include('layouts.EMHomepage')
+@include('layouts.EMhomepage')
 
 @endsection
 @section('javascript')

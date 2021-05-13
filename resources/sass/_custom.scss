@@ -211,8 +211,9 @@ a:focus, a:hover { text-decoration: none; color: #f85759; }
 
 
 .page-header { background: url(https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F123850369%2F438776807040%2F1%2Foriginal.20210121-225330?w=1024&auto=format%2Ccompress&q=75&sharp=10&s=8e0fb425d57212942bdcfd67653e9e20)no-repeat; position: relative; background-size: cover; }
+.page-header1 { background: url(https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2021/02/hybrid-event.png)no-repeat; height: 625px;  position: relative; background-size: cover; }
 .page-caption { padding-top: 170px; padding-bottom: 174px; }
-.page-title { font-size: 46px; line-height: 1; color: white; font-weight: 600; text-align: center; background:black; border: white 2px solid;}
+.page-title { padding-top: 5px; font-size: 46px; line-height: 1; color: white; font-weight: 600; text-align: center; background:black; border: white 2px solid;}
 
 .card-section { position: relative; bottom: 60px;}
 .card-block { padding: 80px; }
@@ -236,8 +237,30 @@ a:focus, a:hover { text-decoration: none; color: #f85759; }
           transform: translate(0px, -10px) scale(1.2);
 }
 
+.button1 {
+  display: inline-block;
+  background: #1cffac;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 20px 30px;
+  border-radius: 5px;
+  box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  -webkit-transition: all ease-in-out 300ms;
+  transition: all ease-in-out 300ms;
+}
+.button1:hover {
+  box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translate(0px, -10px) scale(1.2);
+          transform: translate(0px, -10px) scale(1.2);
+}
+
 .createBtn{
 	color: white;
+}
+
+.createBtn1{
+	color: black;
 }
 
 .shadowE{
