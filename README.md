@@ -7,6 +7,34 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## How to install the project MyAgent on your device.
+1) Please copy the project repository link from github. https://github.com/tomfarrelly/myAgent-PP/edit/master/README.md
+2) Go into Atom,Open the Github Panel and click on Clone an existing Github repository.
+3) Paste the link into Clone from and select a directory consisting the WAF folder copy the path and clone the project into there.
+4) Open the Homestead folder in Atom, and go into the homestead.yaml to configure the settings.
+5) Put that code under sites: 
+- map: my.agent
+to: /home/vagrant/WAF/MyLaravelProjects/MyAgent/public
+Put this under database: 
+- my_agent
+Save this homestead.yaml file.
+6) Then open up Notepad as Administrator, Pick File -> Open -> hosts -> add this line of code 127.0.0.1 my.agent under # localhost name resolution is handled within DNS itself. Save and exit.
+7) Then open up GitBash, type -> cd WAF/Homestead -> vagrant up 
+8) Go to phpAdmin and create new databse called my_agent
+9) In atom make an .env file and change into 
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=my_agent
+DB_USERNAME=homestead
+DB_PASSWORD=secret
+
+Then in GitBash, type vagrant reload --provision inside of Homestead.
+10) Open up new Gitbash window,and cd into your project directory then run this command -> composer install followed by npm install
+11) Go back to the Gitbash window with Homestead and type in -> vagrant ssh -> cd WAF/MyLaravelProjects/MyAgent, run this command -> php artisan migrate:fresh --seed
+12) You can then login as an Admin with email: admin@myagent.com password: secret, or as an event manager email: shane@em.com password: secret, or finally as  a DJ email: max@dj.com password: secret
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
