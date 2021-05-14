@@ -10,6 +10,9 @@ td{
   border:none;
 }
 </style>
+<form method="POST" action="{{ route('dj.bookings.store', $bookings->id)}}">
+@csrf
+ <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div class="container mt-5">
   <div class="col-10" style="margin-bottom: 15px;">
     <a  href="{{ route('dj.bookings.index')}}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
@@ -19,9 +22,6 @@ td{
     <div class="row">
         <div class="col-md-12 col-md-offset-2 ">
             <div class="card shadowE">
-              <form method="POST" action="{{ route('dj.bookings.store', $bookings->id)}}">
-              @csrf
-               <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="row justify-content-center">
                     <h2 style="padding-top:10px; text-shadow: 1px 1px black;">Event Name: {{ $bookings->event->name }}</h2>
                 </div>
@@ -45,113 +45,35 @@ td{
                      <div class="col-4">
                     <label style=" color:black; text-shadow: 1px 1px black;">Event Time</label>
                     <h4 style="color:gray;">{{ $bookings->event->time }}</h4>
-                    <label style=" color:black; text-shadow: 1px 1px black;">Event</label>
-                    <select class="hidden" name="event_id">
+                    <label style=" display: none; color:black; text-shadow: 1px 1px black;">Event</label>
+                    <select style="display: none; " name="event_id">
                        <option value="{{ $bookings->event->id }}" {{ (old('event_id') == $bookings->event->id)}} >{{ $bookings->event->name }}</option>
                     </select>
-                    <label style=" color:black; text-shadow: 1px 1px black;">DJ</label>
-                    <select name="dj_id">
+                    <label style="display: none; color:black; text-shadow: 1px 1px black;">DJ</label>
+                    <select style="display: none;" name="dj_id">
                        <option value="{{ $bookings->dj->id }}" {{ (old('dj_id') == $bookings->dj->id)}} >{{ $bookings->dj->user->name }}</option>
                     </select>
                   </div>
                   </div>
                 </div>
+                 </form>
+            </div>
+            <div class="row justify-content-center mt-4">
+              <div class="col-1"></div>
+            <div class="form-group col-md-4">
+              <form style="display:inline-block" method="POST" action="{{ route('dj.bookings.destroy', $bookings->id) }}">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <button type="submit" class="form-control btn btn-danger">Decline</button>
               </form>
+              <button  type="submit" id="status" name="status" style=" font-size: 16px; border-radius: 0px; background-color: #1cffac; margin-left: 25px;" class="btn pull-right shadow" >Accept Booking</button>
+            </div>
             </div>
         </div>
     </div>
 </div>
-  <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div class="card">
-            <div class= "card-header">
 
-              {{ $bookings->event_id }}: Make a Booking
-
-            </div>
-            <div class="panel-body">
-              @if ($errors->any())
-                <div class="alert alert-danger">
-                  <ul>
-                    @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                    @endforeach
-                  </ul>
-                </div>
-              @endif
-
-                    <form method="POST" action="{{ route('dj.bookings.store', $bookings->id)}}">
-                    @csrf
-                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                    {{-- <div class="form-group">
-                      <label class="form-check-label" for="status">status</label>
-                      <input type="checkbox" class="form-check-input" id="status" name="status" value="{{csrf_field()}}">
-                    </div> --}}
-                    <div class="card-body">
-                        <table class="table table-hover">
-                            <tbody>
-                              <tr>
-                                <td rowspan="6">
-                                  <img src="{{ asset('uploads/event/'.$bookings->event->cover) }}" class="w-100">
-                                </td>
-                              </tr>
-
-                                    <td>Event</td>
-                                    <td>
-                                      <select name="event_id">
-
-                                         <option value="{{ $bookings->event->id }}" {{ (old('event_id') == $bookings->event->id)}} >{{ $bookings->event->name }}</option>
-
-                                      </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Djs</td>
-                                    <td>
-                                          <select name="dj_id">
-
-                                             <option value="{{ $bookings->dj->id }}" {{ (old('dj_id') == $bookings->dj->id)}} >{{ $bookings->dj->user->name }}</option>
-
-                                          </select>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                  <td>
-                                    {{-- <label class="form-check-label" for="status">status</label>
-                                    <input type="checkbox" class="form-check-input" id="status" name="status" value="{{csrf_field()}}" /> --}}
-                                    <button type="submit" class="btn btn-success pull-left" id="status" name="status" value="{{csrf_field()}}" /> Accept </button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <br>
-
-                                  </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                      </div>
-                    <a href="{{ route('dj.bookings.index') }}" class="btn btn-warning">Cancel</a>
-                    {{-- <a href="{{ route('dj.events.show', $events->id) }}" class="btn btn-warning">Show Event</a> --}}
-                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                  </form>
-                  <form style="display:inline-block" method="POST" action="{{ route('dj.bookings.destroy', $bookings->id) }}">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="form-control btn btn-danger">Decline</button>
-                  </form>
-                   {{-- <form style="display:inline-block" method="POST" action="{{ route('dj.bookings.destroy', $bookings->id) }}">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="form-control btn btn-danger">Decline</button>
-                  </form> --}}
-               </div>
-            </div>
-        </div>
-    </div>
-  </div>
+</div>
+</div>
 
 @endsection

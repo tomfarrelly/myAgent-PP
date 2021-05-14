@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group">
                         <label for="type">Type</label>
-                        <input type="text" class="form-control" id="type" name="type" value="{{ old('type', $event->type->name) }}" />
+                        <input type="text" class="form-control" id="type" name="type" value="{{ old('type', $event->genre->name) }}" />
                     </div>
                     <div class="form-group">
                         <label for="user_id">Made By</label>

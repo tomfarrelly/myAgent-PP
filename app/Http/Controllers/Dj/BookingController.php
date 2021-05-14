@@ -33,7 +33,6 @@ class BookingController extends Controller
       $id = Auth::user()->dj->id;
       $bookings = Auth::user()->dj->booking->where('status', '0');
       $confirmedBookings = Auth::user()->dj->booking->where('status', '1');
-
       return view('dj.bookings.index',[
         'bookings' => $bookings,
         'confirmedBookings' => $confirmedBookings,
@@ -153,7 +152,7 @@ class BookingController extends Controller
         $availability->date_start = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
         $availability->date_end = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
 
-      
+
       $booking->destroy($id);
       $booking->save();
       $availability->save();

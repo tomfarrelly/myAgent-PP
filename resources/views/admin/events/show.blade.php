@@ -39,7 +39,7 @@
                             </tr>
                             <tr>
                                 <td>Type</td>
-                                <td>{{ $event->type->name }}</td>
+                                <td>{{ $event->genre->name }}</td>
                             </tr>
                         </tbody>
                     </table>

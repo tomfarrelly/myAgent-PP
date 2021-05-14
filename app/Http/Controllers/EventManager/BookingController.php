@@ -53,14 +53,14 @@ class BookingController extends Controller
      */
     public function create($id)
     {
-      $event = Event::findOrFail($id);
+      $events = Event::all();
       $djs = Dj::all();
 
 
 
       return view('eventmanager.events.bookings.create', [
 
-        'event' => $event,
+        'events' => $events,
         'djs' => $djs
 
 

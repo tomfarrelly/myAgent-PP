@@ -91,7 +91,7 @@ $djs = Dj::whereHas('availability', function ($q) use ($date) {
     });
   })->orWhereDoesntHave('availability')->get();
 
- /
+ 
 
      return view('eventmanager.djs.available',[
 
@@ -175,7 +175,7 @@ $djs = Dj::whereHas('availability', function ($q) use ($date) {
 
      public function update(Request $request, $id)
      {
-       
+
 
        $dj = Dj::findOrFail($id);
        $dj->user->name = $request->input('name');
