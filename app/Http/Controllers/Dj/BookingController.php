@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-03-08T15:39:51+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-05-10T19:00:49+01:00
+# @Last modified time: 2021-05-13T18:05:56+01:00
 
 
 
@@ -67,12 +67,12 @@ class BookingController extends Controller
       //          dd($events);
 
       $id = Auth::user()->dj->id;
-
-
+      $bookings = Auth::user()->dj->booking->where('status', '0');
+      $confirmedBookings = Auth::user()->dj->booking->where('status', '1');
 
       return view('dj.bookings.index',[
-        'bookings' => Auth::user()->dj->booking->where('status', '0'),
-        'confirmedBookings' => Auth::user()->dj->booking->where('status', '1'),
+        'bookings' => $bookings,
+        'confirmedBookings' => $confirmedBookings,
       ]);
     //}
     }

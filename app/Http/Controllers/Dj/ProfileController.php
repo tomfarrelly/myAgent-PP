@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-16T22:47:21+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-04-08T17:22:28+01:00
+# @Last modified time: 2021-05-14T17:32:20+01:00
 
 
 
@@ -99,5 +99,16 @@ class ProfileController extends Controller
       $user->dj->update();
       $user->update();
       return redirect()->back()->with('status','Profile Updated');
+   }
+
+   public function show($id)
+   {
+       $user = User::findOrFail($id);
+
+       return view('dj.page.show',[
+         'user' => $user
+       ]);
+
+
    }
 }

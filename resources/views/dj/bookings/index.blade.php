@@ -32,8 +32,9 @@
                           @foreach ($bookings as $booking)
                             <tr data-id="{{ $booking->id }}">
 
+
                               <td>{{ $booking->event->user->name}}</td>
-                              </a>
+                            </a>
                               <td>{{ $booking->event->name }}</td>
                                   <td>{{ $booking->event->date }}</td>
                                   <td>{{ $booking->event->time }}</td>
@@ -52,6 +53,8 @@
                                 <td>{{ $event->user->name }}<td>
                                 @endforeach --}}
                                 <td>
+
+                                  <a href="{{ route('dj.page.profile.show', $booking->event->user->id) }}" class="btn btn-default">Profile</a>
 
                                   <a href="{{ route('dj.bookings.edit', $booking->id) }}" class="btn btn-primary float-right">View Booking</a>
                                   @endforeach
@@ -96,25 +99,20 @@
                           @foreach ($confirmedBookings as $booking)
                             <tr data-id="{{ $booking->id }}">
 
+
                               <td>{{ $booking->event->user->name}}</td>
+
                               <td>{{ $booking->event->name }}</td>
                                   <td>{{ $booking->event->date }}</td>
                                   <td>{{ $booking->event->time }}</td>
                                   <td>{{ $booking->event->venue->name }}</td>
                                   <td>{{ $booking->event->description}}</td>
 
-                                    {{-- <td>{{$events->id=1}}</td> --}}
 
-
-                                  {{-- <td>{{ $events->user->name }}</td> --}}
-                                   {{-- @foreach ($events as $event)
-                                <td>{{ $event->name }}</td>
-
-                                 <td>{{ $event->date }}</td>
-                                <td>{{ $event->time }}</td>
-                                <td>{{ $event->user->name }}<td>
-                                @endforeach --}}
                                 <td>
+
+                                  <a href="{{ route('dj.page.profile.show', $booking->event->user->id) }}" class="btn btn-default">Profile</a>
+                                  <a href="{{ route('dj.events.show', $booking->event->id) }}" class="btn btn-default">Event</a>
 
                                   <a href="{{ route('dj.bookings.edit', $booking->id) }}" class="btn btn-primary float-right">Edit Booking</a>
                                   @endforeach

@@ -3,7 +3,7 @@
 # @Date:   2020-10-30T15:07:53+00:00
 # @Last modified by:   tomfarrelly
 
-# @Last modified time: 2021-05-11T19:34:10+01:00
+# @Last modified time: 2021-05-13T17:00:40+01:00
 
 
 
@@ -84,6 +84,7 @@ Route::get('/dj/events/{id}', [DjEventController::class, 'show'])->name('dj.even
 //DJ Profile
 Route::get('/myprofile', [App\Http\Controllers\Dj\ProfileController::class, 'myprofile'])->name('dj.page.profile');
 Route::post('/my-profile-update-dj', [App\Http\Controllers\Dj\ProfileController::class, 'myprofileupdateDJ'])->name('dj.page.profile');
+Route::get('/dj/page/users/{id}', [App\Http\Controllers\Dj\ProfileController::class, 'show'])->name('dj.page.profile.show');
 
 
 
