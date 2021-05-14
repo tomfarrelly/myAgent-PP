@@ -42,6 +42,9 @@
                     <a class="nav-link navcolor" href="{{ route('eventmanager.home') }}">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link navcolor" href="{{ route('dj.availability.create') }}">Book Days Off</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link navcolor" href="{{ route('dj.bookings.index') }}">Booking Notifications</a>
                 </li>
                 @else
