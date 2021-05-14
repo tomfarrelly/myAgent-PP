@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:48+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-15T17:14:49+00:00
+# @Last modified time: 2021-05-14T20:38:48+01:00
 
 
 
@@ -54,12 +54,13 @@ class EventController extends Controller
      {
          $venues = Venue::all();
          $types = Genre::all();
-         //$users = User::roles('eventManager')->get();
+
+         // Getting all Users with the Event Manager role
          $users = User::whereHas('roles', function($role) {
               $role->where('name', '=', 'eventManager');
           })->get();
 
-         //dd($users);
+
 
          return view('admin.events.create',[
            'venues' =>$venues,
@@ -82,12 +83,10 @@ class EventController extends Controller
          'description' => 'required',
          'venue_id' => 'required',
          'date' => 'required|date',
-         'time' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
+         'time' => 'date_format:H:i',
          'type_id' => 'required',
          'cover' => 'file|image',
          'user_id' => 'required|exists:users,id',
-
-         //'cover'=> 'file|image',
 
        ]);
 
@@ -170,13 +169,15 @@ class EventController extends Controller
           'description' => 'required|max:191',
           'venue' => 'required|max:191',
           'date' => 'required|date',
-          'time' => 'required|date_format:H:i',//makes sure that the one you are adding to the DB is unique
+          'time' => 'required|date_format:H:i',
           'type' => 'required',
           'cover' => 'file|image',
           'user_id' => 'required|integer',
 
         ]);
 
+        // If a cover for the event already exists it gets deleted
+        //
         if($request->hasfile('cover'))
       {
         $destination = 'uploads/event/' .$event->cover;

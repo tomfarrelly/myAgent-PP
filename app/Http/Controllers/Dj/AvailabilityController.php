@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-05-11T16:18:31+01:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-05-12T17:28:48+01:00
+# @Last modified time: 2021-05-14T20:51:28+01:00
 
 
 
@@ -49,6 +49,8 @@ class AvailabilityController extends Controller
 
       ]);
 
+      // Getting the DJ ID of the logged in DJ
+      // In the DJ table where user_id = the ID of the logged in user 
       $dj_id = Dj::where('user_id', auth()->id())->get(['id'])->pluck('id')->implode('id');
 
       $availability = new Availability;
@@ -56,8 +58,6 @@ class AvailabilityController extends Controller
       $availability->date_start=$request->input('date_start');
       $availability->date_end=$request->input('date_end');
       $availability->save();
-
-      //return redirect()->back()->with('status','Dates Updated');
 
       return redirect()->route('dj.home');
     }

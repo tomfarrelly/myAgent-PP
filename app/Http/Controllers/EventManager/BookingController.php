@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-17T01:27:08+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-05-10T14:19:14+01:00
+# @Last modified time: 2021-05-14T17:48:46+01:00
 
 
 
@@ -51,16 +51,16 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-      $events = Event::all();
+      $event = Event::findOrFail($id);
       $djs = Dj::all();
 
 
 
       return view('eventmanager.events.bookings.create', [
 
-        'events' => $events,
+        'event' => $event,
         'djs' => $djs
 
 

@@ -1,4 +1,11 @@
 <?php
+# @Author: tomfarrelly
+# @Date:   2020-12-16T22:20:03+00:00
+# @Last modified by:   tomfarrelly
+# @Last modified time: 2021-05-14T20:27:33+01:00
+
+
+
 
 namespace App\Http\Controllers\Admin;
 
@@ -26,10 +33,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-       // $user = Auth::user();
-       // $user->authorizeRoles(['admin']);
-
-
         return view('admin.home');
     }
 }

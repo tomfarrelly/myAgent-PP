@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-03-15T02:40:41+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-15T03:01:39+00:00
+# @Last modified time: 2021-05-14T20:27:41+01:00
 
 
 
@@ -22,6 +22,7 @@ class BookingController extends Controller
      */
     public function index()
     {
+      
       $bookings = Booking::all();
       return view('admin.bookings.index',[
         'bookings' => $bookings,

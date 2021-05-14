@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-03-15T00:31:08+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-03-15T03:01:38+00:00
+# @Last modified time: 2021-05-14T21:08:33+01:00
 
 
 
@@ -35,7 +35,7 @@ class EventManagerController extends Controller
      */
     public function index()
     {
-      //$evManager = User::all();
+      
 
       $evManagers = User::whereHas(
         'roles', function($q){
@@ -69,16 +69,17 @@ class EventManagerController extends Controller
      */
     public function store(Request $request)
     {
-      // $request->validate([
-      //   'name' => 'required|max:191',
-      //   'email' => 'required|max:191',
-      //   'password' => 'required|integer',
-      //   'bio' => 'required|date',
-      //   'location' => 'date_format:H:i',//makes sure that the one you are adding to the DB is unique
-      //   'username' => 'required',
-      //
-      // ]);
+      $request->validate([
+        'name' => 'required|max:191',
+        'email' => 'required|max:191',
+        'password' => 'required|integer',
+        'bio' => 'required|date',
+        'location' => 'date_format:H:i',
+        'username' => 'required',
 
+      ]);
+
+      // Getting role name from Roles table
       $role_eventManager = Role::where('name','eventManager')->first();
 
       $evManager = new  User();
@@ -127,15 +128,6 @@ class EventManagerController extends Controller
       ]);
     }
 
-    // public function edit($id)
-    // {
-    //
-    //   $event = Event::findOrFail($id);
-    //
-    //   return view('eventmanager.events.edit',[
-    //     'event' => $event
-    //   ]);
-    // }
 
     /**
      * Update the specified resource in storage.
@@ -146,6 +138,15 @@ class EventManagerController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $request->validate([
+        'name' => 'required|max:191',
+        'email' => 'required',
+        'password' => 'required',
+        'bio' => 'required|date',
+        'location' => 'required|max:252',
+        'username' => 'required',
+
+      ]);
       $evManager = User::findOrFail($id);
 
       $evManager->name=$request->input('name');
@@ -157,7 +158,6 @@ class EventManagerController extends Controller
 
       $evManager->update();
 
-    //  $evManager->roles()->attach($role_eventManager);
 
       return redirect()->route('admin.eventmanagers.index');
     }
@@ -171,24 +171,11 @@ class EventManagerController extends Controller
     public function destroy(Request $request, $id)
     {
 
-      // $posts = User::where('id', $id)->pluck('id');
-      // User::with('user_role', $posts)->delete();
+
 
       $evManager = User::findOrFail($id);
       $ev_Manager = User::findOrFail($evManager->id);
-      // User::where('user_id',$user->id)->get()->each(function ($id) {
-      //
-      //         $user->roles()->deatch();
-      //         $user->delete();
-      //
-      //     });
 
-
-      //$evManager->roles()->detach();
-
-
-      //$evManager->delete();
-    //  $ev_Manager->delete();
 
       return redirect()->route('admin.eventmanagers.index');
     }

@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-16T22:20:03+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-05-12T12:22:18+01:00
+# @Last modified time: 2021-05-14T20:33:49+01:00
 
 
 
@@ -35,32 +35,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-       // $user = Auth::user();
-       // $user->authorizeRoles(['admin']);
 
-       //$events = Event::all();
-       //$events = Event::where('dj_id', auth()->id())->get();
 
        $dj_id = Dj::where('user_id', auth()->id())->pluck('id');
-       //dd($dj_id);
+
 
        $bookings = Booking::whereHas('event')
           ->where('dj_id', $dj_id)->get('event_id');
-      //  })->orWhereDoesntHave('availability')->get();
+
 
         return view('dj.home',[
           'bookings' => $bookings
         ]);
     }
 
-    // public function myEvents()
-    // {
-    //    // $events = Event::where('dj_id', auth()->id())->get();
-    //    $events = Event::all()->get();
-    //
-    //
-    //     return view('dj.home',[
-    //       'events' => $events
-    //     ]);
-    // }
 }

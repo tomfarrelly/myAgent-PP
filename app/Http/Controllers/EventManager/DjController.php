@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-16T22:47:21+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-04-07T20:23:00+01:00
+# @Last modified time: 2021-05-14T20:34:11+01:00
 
 
 
@@ -90,33 +90,6 @@ class DjController extends Controller
        'djs' => $djs,
      ]);
    }
-
-
-   // public function search(Request $request)
-   // {
-   //   $genres = Genre::where( function($query) use($request){
-   //                      return $request->genre_id ?
-   //                             $query->from('genres')->where('id',$request->genre_id) : '';
-   //
-   //                 })->with('dj')->get();
-   //
-   //
-   //       // echo($genres);
-   //      if($request->genres){
-   //         $genres->whereHas('id',function($q) use ($request){
-   //         $q->where('name',$request->genre_id);
-   //        });
-   //
-   //      }
-   //
-   //        return view('eventmanager.page.availableDj',[
-   //          'genres' => $genres
-   //        ]);
-   //
-   //   }
-
-
-
 
 
 

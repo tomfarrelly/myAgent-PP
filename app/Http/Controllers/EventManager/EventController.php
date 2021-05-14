@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2020-12-13T16:30:18+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-05-12T17:31:14+01:00
+# @Last modified time: 2021-05-14T20:36:48+01:00
 
 
 
@@ -57,11 +57,15 @@ class EventController extends Controller
 
         $events = Event::all();
 
+        // Getting todays date
         $date = Carbon::today();
 
+        // All events with dates less than todays date
         $pastevents = Event::where('date', '<' ,$date)->paginate(12);
+        // All events with dates greater than or equal to todays date
         $futureevents = Event::where('date', '>=' ,$date)->get();
 
+        
         $data['venues'] = Venue::orderBy('id')->get();
         $post_query = Event::where('user_id',auth()->id());
         $post_query = Event::where('date', '>=' ,$date);
@@ -120,14 +124,7 @@ class EventController extends Controller
 
     }
 
-    // public function getMoreEvents(Request $request) {
-    //     $query = $request->search_query;
-    //     $venue = $request->venue;
-    //     $sort_by = $request->sort_by;
-    //     if($request->ajax()) {
-    //         $$futureevents = Event::getEvents($query, $venue, $sort_by,);
-    //             return view('pages.event_data', compact('$futureevents'))->render();
-    //     }
+
 
     /**
      * Show the form for creating a new resource.

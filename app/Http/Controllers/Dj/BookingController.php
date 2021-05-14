@@ -2,7 +2,7 @@
 # @Author: tomfarrelly
 # @Date:   2021-03-08T15:39:51+00:00
 # @Last modified by:   tomfarrelly
-# @Last modified time: 2021-05-13T18:05:56+01:00
+# @Last modified time: 2021-05-14T20:29:10+01:00
 
 
 
@@ -29,42 +29,6 @@ class BookingController extends Controller
      */
     public function index()
     {
-      // if ('status' == 0){
-      // $bookings = Booking::all()->where('dj_id' == Auth::user()->id);
-
-      // $info = Booking::with('event')->pluck('event_id');
-      //  dd($info);
-      // $events = DB::table('events')->where('id', $info)->get();
-
-
-
-    //  $event = Event::findOrFail($id);
-
-      //$bookings = Booking::where('dj_id', $id)->get();
-
-      // $bookings = Booking::where('dj_id', $id)->get();
-
-//
-
-      // $events = Event::with('booking', function ($q) use ($info) {
-      //     $q->where('id', $info);
-      //   })->get()->implode();
-
-      // foreach (Auth::user()->dj->booking[0]$ $value) {
-        // code...
-      // }
-      // dd(Auth::user()->dj->booking);
-
-
-
-        //dd($events);
-
-      //dd($bookings);
-
-      // $events = Event::where( function($query) use($request){
-      //                      $query->from('events')->where('id', $id);
-      //          })->with('booking')->get();
-      //          dd($events);
 
       $id = Auth::user()->dj->id;
       $bookings = Auth::user()->dj->booking->where('status', '0');
@@ -74,7 +38,7 @@ class BookingController extends Controller
         'bookings' => $bookings,
         'confirmedBookings' => $confirmedBookings,
       ]);
-    //}
+
     }
 
     /**
@@ -145,16 +109,7 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-      // $events = Event::findOrFail($id);
       //
-      // $djs = Booking::where('event_id', $id)->get();
-      //
-      //
-      // return view('dj.events.show',[
-      //   'events' => $events,
-      // //  'djs' => $djs,
-      //   'djs' => $djs
-      // ]);
     }
 
     /**
@@ -166,13 +121,10 @@ class BookingController extends Controller
     public function edit($id)
     {
       $booking = Booking::findOrFail($id);
-      // $events = Event::findOrFail();
-      // $djs = Dj::findOrFail($id);//->pluck('name','date','decription','venue', 'user_id')->get();
-      //dd($events);
+
       return view('dj.bookings.edit',[
         'bookings' => $booking
-        // 'events' => $events,
-        // 'djs' => $djs
+
       ]);
 
     }
@@ -201,8 +153,7 @@ class BookingController extends Controller
         $availability->date_start = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
         $availability->date_end = Event::where('id', $booking->event_id)->get(['date'])->pluck('date')->implode('date');
 
-      //$availability->save();
-      //  $booking->destroy($id);
+      
       $booking->destroy($id);
       $booking->save();
       $availability->save();
