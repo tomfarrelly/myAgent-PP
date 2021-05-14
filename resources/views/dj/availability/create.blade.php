@@ -55,16 +55,16 @@ label{
             <div class="col-5"></div>
             </div>
             <div class="row justify-content-center">
-            <div class="col-1"></div>
-            <div class="form-group col-md-4">
+            <div class="col-2"></div>
+            <div class="form-group col-md-6">
                 <label for="date">Start Date</label>
                 <br>
                 <input type="date" name="date" value="{{ old('date') }}"/>
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                 <label for="time">End Date</label>
                 <br>
-                <input type="time" name="time"  value="{{ old('time') }}"/>
+                <input type="date" name="date" value="{{ old('date') }}"/>
             </div>
           </div>
           <br>

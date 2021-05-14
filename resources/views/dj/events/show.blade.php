@@ -1,69 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<style>
+td{
+  border:none;
+}
+</style>
+<div class="container mt-5">
+  <div class="col-10" style="margin-bottom: 15px;">
+    <a  href="{{ route('dj.home')}}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+  <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+  </svg> Back </a>
+  </div>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="card">
-                <div class="card-header">
-                    Event: {{ $events->name }}
+        <div class="col-md-12 col-md-offset-2 ">
+            <div class="card shadowE">
+                <div class="row justify-content-center">
+                    <h2 style="padding-top:10px; text-shadow: 1px 1px black;">Event Name: {{ $events->name }}</h2>
                 </div>
-
                 <div class="card-body">
-                    <table class="table table-hover">
-                        <tbody>
-                          <tr>
-                            <td rowspan="6">
-                              <img src="{{ asset('uploads/event/'.$events->cover) }}" class="w-100">
-                            </td>
-                          </tr>
-                            <tr>
-                                <td>Name</td>
-                                <td>{{ $events->name }}</td>
-                            </tr>
-                            <tr>
-                                <td>Description0</td>
-                                <td>{{ $events->description }}</td>
-                            </tr>
-                            <tr>
-                                <td>Venue</td>
-                                <td>{{ $events->venue->name }}</td>
-                            </tr>
-                            <tr>
-                                <td>Date</td>
-                                <td>{{ $events->date }}</td>
-                            </tr>
-                            <tr>
-                                <td>Time</td>
-                                <td>{{ $events->time }}</td>
-                            </tr>
-                            <tr>
-                                <td>Type</td>
-                                <td>{{ $events->genre->name }}</td>
-                            </tr>
-
-
-
-                            @foreach ($bookings as $booking)
-                                <tr>
-                                   <td>DJ</td>
-                                   <td>{{ $booking->dj->user->name }}</td>
-                               </tr>
-                            @endforeach
-
-
-                        </tbody>
-                    </table>
-
-                    <a href="{{ route('dj.home') }}" class="btn btn-primary">Back</a>
-                    {{-- <a href="{{ route('eventmanager.events.edit', $events->id) }}" class="btn btn-warning">Edit</a>
-                    <a href="{{ route('eventmanager.events.availableDj', $events->id) }}" class="btn btn-warning">Add DJ</a>
-                    <form style="display:inline-block" method="POST" action="{{ route('eventmanager.events.destroy', $events->id) }}">
-                      <input type="hidden" name="_method" value="DELETE">
-                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                      <button type="submit" class="form-control btn btn-danger">Delete</button>  --}}
+                  <div class="row justify-content-center">
+                    <div class="col-md-6">
+                  <img src="{{ asset('uploads/event/'.$events->cover) }}" class="w-100">
+                  </div>
+                  <div class="col-md-6">
+                    <label style=" color:black; text-shadow: 1px 1px black;">Description</label>
+                    <p>{{ $events->description }}</p>
+                    <label style=" color:black; text-shadow: 1px 1px black;">Venue Name</label>
+                    <h4 style="color:gray;">{{ $events->venue->name }}</h4>
+                    <label style=" color:black; text-shadow: 1px 1px black;">Event Genre</label>
+                    <h4 style="color:gray;">{{ $events->genre->name }}</h4>
+                    <div class="row">
+                      <div class="col-8">
+                    <label style=" color:black; text-shadow: 1px 1px black;">Event Date</label>
+                    <h4 style="color:gray;">{{ $events->date }}</h4>
+                     </div>
+                     <div class="col-4">
+                    <label style=" color:black; text-shadow: 1px 1px black;">Event Time</label>
+                    <h4 style="color:gray;">{{ $events->time }}</h4>
+                      </div>
+                      </div>
+                  </div>
+                  </div>
                 </div>
-
             </div>
         </div>
     </div>

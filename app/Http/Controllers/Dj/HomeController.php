@@ -47,9 +47,10 @@ class HomeController extends Controller
        $bookings = Booking::whereHas('event')
           ->where('dj_id', $dj_id)->get('event_id');
       //  })->orWhereDoesntHave('availability')->get();
-
+      $confirmedBookings = Auth::user()->dj->booking->where('status', '1');
         return view('dj.home',[
-          'bookings' => $bookings
+          'bookings' => $bookings,
+          'confirmedBookings' => $confirmedBookings,
         ]);
     }
 
